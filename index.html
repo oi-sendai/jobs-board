@@ -8,6 +8,7 @@
 		<meta name="description" content="A simple template for getting started with AngularFire (AngularJS + Firebase) w/ user login system">
 		<meta name="author" content="Matt Malenczak">
 		<!-- link rel="shortcut icon" href="img/favicon.png" -->
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/app.css"/>
 		<!--[if lt IE 9]>
@@ -16,14 +17,55 @@
 		<![endif]-->
 	</head>
 	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">AngularFire Login Boilerplate</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="#/main">Home</a></li>
+					<li><a href="#/dressing">Get Dressed</a></li>
+				</ul>
+				<div class="nav navabar-right navbar-text" ng-controller="MainCtrl">
+					{{greeting}}
+				</div>
+			</div>
+		</nav>
 		<div ng-view></div>
+		<div ng-controller="ModalDemoCtrl">
+		    <script type="text/ng-template" id="myModalContent.html">
+		        <div class="modal-header">
+		            <h3 class="modal-title">I'm a modal!</h3>
+		        </div>
+		        <div class="modal-body">
+		            <ul>
+		                <li ng-repeat="item in items">
+		                    <a ng-click="selected.item = item">{{ item }}</a>
+		                </li>
+		            </ul>
+		            Selected: <b>{{ selected.item }}</b>
+		        </div>
+		        <div class="modal-footer">
+		            <button class="btn btn-primary" ng-click="ok()">OK</button>
+		            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+		        </div>
+		    </script>
+
+		    <button class="btn btn-default" ng-click="open()">Open me!</button>
+		    <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
+		    <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+		    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+		</div>
 
 		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.min.js"></script>
 		<script src="//cdn.firebase.com/v0/firebase.js"></script>
 		<script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>
 		<script src="//cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+		<script src="js/vendor/angular-bootstrap/ui-bootstrap.js"></script>
+		<script src="js/vendor/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/controllers.js"></script>
 		<!-- script src="js/filters.js"></script -->

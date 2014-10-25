@@ -6,7 +6,7 @@ function MainCtrl($scope, $http, angularFire, angularFireAuth) {
 	$scope.loginBusy = false;
 	$scope.userData = $scope.userData || {};
 
-	var ref = new Firebase('https://[your-firebase].firebaseio.com/');
+	var ref = new Firebase('https://brilliant-fire-7870.firebaseio.com/');
 	angularFireAuth.initialize(ref, {scope: $scope, name: 'user'});
 
 	/*//////////////LOGIN - LOGOUT - REGISTER////////////////////*/
@@ -85,3 +85,58 @@ function MainCtrl($scope, $http, angularFire, angularFireAuth) {
 		}
 	});
 }
+function DressingCtrl($scope, $http, angularFire, angularFireAuth) {
+	console.log('somthign new');
+	(function(){
+	var max = 500;  
+	console.log(max);
+	$('.slider').slider({
+	    min: 0,
+	    max: 50,
+	    slide: function (ev, ui) {
+	        var total = ui.value;
+	        $('.slider').not(this).each(function () {
+	            total += $(this).slider('value');
+	        })
+	        if (total > 200) {
+	            return false;
+	        }
+	        var dataTotal = $(this).data('total');
+	        dataTotal = '#'+dataTotal;
+	        console.log(dataTotal);
+	        $(dataTotal).text(ui.value);
+	        // $('#total').text(total);
+	    }
+	});
+	// $('.seasoning').slider("option", "step", 1 );
+	// $('.seasoning').slider("option", "max", 5 );
+})(jQuery);
+
+
+
+
+}
+function DemoCtrl($scope, $http, angularFire, angularFireAuth) {
+
+  $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.open = function (size) {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+};
