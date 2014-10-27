@@ -4,11 +4,6 @@
 var mainApp = angular.module('mainApp', 
 	['firebase', 'ui.router','ngResource','ngAnimate' ]);
 
-// mainApp.config(['$routeProvider', function($routeProvider) {
-//     $routeProvider.when('/main', {templateUrl: 'partials/main.html', controller: 'MainCtrl'});
-//     $routeProvider.when('/dressing', {templateUrl: 'partials/dressing.html', controller: 'DressingCtrl'});
-//     $routeProvider.otherwise({redirectTo: '/main'});
-//   }]);
 
 mainApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider, $anchorScrollProvider ) {
@@ -43,10 +38,46 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$h
 	    url: '/listings',
 	    views:{
             'main':{
-                template:'js/listings/listings-main.html',
+                templateUrl:'js/listings/listings-main.html', 
+                // template:'I want to cut patterns', // ie hates this trailing comma
             },
             'sidebar': {
-                template: 'js/listings/listings-sidebar.html',
+                templateUrl: 'js/listings/listings-sidebar.html',
+            }
+        }
+	};
+	var profile= { 
+	    name: 'profile',  //mandatory
+	    templateUrl: 'js/profile/profile-layout.html',
+	};
+	var profileView = { 
+	    name: 'profile.view',  //mandatory
+	    url: '/i-want-to-cut-patterns', // :profilename
+	    views:{
+            'dreams':{
+                templateUrl:'js/profile/profile-dreams.html',
+            },
+            'stats':{
+            	templateUrl: 'js/profile/profile-stats.html',
+            },
+            'skills': {
+            	templateUrl: 'js/profile/profile-skills.html',
+
+            }
+        }
+	};
+	var profileEdit = { 
+	    name: 'profile.edit',  //mandatory
+	    url: '/profile/i-want-to-cut-patterns', // :profilename
+	    views:{
+            'dreams':{
+                template:'js/profile/edit-profile-dreams.html',
+            },
+            'stats':{
+            	template: 'js/profile/edit-profile-stats.html' 
+            },
+            'skills': {
+                template: 'js/profile/edit-profile-skills',
             }
         }
 	};
@@ -56,6 +87,9 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$h
 	  .state(homeLayout)
 	  .state(listings)
 	  .state(listingsLayout)
+	  .state(profile)
+	  .state(profileView)
+	  .state(profileEdit)
 	;
 
 
