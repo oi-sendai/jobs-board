@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="angularfire-login-boilerplate">
+<html lang="en" ng-app="mainApp">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
 		<![endif]-->
 	</head>
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top">
+<!-- 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="/">AngularFire Login Boilerplate</a>
@@ -30,42 +30,22 @@
 					{{greeting}}
 				</div>
 			</div>
-		</nav>
-		<div ng-view></div>
-		<div ng-controller="ModalDemoCtrl">
-		    <script type="text/ng-template" id="myModalContent.html">
-		        <div class="modal-header">
-		            <h3 class="modal-title">I'm a modal!</h3>
-		        </div>
-		        <div class="modal-body">
-		            <ul>
-		                <li ng-repeat="item in items">
-		                    <a ng-click="selected.item = item">{{ item }}</a>
-		                </li>
-		            </ul>
-		            Selected: <b>{{ selected.item }}</b>
-		        </div>
-		        <div class="modal-footer">
-		            <button class="btn btn-primary" ng-click="ok()">OK</button>
-		            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-		        </div>
-		    </script>
+		</nav> -->
+		<ui-view autoscroll="false"/>
 
-		    <button class="btn btn-default" ng-click="open()">Open me!</button>
-		    <button class="btn btn-default" ng-click="open('lg')">Large modal</button>
-		    <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
-		    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
-		</div>
-
+		<script src="js/vendor/angular/angular.js"></script>
+		<!-- // <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> -->
+		<script src="js/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="js/vendor/angular-bootstrap/ui-bootstrap.js"></script>
 		<script src="//code.jquery.com/jquery.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.min.js"></script>
+		<script src="js/vendor/ng-resource/dist/ng-resource.js"></script>
+		<script src="js/vendor/angular-animate/angular-animate.js"></script>
 		<script src="//cdn.firebase.com/v0/firebase.js"></script>
 		<script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>
 		<script src="//cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
-		<script src="js/vendor/angular-bootstrap/ui-bootstrap.js"></script>
-		<script src="js/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+
+
+
 		<script src="js/app.js"></script>
 		<script src="js/controllers.js"></script>
 		<!-- script src="js/filters.js"></script -->
