@@ -1,11 +1,15 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-var mainApp = angular.module('mainApp', 
-	['firebase', 'ui.router','ngResource' ]);
+var SystemApp = angular.module('SystemApp', 
+	['firebase', 'ui.router','ngResource'
+	,'DreamsCtrl'
+	,'SkillsCtrl'
+	,'StatsCtrl'
+	]);
 
 
-mainApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
+SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider, $anchorScrollProvider ) {
 
     // console.log($uiViewScrollProvider);
@@ -49,6 +53,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$h
 	var profile= { 
 	    name: 'profile',  //mandatory
 	    templateUrl: 'js/profile/profile-layout.html',
+	    // controller: 'ProfileCtrl'
 	};
 	var profileView = { 
 	    name: 'profile.view',  //mandatory
@@ -56,12 +61,15 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$h
 	    views:{
             'dreams':{
                 templateUrl:'js/profile/profile-dreams.html',
+                controller: 'DreamsCtrl'
             },
             'stats':{
             	templateUrl: 'js/profile/profile-stats.html',
+                controller: 'StatsCtrl'
             },
             'skills': {
             	templateUrl: 'js/profile/profile-skills.html',
+                controller: 'SkillsCtrl'
 
             }
         }
