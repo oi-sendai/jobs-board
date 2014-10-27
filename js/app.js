@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on filters, and services
 var mainApp = angular.module('mainApp', 
-	['firebase', 'ui.router','ngResource','ngAnimate' ]);
+	['firebase', 'ui.router','ngResource' ]);
 
 
 mainApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
