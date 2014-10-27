@@ -6,6 +6,7 @@
     "angular-ui-router": "",
     "ng-resource": "",
     "ui-bootstrap": "",
-    "angular-animate": ""
+    "angular-animate": "",
+    "weather": "~0.2.3"
   }
 }
