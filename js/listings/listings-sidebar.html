@@ -1,12 +1,7 @@
 <h1>Listings-sidebar</h1>
 <ul>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
-	<li>This is a listing</li>
+	<li ng-repeat="listing in listings">
+		<a href="#/listings/{{listing.username}}"> {{listing.username}}</a>
+	</li>
 </ul>
+                    

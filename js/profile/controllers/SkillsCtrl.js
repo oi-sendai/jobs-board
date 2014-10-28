@@ -1,6 +1,7 @@
-console.log('SkillsCtrl');
 var SkillsCtrl = angular.module('SkillsCtrl', []);
+
 SkillsCtrl.controller('SkillsCtrl', ['$scope', function($scope) {
+	console.log('SkillsCtrl');
 	$scope.skills = [
 	  	{ 'name':'sewing'
 	  	,  'cat':'dressmaking'

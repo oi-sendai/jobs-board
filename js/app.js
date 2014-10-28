@@ -6,6 +6,7 @@ var SystemApp = angular.module('SystemApp',
 	,'DreamsCtrl'
 	,'SkillsCtrl'
 	,'StatsCtrl'
+	,'ListingsCtrl'
 	]);
 
 
@@ -42,11 +43,26 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 	    url: '/listings',
 	    views:{
             'main':{
-                templateUrl:'js/listings/listings-main.html', 
-                // template:'I want to cut patterns', // ie hates this trailing comma
+                templateUrl:'js/listings/listings-main.html',
+                controller: 'ListingsCtrl' 
             },
             'sidebar': {
                 templateUrl: 'js/listings/listings-sidebar.html',
+                controller: 'ListingsCtrl' 
+            }
+        }
+	};
+	var listingsShow = { 
+	    name: 'listings.show',  //mandatory
+	    url: '/listings/:listing_id',
+	    views:{
+            'main':{
+                templateUrl:'js/listings/listings-main.html',
+                controller: 'ListingsCtrl' 
+            },
+            'sidebar': {
+                templateUrl: 'js/listings/listings-sidebar.html',
+                controller: 'ListingsCtrl' 
             }
         }
 	};
@@ -95,6 +111,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 	  .state(homeLayout)
 	  .state(listings)
 	  .state(listingsLayout)
+	  .state(listingsShow)
 	  .state(profile)
 	  .state(profileView)
 	  .state(profileEdit)
