@@ -35,6 +35,15 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
 	};
+	// var homeLayout = { 
+	//     name: 'home.register',  //mandatory
+	//     url: '/register',
+	//     views:{
+ //            'welcome':{
+ //                templateUrl:'js/system/register.html',
+ //            },
+ //        }
+	// };
 	var listings = { 
 	    name: 'listings',  //mandatory
 	    templateUrl: 'js/listings/listings-layout.html',
@@ -139,6 +148,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	  .state(profileViewExperience)
 	  .state(profileEdit)
 	;
+	$urlRouterProvider.otherwise('/');
 
 
 }]);

@@ -23,8 +23,14 @@ border-top: 1px solid #000;
   /*text-align: center;*/
   padding-top:40px;
 }
-.logo-intro {
+.system .navbar-brand{
+  background: white;
+}
+.big-logo{
+
 font-size: 70px;
+}
+.logo-intro {
 color: #0A3D0A;
 }
 .logo-outro {
