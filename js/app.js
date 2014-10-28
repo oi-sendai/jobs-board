@@ -3,6 +3,7 @@
 // Declare app level module which depends on filters, and services
 var SystemApp = angular.module('SystemApp', 
 	['firebase', 'ui.router','ngResource'
+	,'ProfileCtrl'
 	,'DreamsCtrl'
 	,'SkillsCtrl'
 	,'StatsCtrl'
@@ -69,11 +70,11 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 	var profile= { 
 	    name: 'profile',  //mandatory
 	    templateUrl: 'js/profile/profile-layout.html',
-	    // controller: 'ProfileCtrl'
+	    controller: 'ProfileCtrl'
 	};
 	var profileView = { 
 	    name: 'profile.view',  //mandatory
-	    url: '/i-want-to-cut-patterns', // :profilename
+	    url: '/:username',
 	    views:{
             'dreams':{
                 templateUrl:'js/profile/profile-dreams.html',
