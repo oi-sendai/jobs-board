@@ -1,12 +1,14 @@
 <div class="row">
 	<div class="col-snm-12 well">
-		<tabset>
-		    <tab heading="Cover Letter">
-		    	{{user.coverletter}}
-		    </tab>
-		    <tab heading="CV">
-				{{user.cv}}
-		    </tab>
+		<div class="profile_tabs">
+		    <a ui-sref="profile.view.experience">Experience</a>
+		    <a ui-sref="profile.view.introduction">Introduction</a>
+		    	
+		    <div class="profile_tab" heading="CV">
+				<div ui-view="dreamsInner">
+					this is a placeholder
+				</div>
+		    </div>
   		</tabset>
 	</div>
 </div>

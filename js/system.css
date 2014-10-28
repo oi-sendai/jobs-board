@@ -1,11 +1,47 @@
 body {
 	background:#120C0C;
 }
+/*.syslink {
+	cursor: pointer;
+}*/
 
-.fade.ng-enter, .fade.ng-leave {
+
+
+/* Profile __ Tabs */
+.profile_tabs {
+	background:#120C0C;
+	min-height: 300px;
+	padding:15px;
+	color:#fff;
+}
+.profile_tab a {
+	cursor: pointer !important;
+}
+
+/* Animate -> Profile __ Tabs*/
+
+.profile_tab.ng-enter, .profile_tab.ng-leave {
     position: absolute;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
+}
+
+.profile_tab.ng-enter {
+   -webkit-animation-name: fadeInDown;
+   animation-name: fadeInDown;
+}
+
+.profile_tab.ng-leave {
+   -webkit-animation-name: fadeOutDown;
+   animation-name: fadeOutDown;
+}
+
+
+/* Animate layout ui-view tranisitions*/
+.fade.ng-enter, .fade.ng-leave {
+    position: absolute;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
 }
 
 .fade.ng-enter {

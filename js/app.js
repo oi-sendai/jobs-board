@@ -95,6 +95,26 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
             }
         }
 	};
+	var profileViewExperience = { 
+	    name: 'profile.view.experience',  //mandatory
+	    url: '/experience',
+	    views:{
+            'dreamsInner':{
+                template:'js/profile/experience',
+                controller: 'DreamsCtrl'
+            },
+        }
+	};
+	var profileViewIntroduction = { 
+	    name: 'profile.view.introduction',  //mandatory
+	    url: '/introduction',
+	    views:{
+            'dreamsInner':{
+                template:'js/profile/introduction',
+                controller: 'DreamsCtrl'
+            },
+        }
+	};
 	var profileEdit = { 
 	    name: 'profile.edit',  //mandatory
 	    url: '/profile/i-want-to-cut-patterns', // :profilename
@@ -119,6 +139,8 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 	  .state(listingsShow)
 	  .state(profile)
 	  .state(profileView)
+	  .state(profileViewIntroduction)
+	  .state(profileViewExperience)
 	  .state(profileEdit)
 	;
 
