@@ -4,6 +4,9 @@ body {
 /*.syslink {
 	cursor: pointer;
 }*/
+.ui-view-container {
+  margin-top:100px;
+}
 
 
 

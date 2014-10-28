@@ -1,8 +1,7 @@
-
-		<div class="container">
+<div class="container" ng-controller="AuthCtrl">
 			<div class="row">
 				<div class="col-md-4">
-					<div ng-show="user && user.id">
+					<div ng-show="user && user.id"> 
 						<form role="form">
 							<div class="form-group">
 								<label for="firstName">First Name</label>
@@ -16,7 +15,8 @@
 							<img ng-show="loginBusy" src="img/loading.gif" style="margin: 0 10px;" />
 						</form>
 					</div>
-					<div ng-show="user && !user.id">
+					<div>
+					 <!-- ng-show="user && !user.id"> -->
 						<form role="form">
 							<div class="form-group">
 								<label for="inputEmail">Email address</label>
@@ -26,7 +26,7 @@
 								<label for="inputPassword">Password</label>
 								<input type="password" class="form-control" id="inputPassword" ng-model="inputPassword" placeholder="Password">
 							</div>
-							<button type="submit" class="btn btn-primary" ng-submit="login()" ng-click="login()">Log In</button> 
+							<!-- <button type="submit" class="btn btn-primary" ng-submit="login()" ng-click="login()">Log In</button>  -->
 							<button class="btn btn-default" ng-click="register()">Register</button>
 							<img ng-show="loginBusy" src="img/loading.gif" style="margin: 0 10px;" />
 						</form>
@@ -38,4 +38,3 @@
 					<p><strong>User Data:</strong> {{userData}}</p>
 				</div>
 			</div>
-		</div>
