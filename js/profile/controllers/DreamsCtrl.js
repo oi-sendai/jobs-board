@@ -1,4 +1,4 @@
-var DreamsCtrl = angular.module('DreamsCtrl', []);
+var DreamsCtrl = angular.module('DreamsCtrl', ['ngAnimate']);
 
 DreamsCtrl.controller('DreamsCtrl', ['$scope','$stateParams', function($scope,$stateParams) {
 	console.log('DreamsCtrl');

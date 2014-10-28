@@ -20,21 +20,24 @@ body {
 
 /* Animate -> Profile __ Tabs*/
 
-.profile_tab.ng-enter, .profile_tab.ng-leave {
+/* SCALE TRANSITIONS, BEST TO COBMINE WITH FADE/OPACITY */
+.profile_animate.ng-enter, .profile_animate.ng-leave {
     position: absolute;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
 }
-
-.profile_tab.ng-enter {
+.profile_animate.ng-enter {
    -webkit-animation-name: fadeInDown;
    animation-name: fadeInDown;
 }
 
-.profile_tab.ng-leave {
+.profile_animate.ng-leave {
    -webkit-animation-name: fadeOutDown;
    animation-name: fadeOutDown;
 }
+
+
+
 
 
 /* Animate layout ui-view tranisitions*/

@@ -100,7 +100,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 	    url: '/experience',
 	    views:{
             'dreamsInner':{
-                template:'js/profile/experience',
+                templateUrl:'js/profile/tabs/profile-experience.html',
                 controller: 'DreamsCtrl'
             },
         }
@@ -110,7 +110,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '
 	    url: '/introduction',
 	    views:{
             'dreamsInner':{
-                template:'js/profile/introduction',
+                templateUrl:'js/profile/tabs/profile-introduction.html',
                 controller: 'DreamsCtrl'
             },
         }
