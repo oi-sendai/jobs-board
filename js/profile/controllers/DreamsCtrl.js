@@ -1,9 +1,8 @@
 var DreamsCtrl = angular.module('DreamsCtrl', ['ngAnimate']);
 
 DreamsCtrl.controller('DreamsCtrl', ['$scope','$stateParams', function($scope,$stateParams) {
-	console.log('DreamsCtrl');
 
-	// $scope.username = $stateParams.username;
+	$scope.username = $stateParams.username;
 
   	$scope.user ={
 		'name': 'urbanquack:',
