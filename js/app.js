@@ -15,8 +15,8 @@ var SystemApp = angular.module('SystemApp',
 	]);
 
 
-SystemApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', 
-    function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $uiViewScrollProvider, $anchorScrollProvider ) {
+SystemApp.config(['$stateProvider', '$urlRouterProvider', 
+    function ($stateProvider, $urlRouterProvider ) {
 
     // console.log($uiViewScrollProvider);
     // $uiViewScrollProvider.useAnchorScroll();
