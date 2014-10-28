@@ -4,7 +4,6 @@
 var SystemApp = angular.module('SystemApp', 
 	['ui.router','ngResource','ngAnimate','ui.bootstrap','ngRoute','firebase'
 	,'AuthCtrlSystem'
-	// ,'MainCtrl'
 	,'HeaderCtrl'
 	,'HeaderDirective'
 	,'FooterCtrl'
@@ -34,15 +33,6 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             'pitch': {
                 templateUrl: 'js/home/home-pitch.html',
             }
-        }
-	};
-	var homeLayout = { 
-	    name: 'home.register',  //mandatory
-	    url: '/register',
-	    views:{
-            'welcome':{
-                templateUrl:'js/system/register.html',
-            },
         }
 	};
 	var listings = { 

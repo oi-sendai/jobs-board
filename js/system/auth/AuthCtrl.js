@@ -27,13 +27,17 @@ AuthCtrlSystem.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
   };
 });
 
-AuthCtrlSystem.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+AuthCtrlSystem.controller('ModalInstanceCtrl', function ($rootScope, $scope, $modalInstance, items) {
 
   $scope.items = items;
   $scope.selected = {
     item: $scope.items[0]
   };
+  $rootScope.$on('someEvent', function(event, args) {
 
+    $modalInstance.close($scope.selected.item);
+    
+  });
   $scope.ok = function () {
     $modalInstance.close($scope.selected.item);
   };
@@ -43,7 +47,7 @@ AuthCtrlSystem.controller('ModalInstanceCtrl', function ($scope, $modalInstance,
   };
 });
 
-AuthCtrlSystem.controller("AuthCtrl", function($scope, $http,angularFire, angularFireAuth) {
+AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angularFire, angularFireAuth) {
     // now we can use $firebase to synchronize data between clients and the server!
   $scope.loginBusy = false;
   $scope.userData = $scope.userData || {};
@@ -62,6 +66,7 @@ AuthCtrlSystem.controller("AuthCtrl", function($scope, $http,angularFire, angula
         email: $scope.inputEmail,
         password: $scope.inputPassword
       });
+      $rootScope.$emit('someEvent');
     } else {
       $scope.loginMessage = "Please enter a username and password!";
     }
@@ -85,6 +90,7 @@ AuthCtrlSystem.controller("AuthCtrl", function($scope, $http,angularFire, angula
           console.log('New User Registered');
         }
         $scope.loginBusy = false;
+        $rootScope.$emit('someEvent');
       });
     } else  {
       $scope.loginMessage = "Please enter a username and password!";
