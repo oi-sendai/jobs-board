@@ -3,6 +3,7 @@ ListingsCtrl.controller('ListingsCtrl', ['$scope','$stateParams', function($scop
 	console.log('ListingsCtrl');
 
 	$scope.currentListing = $stateParams.listing_id || 'Please select a listing';
+	$scope.currentBool = $stateParams.listing_id || false;
 
 	$scope.listings = [
 		{	'username': 'me',
