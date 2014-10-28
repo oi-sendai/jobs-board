@@ -1,7 +1,7 @@
-angularfire-login-boilerplate
+angularfire-login-hyperplate
 =============================
 
-A simple template for getting started with AngularFire (AngularJS + Firebase) w/ user login system.
+A fairly opinionated yet fairly minimal template for getting started with AngularFire (AngularJS + Firebase) w/ user login system.
 
 This tutorial will show you how to set up a simple email/password-based user authentication system using AngularFire, along with a corresponding table for persistence of user data.
 
