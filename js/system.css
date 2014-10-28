@@ -5,8 +5,37 @@ body {
 	cursor: pointer;
 }*/
 .ui-view-container {
-  margin-top:100px;
+  margin-top:50px;
 }
+
+
+.system .navbar-default {
+background-color: #120C0C;
+border-color: #e7e7e7;
+border-top: 1px solid #000;
+}
+
+
+
+.home-welcome {
+  background:url('system/images/swords2.jpg');
+  background-size: cover;
+  /*text-align: center;*/
+  padding-top:40px;
+}
+.logo-intro {
+font-size: 70px;
+color: #0A3D0A;
+}
+.logo-outro {
+  color:#7B0303;
+}
+.home-cta {
+padding: 0px 40px 0px;
+min-height: 256px;
+/*text-align: center;*/
+}
+
 
 
 

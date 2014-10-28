@@ -74,6 +74,7 @@ AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angular
   
   $scope.logout = function() {
     $scope.loginBusy = true;
+    $scope.nowRegistered = false;
     $scope.loginMessage = "";
     $scope.greeting = "";
     $scope.disassociateUserData();
@@ -90,7 +91,8 @@ AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angular
           console.log('New User Registered');
         }
         $scope.loginBusy = false;
-        $rootScope.$emit('someEvent');
+        $scope.nowRegistered = true;
+        // $rootScope.$emit('someEvent');
       });
     } else  {
       $scope.loginMessage = "Please enter a username and password!";
