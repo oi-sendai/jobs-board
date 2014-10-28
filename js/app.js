@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on filters, and services
 var SystemApp = angular.module('SystemApp', 
-	['firebase', 'ui.router','ngResource'
+	['firebase', 'ui.router','ngResource','ngAnimate'
 	,'HeaderCtrl'
 	,'HeaderDirective'
 	,'FooterCtrl'

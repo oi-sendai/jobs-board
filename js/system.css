@@ -1,0 +1,19 @@
+body {
+	background:#120C0C;
+}
+
+.fade.ng-enter, .fade.ng-leave {
+    position: absolute;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.fade.ng-enter {
+   -webkit-animation-name: fadeInDown;
+   animation-name: fadeInDown;
+}
+
+.fade.ng-leave {
+   -webkit-animation-name: fadeOutDown;
+   animation-name: fadeOutDown;
+}

@@ -1,7 +1,5 @@
-console.log('WeatherDirective');
 var WeatherDirective = angular.module('WeatherDirective', []);
 
-      // scope:{tstvalue: "=tstvalue"}
 WeatherDirective.directive( 'weather', function(
   $stateParams
   ) {
