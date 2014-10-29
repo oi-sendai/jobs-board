@@ -6,7 +6,7 @@ SystemApp.filter('makeLowercase', function(){
 	};
 });
 SystemApp.controller('GoKu', function($scope, _){
-	$scope.keepArray = []; //{skill:'',value:'0'}
+	$scope.keepArray = false; //{skill:'',value:'0'}
 
 	$scope.users = [
 
@@ -42,7 +42,7 @@ SystemApp.controller('GoKu', function($scope, _){
 		// {"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
 		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
 		// {"skills": ['javascript', 'php', 'accounting', 'gardening',  'hardworking', 'design', 'sewing', ]}
-	];
+
 
 
 	// if word inArray is truthy push array to array
@@ -52,24 +52,41 @@ SystemApp.controller('GoKu', function($scope, _){
 	$scope.sumSkills = function(users){
 		var cloudArray = [];
 		var users = users; //expect array
-		users.forEach( function (arrayItem) {
-			// console.log(arrayItem.skills);
-			var golf = arrayItem.skills;
-			var golfMap = _.map(golf,function(num,key){ return num[0] });
-			console.log(golfMap);
-			// golf.forEach( function (skill){
-			// 	if(jQuery.inArray(skill, cloudArray)!==-1){
-			// 		console.log('true');
-			// 	} else {
-			// 		cloudArray.push({quality:skill, value:0});
-			// 	}
-			// 	console.log(cloudArray);
-			// 	// _.pick(object, *keys) 
-
-			// });
-
+		console.log(users);
+		users.forEach( function (userObject) {
+			var skillsArray = userObject.skills;
+			console.log(skillsArray);
+			// var cars = [{ name:"Toyota Minivan", id:"506"}, { name:"Honda Civic", id:"619"}];
+			skillsArray.forEach( function (skill){
+				console.log(skill.name);
+			})
+		// 	// 	if(!$scope.keepArray) {
+			// function findById(id) {
+			//   return _.contains(_.pluck(cars, 'id'), id);
+			// }
 		});
 	};
+	$scope.sumSkills($scope.users);
+		// 	var golf = arrayItem.skills;
+		// 	// _.uniq(personArray, function(person) { return person.age; });
+		// 	_.each(cloudArray, boom)
+		// 	// golf.forEach( function (skill){
+		// 	// 	if(!$scope.keepArray) {
+
+		// 	// 	}
+		// 	// 	// var skill = _.map(skill);
+		// 	// 	console.log(skill.name);
+		// 	// 	// if(jQuery.inArray(skill, cloudArray)!==-1){
+		// 	// // 		console.log('true');
+		// 	// // 	} else {
+		// 	// // 		cloudArray.push({quality:skill, value:0});
+		// 	// // 	}
+		// 	// // 	console.log(cloudArray);
+		// 	// // 	// _.pick(object, *keys) 
+
+		// 	// });
+
+		// });
 	// $scope.hasThis = function(quality){
 	// 	var arrayObject = [];
 	// 	var quality = quality;
