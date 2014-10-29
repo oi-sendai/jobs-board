@@ -7,6 +7,7 @@
     "ng-resource": "",
     "ui-bootstrap": "",
     "angular-animate": "",
-    "weather": "~0.2.3"
+    "weather": "~0.2.3",
+    "angular-word-cloud": "~0.1.3"
   }
 }

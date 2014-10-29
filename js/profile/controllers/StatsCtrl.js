@@ -4,7 +4,7 @@ StatsCtrl.controller('StatsCtrl', ['$scope','$stateParams', function($scope,$sta
 	console.log('StatsCtrl');
 	$scope.username = $stateParams.username;
 	$scope.stats = {
-		'username': 'urbanquack',
+		'username': 'Franz Kafka',
 		'location': 'Aberdeen, Scotland',
 		'rating': 3
 	};

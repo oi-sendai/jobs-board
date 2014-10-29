@@ -45,6 +45,19 @@ min-height: 256px;
 
 
 
+.moral-justification {
+  padding:60px 0;
+}
+.moral-justification h2 {
+  color: #F0EBEB;
+  font-style: italic;
+  font-size: 17px;
+}
+.moral-justification h2 span {
+  font-size: 16px;
+  font-style: normal;
+}
+
 /* Profile __ Tabs */
 .profile_tabs {
 	background:#120C0C;

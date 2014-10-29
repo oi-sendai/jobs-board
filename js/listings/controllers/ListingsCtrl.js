@@ -1,4 +1,4 @@
-var ListingsCtrl = angular.module('ListingsCtrl', []);
+var ListingsCtrl = angular.module('ListingsCtrl', ['CloudDirective']);
 ListingsCtrl.controller('ListingsCtrl', ['$scope','$stateParams', function($scope, $stateParams) {
 	console.log('ListingsCtrl');
 

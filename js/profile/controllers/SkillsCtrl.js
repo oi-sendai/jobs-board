@@ -1,20 +1,23 @@
 var SkillsCtrl = angular.module('SkillsCtrl', []);
 
 SkillsCtrl.controller('SkillsCtrl', ['$scope','$stateParams', function($scope,$stateParams) {
-	console.log('SkillsCtrl');
 	$scope.username = $stateParams.username;
 	$scope.skills = [
-	  	{ 'name':'sewing'
-	  	,  'cat':'dressmaking'
+	  	{ 
+	  		'text'  :'sewing',
+	  	    'weight':'3'
 	  	},
-	  	{ 'name': 'pattern design'
-	  	,  'cat':'dressmaking'
+	  	{ 
+	  		'text'  : 'pattern design',
+	  	    'weight':'5'
 	  	},
-	  	{ 'name': 'machine sewing'
-	  	,  'cat':'dressmaking'
+	  	{ 
+	  		'text' : 'machine sewing',
+	  	    'cat'  :'8'
 	  	},
-	  	{ 'name': 'cutting'
-	  	,  'cat':'dressmaking'
+	  	{ 
+	  		'text' : 'cutting',
+	  	    'cat'  : '1'
 	  	}
 	];
 }]);
