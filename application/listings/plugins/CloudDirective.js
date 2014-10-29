@@ -6,7 +6,8 @@ SystemApp.filter('makeLowercase', function(){
 	};
 });
 SystemApp.controller('GoKu', function($scope, _){
-	$scope.keepArray = false; //{skill:'',value:'0'}
+	// $scope.keepArray = false; //{skill:'',value:'0'}
+	$scope.keepArray = [{name:'javascript',value:0}]
 
 	$scope.users = [
 
@@ -58,7 +59,15 @@ SystemApp.controller('GoKu', function($scope, _){
 			console.log(skillsArray);
 			// var cars = [{ name:"Toyota Minivan", id:"506"}, { name:"Honda Civic", id:"619"}];
 			skillsArray.forEach( function (skill){
+				var skillName = skill.name;
 				console.log(skill.name);
+				console.log($scope.keepArray);
+				var proish = _.contains(_.pluck($scope.keepArray, 'name'), skillName);
+				console.log(proish);
+				// function findById(skillName){
+				// 	return console.log(skillName);
+				// }
+				// findById('io');
 			})
 		// 	// 	if(!$scope.keepArray) {
 			// function findById(id) {
