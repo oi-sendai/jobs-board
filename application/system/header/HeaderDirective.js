@@ -4,6 +4,6 @@ HeaderDirective.directive('systemheader', function() {
     return {
         restrict: 'AE',
         replace: true,
-        templateUrl: 'js/system/header/header.html'
+        templateUrl: 'application/system/header/header.html'
     };
 });

@@ -4,6 +4,6 @@ FooterDirective.directive( 'systemfooter', function() {
     return {
         restrict: 'AE',
         replace: true,
-        templateUrl: 'js/system/footer/footer.html'
+        templateUrl: 'application/system/footer/footer.html'
     };
 });

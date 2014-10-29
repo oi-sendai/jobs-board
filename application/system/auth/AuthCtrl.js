@@ -9,7 +9,7 @@ AuthCtrlSystem.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
   $scope.open = function (size) {
 
     var modalInstance = $modal.open({
-      templateUrl: 'js/system/auth/auth-modal.html',
+      templateUrl: 'application/system/auth/auth-modal.html',
       controller: 'ModalInstanceCtrl',
       size: size,
       resolve: {
