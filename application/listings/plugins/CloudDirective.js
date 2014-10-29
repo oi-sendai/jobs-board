@@ -5,23 +5,43 @@ SystemApp.filter('makeLowercase', function(){
 		return item.toLowerCase();
 	};
 });
-SystemApp.controller('GoKu', function($scope){
+SystemApp.controller('GoKu', function($scope, _){
 	$scope.keepArray = []; //{skill:'',value:'0'}
 
 	$scope.users = [
-		{"skills": ['php', 'accounting', 'gardening', 'polite', 'hardworking',  'sewing', 'italian',]},
-		{"skills": ['javascript', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php',  'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'accounting', 'gardening', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'gardening', 'polite', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'polite', 'hardworking', 'sewing',]},
-		{"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		{"skills": [ 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		{"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening',  'hardworking', 'design', 'sewing', ]}
+
+		{"skills": [
+			{"name":"polite", "tooltip": "I was brought up this way"},
+			{"name":"javascript", "tooltip": "Is my favourite"},
+			{"name":"accounting","tooltip":"mongoose does this out the box"}
+			]
+		},
+		{"skills": [
+			{"name":"hardworking", "tooltip": "I was brought up this way"},
+			{"name":"design", "tooltip": "Is my favourite"},
+			{"name":"sewing","tooltip":"mongoose does this out the box"}
+			]
+		},
+		{"skills": [
+			{"name":"italian", "tooltip": "I was brought up this way"},
+			{"name":"javascript", "tooltip": "Is my favourite"},
+			{"name":"design","tooltip":"mongoose does this out the box"}
+			]
+		}
+	];
+
+		// {"skills": ['javascript' 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		// {"skills": ['javascript', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		// {"skills": ['javascript', 'php',  'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		// {"skills": ['javascript', 'accounting', 'gardening', 'hardworking', 'design', 'sewing', 'italian',]},
+		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'design', 'sewing', 'italian',]},
+		// {"skills": ['javascript', 'php', 'accounting', 'polite', 'hardworking', 'sewing',]},
+		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'italian',]},
+		// {"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		// {"skills": [ 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		// {"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		// {"skills": ['javascript', 'php', 'accounting', 'gardening',  'hardworking', 'design', 'sewing', ]}
 	];
 
 
@@ -33,18 +53,20 @@ SystemApp.controller('GoKu', function($scope){
 		var cloudArray = [];
 		var users = users; //expect array
 		users.forEach( function (arrayItem) {
-			console.log(arrayItem.skills);
+			// console.log(arrayItem.skills);
 			var golf = arrayItem.skills;
-			golf.forEach( function (skill){
-				if(jQuery.inArray(skill, cloudArray)!==-1){
-					console.log('true');
-				} else {
-					cloudArray.push({quality:skill, value:0});
-				}
-				console.log(cloudArray);
-				// _.pick(object, *keys) 
+			var golfMap = _.map(golf,function(num,key){ return num[0] });
+			console.log(golfMap);
+			// golf.forEach( function (skill){
+			// 	if(jQuery.inArray(skill, cloudArray)!==-1){
+			// 		console.log('true');
+			// 	} else {
+			// 		cloudArray.push({quality:skill, value:0});
+			// 	}
+			// 	console.log(cloudArray);
+			// 	// _.pick(object, *keys) 
 
-			});
+			// });
 
 		});
 	};
