@@ -6,23 +6,57 @@ SystemApp.filter('makeLowercase', function(){
 	};
 });
 SystemApp.controller('GoKu', function($scope){
-	$scope.keepArray = [];
+	$scope.keepArray = []; //{skill:'',value:'0'}
 
 	$scope.users = [
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]}
+		{"skills": ['php', 'accounting', 'gardening', 'polite', 'hardworking',  'sewing', 'italian',]},
+		{"skills": ['javascript', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php',  'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'accounting', 'gardening', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'gardening', 'polite', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'polite', 'hardworking', 'sewing',]},
+		{"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		{"skills": [ 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		{"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening',  'hardworking', 'design', 'sewing', ]}
 	];
+
+
+	// if word inArray is truthy push array to array
+
+
+	// for each skillsArray 
+	$scope.sumSkills = function(users){
+		var cloudArray = [];
+		var users = users; //expect array
+		users.forEach( function (arrayItem) {
+			console.log(arrayItem.skills);
+			var golf = arrayItem.skills;
+			golf.forEach( function (skill){
+				if(jQuery.inArray(skill, cloudArray)!==-1){
+					console.log('true');
+				} else {
+					cloudArray.push({quality:skill, value:0});
+				}
+				console.log(cloudArray);
+				// _.pick(object, *keys) 
+
+			});
+
+		});
+	};
+	// $scope.hasThis = function(quality){
+	// 	var arrayObject = [];
+	// 	var quality = quality;
+
+	// 	if(jQuery.inArray(quality, $scope.keepArray)!==-1){
+	// 		$scope.keepArray.push(quality);
+	// 	} 
+		
+	// }
 });
 
 	/*! A splice of !!!!!
