@@ -5,20 +5,21 @@ SkillsCtrl.controller('SkillsCtrl', ['$scope','$stateParams', function($scope,$s
 	$scope.skills = [
 	  	{ 
 	  		'text'  :'sewing',
-	  	    'weight':'3'
+	  	    'size':3
 	  	},
 	  	{ 
 	  		'text'  : 'pattern design',
-	  	    'weight':'5'
+	  	    'size':5
 	  	},
 	  	{ 
 	  		'text' : 'machine sewing',
-	  	    'cat'  :'8'
+	  	    'size'  :8
 	  	},
 	  	{ 
 	  		'text' : 'cutting',
-	  	    'cat'  : '1'
+	  	    'size'  : 1
 	  	}
 	];
+
 }]);
 

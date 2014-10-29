@@ -1,5 +1,30 @@
 CloudDirective = angular.module('CloudDirective', []);
 
+SystemApp.filter('makeLowercase', function(){
+	return function (item) {
+		return item.toLowerCase();
+	};
+});
+SystemApp.controller('GoKu', function($scope){
+	$scope.keepArray = [];
+
+	$scope.users = [
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
+		{"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]}
+	];
+});
+
 	/*! A splice of !!!!!
  * Angular jQCloud
  * For jQCloud 2 (https://github.com/mistic100/jQCloud) 
@@ -14,52 +39,53 @@ CloudDirective = angular.module('CloudDirective', []);
 
 
 
- console.log('out');
-CloudDirective.directive('cloud', ['$parse', function($parse) {
-	console.log('in');
-  // get existing options
-  // var defaults = jQuery.fn.jQCloud.defaults.get(),
-  //     jqcOptions = [];
+// CloudDirective.directive('cloud', ['$parse', function($parse) {
+//   // get existing options
+//   var defaults = jQuery.fn.jQCloud.defaults.get(),
+//       jqcOptions = [];
   
-  // for (var opt in defaults) {
-  //   if (defaults.hasOwnProperty(opt)) {
-  //     jqcOptions.push(opt);
-  //   }
-  // }
+//   for (var opt in defaults) {
+//     if (defaults.hasOwnProperty(opt)) {
+//       jqcOptions.push(opt);
+//     }
+//   }
   
-  return {
-    restrict: 'E',
-    template: '<div>cloud</div>',
-    replace: true,
-    scope: {
-      words: '=words'
-    },
-    // link: function($scope, $elem, $attr) {
-    //   var options = {};
+//   return {
+//     restrict: 'E',
+//     template: '<div class="junm">test</div>',
+//     replace: true,
+//     scope: {
+//       words: '=words'
+//     },
+//     link: function($scope, $elem, $attr) {
+//       var options = {};
+//       console.log($scope.words);
+//       console.log();
+//       console.log($elem);
       
-    //   for (var i=0, l=jqcOptions.length; i<l; i++) {
-    //     var opt = jqcOptions[i];
-    //     if ($attr[opt] !== undefined) {
-    //       options[opt] = $parse($attr[opt])();
-    //     }
-    //   }
+//       for (var i=0, l=jqcOptions.length; i<l; i++) {
+//         var opt = jqcOptions[i];
+//         if ($attr[opt] !== undefined) {
+//           options[opt] = $parse($attr[opt])();
+//         }
+//       }
       
-    //   $elem.jQCloud($scope.words, options);
+//       $elem.jQCloud($scope.words);
       
-    //   $scope.$watchCollection('words', function() {
-    //     $scope.$evalAsync(function() {
-    //       var words = [];
-    //       $.extend(words,$scope.words);
-    //       $elem.jQCloud('update', words);
-    //     });
-    //   });
+//       $scope.$watchCollection('words', function() {
+//         $scope.$evalAsync(function() {
+//           var words = [];
+//           $.extend(words,$scope.words);
+//           $elem.jQCloud('update', words);
+//         });
+//       });
     
-    //   $elem.bind('$destroy', function() {
-    //     $elem.jQCloud('destroy');
-    //   });
-    // }
-  };
-}]);
+//       $elem.bind('$destroy', function() {
+//         $elem.jQCloud('destroy');
+//       });
+//     }
+//   };
+// }]);
 
 
 /**
@@ -68,8 +94,7 @@ CloudDirective.directive('cloud', ['$parse', function($parse) {
  * Time: 10:05 AM
  */
 
-// angular.module('vr.directives.wordCloud',[])
-// 	.directive('wordCloud', ['$interpolate', function($interpolate) {
+// CloudDirective.directive('cloud', ['$interpolate', function($interpolate) {
 // 		return {
 // 			restrict: 'EA',
 // 			replace: true,
@@ -80,7 +105,7 @@ CloudDirective.directive('cloud', ['$parse', function($parse) {
 // 			},
 // 			template:
 // 				"<div class='word-cloud-group'>" +
-// 					"<span class='word-cloud-group-item' ng-repeat='word in mywords | orderBy:param:reverse' ng-transclude></span>" +
+// 					"<span class='word-cloud-group-item' ng-repeat='word in mywords | orderBy:param:reverse' ng-transclude>{{word}}</span>" +
 // 				"</div>",
 // 			controller: ['$scope', '$transclude', function($scope, $transclude) {
 
