@@ -54,8 +54,8 @@ SystemApp.controller('GoKu', function($scope, _){
 	// if word inArray is truthy push array to array
 
 
-	$scope.keepArray = [{name:'javascript',value:0}]
-	$scope.apiMockArray = []
+	$scope.activeSkillsArray = [];
+	$scope.apiMockArray = [];
 	// for each skillsArray 
 	$scope.sumSkills = function(users){
 		$scope.apiMockArray = [];
@@ -66,11 +66,15 @@ SystemApp.controller('GoKu', function($scope, _){
 			var skillsArray = userObject.skills;
 			skillsArray.forEach( function (skill){ // jquery, move to underscore sometime
 				var skillName = skill.name;
+				var alreadyFilteredSkill = _.contains(_.pluck($scope.activeSkillsArray, 'name'), skillName);
 				var existingSkill = _.contains(_.pluck($scope.apiMockArray, 'name'), skillName);
 				// console.log('has existingSkill logic');
 				// console.log(existingSkill);
 				// I still don't quite understand above syntax
-				if(existingSkill){
+				if(alreadyFilteredSkill ){
+					console.log(skill);
+				} 
+				else if(existingSkill){
 					// _.find($scope.apiMockArray)
 					// console.log('number++');
 					var existingObject = _.select($scope.apiMockArray, function(obj){
@@ -83,7 +87,8 @@ SystemApp.controller('GoKu', function($scope, _){
 					incrementThis++;
 					existingObject[0].value = incrementThis; 
 					// console.log(existingObject);
-				} else {
+				} 
+				else {
 					$scope.apiMockArray.push({name:skillName,value:1});
 				}
 				console.log($scope.apiMockArray);
@@ -94,20 +99,25 @@ SystemApp.controller('GoKu', function($scope, _){
 	
 	$scope.filterSkills = function(skill){
 		var hasSkillArray = [];
-		console.log(skill.name);
+		console.log(skill);
 		var skillName = skill.name;
 		var users = $scope.users;
 		users.forEach( function (userObject){
 			var hasSkill  = _.contains(_.pluck(userObject.skills, 'name'), skillName);
-			console.log(hasSkill);
-			console.log(userObject);
+			// console.log(hasSkill);
+			// console.log(userObject);
 			if(hasSkill){
 				hasSkillArray.push(userObject);
+			} else {
+
 			}
 		});
-		console.log('hasSkillArray');
-		console.log(hasSkillArray.length);
+
+		// Add skill to active skills array
+		$scope.activeSkillsArray.push(skill);
+		// run new array through main cloud logic
 		$scope.sumSkills(hasSkillArray);
+		// update scope with filtered candidates
 		$scope.filteredCandidatesArray = hasSkillArray;
 
 	}
