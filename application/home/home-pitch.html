@@ -9,7 +9,7 @@
 		
 
 		<button ng-click="sumSkills(users)">do math</button>
-		<h6 ng-repeat="user in users">{{user.skills}}</h6>
+		<h3 class="label label-default" ng-repeat="skill in apiMockArray">{{skill.name}}<span class="label label-info">{{skill.value}}</span></h3>
 
 
 

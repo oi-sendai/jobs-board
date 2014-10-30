@@ -19,7 +19,8 @@ SystemApp.controller('GoKu', function($scope, _){
 		{"skills": [
 			{"name":"hardworking", "tooltip": "I was brought up this way"},
 			{"name":"design", "tooltip": "Is my favourite"},
-			{"name":"sewing","tooltip":"mongoose does this out the box"}
+			{"name":"sewing","tooltip":"mongoose does this out the box"},
+			{"name":"javascript", "tooltip": "Is actually quite fun"}
 			]
 		},
 		{"skills": [
@@ -57,27 +58,28 @@ SystemApp.controller('GoKu', function($scope, _){
 		console.log(users);
 		users.forEach( function (userObject) {
 			var skillsArray = userObject.skills;
-			// console.log(skillsArray);
-			// var cars = [{ name:"Toyota Minivan", id:"506"}, { name:"Honda Civic", id:"619"}];
 			skillsArray.forEach( function (skill){
 				var skillName = skill.name;
 				var existingSkill = _.contains(_.pluck($scope.apiMockArray, 'name'), skillName);
-				console.log(existingSkill);
+				// I still don't quite understand above syntax
 				if(existingSkill){
-
+					// _.find($scope.apiMockArray)
+					console.log('number++');
+					var existingObject = _.select($scope.apiMockArray, function(obj){
+					    return obj.name === skillName; // this returns array - why?
+					});
+					console.log(existingObject[0]); // hacky stuff
+					console.log(existingObject['value']);
+					var incrementThis = existingObject[0].value;
+					console.log(incrementThis);
+					incrementThis++;
+					existingObject[0].value = incrementThis; 
+					console.log(existingObject);
 				} else {
-					$scope.apiMockArray.push({name:skillName,value:0});
+					$scope.apiMockArray.push({name:skillName,value:1});
 				}
 				console.log($scope.apiMockArray);
-				// function findById(skillName){
-				// 	return console.log(skillName);
-				// }
-				// findById('io');
-			})
-		// 	// 	if(!$scope.keepArray) {
-			// function findById(id) {
-			//   return _.contains(_.pluck(cars, 'id'), id);
-			// }
+			});
 		});
 	};
 	$scope.sumSkills($scope.users);
