@@ -55,10 +55,10 @@ SystemApp.controller('GoKu', function($scope, _){
 
 
 	$scope.keepArray = [{name:'javascript',value:0}]
-	$scope.apiMockArray = [{name:'javascript',value:0}]
+	$scope.apiMockArray = []
 	// for each skillsArray 
 	$scope.sumSkills = function(users){
-		// $scope.apiMockArray = [];
+		$scope.apiMockArray = [];
 		var cloudArray = [];
 		var users = users; //expect array
 		console.log(users);
@@ -67,6 +67,8 @@ SystemApp.controller('GoKu', function($scope, _){
 			skillsArray.forEach( function (skill){ // jquery, move to underscore sometime
 				var skillName = skill.name;
 				var existingSkill = _.contains(_.pluck($scope.apiMockArray, 'name'), skillName);
+				console.log('has existingSkill logic');
+				console.log(existingSkill);
 				// I still don't quite understand above syntax
 				if(existingSkill){
 					// _.find($scope.apiMockArray)
@@ -105,7 +107,7 @@ SystemApp.controller('GoKu', function($scope, _){
 		});
 		console.log('hasSkillArray');
 		console.log(hasSkillArray);
-		// $scope.sumSkills(hasSkillArray);
+		$scope.sumSkills(hasSkillArray);
 	}
 		// 	var golf = arrayItem.skills;
 		// 	// _.uniq(personArray, function(person) { return person.age; });
