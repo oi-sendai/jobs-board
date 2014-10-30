@@ -94,7 +94,8 @@ SystemApp.controller('GoKu', function($scope, _){
 		var skillName = skill.name;
 		var users = $scope.users;
 		users.forEach( function (userObject){
-			console.log('not broken');
+			var hasSkill  = _.contains(_.pluck(userObject.skills, 'name'), skillName);
+			console.log(hasSkill);
 		});
 	}
 		// 	var golf = arrayItem.skills;
