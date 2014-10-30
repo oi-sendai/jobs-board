@@ -5,7 +5,7 @@
 </div> -->
 <div class="row moral-justification" ng-controller="GoKu">
 
-	<div class="col-sm-12 well">
+	<div class="col-sm-8 well">
 		
 
 		<button class="btn btn-default" 
@@ -17,6 +17,20 @@
 
 
 
+	</div>
+	<div class="col-sm-4">
+		<div class="well">
+			<h4>Candidates</h4>
+			<ul>
+				<li ng-repeat="candidate in filteredCandidatesArray">
+					<a href="#/{{candidate.username}}" class="btn btn-success" 
+					>{{candidate.username}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="well">
+			<h4>Active Filters</h4>
+		</div>
 	</div>
 </div>
 
