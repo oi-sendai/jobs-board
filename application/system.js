@@ -12,6 +12,7 @@ var SystemApp = angular.module('SystemApp',
 	,'DreamsCtrl'
 	,'SkillsCtrl'
 	,'StatsCtrl'
+	,'EditProfileCtrl'
 	,'ListingsCtrl'
 	]);
 
@@ -79,6 +80,29 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
 	};
+	var account= { 
+	    name: 'account',  //mandatory
+	    templateUrl: 'application/profile/profile-layout.html',
+	    controller: 'EditProfileCtrl'
+	};
+	var accountView = { 
+	    name: 'account.edit',  //mandatory
+	    url: '/account',
+	    views:{
+            'dreams':{
+                templateUrl:'application/profile/edit-profile-dreams.html',
+                // controller: 'DreamsCtrl'
+            },
+            'stats':{
+            	templateUrl: 'application/profile/edit-profile-stats.html',
+                // controller: 'StatsCtrl'
+            },
+            'skills': {
+            	templateUrl: 'application/profile/edit-profile-skills.html',
+                // controller: 'SkillsCtrl'
+            }
+        }
+	};
 	var profile= { 
 	    name: 'profile',  //mandatory
 	    templateUrl: 'application/profile/profile-layout.html',
@@ -86,7 +110,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	};
 	var profileView = { 
 	    name: 'profile.view',  //mandatory
-	    url: '/:username',
+	    url: '/:username', // !! This must be loaded after other routes !!
 	    views:{
             'dreams':{
                 templateUrl:'application/profile/profile-dreams.html',
@@ -123,21 +147,6 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             },
         }
 	};
-	var profileEdit = { 
-	    name: 'profile.edit',  //mandatory
-	    url: '/profile/i-want-to-cut-patterns', // :profilename
-	    views:{
-            'dreams':{
-                template:'application/profile/edit-profile-dreams.html',
-            },
-            'stats':{
-            	template: 'application/profile/edit-profile-stats.html' 
-            },
-            'skills': {
-                template: 'application/profile/edit-profile-skills',
-            }
-        }
-	};
 
 	$stateProvider
 	  .state(home)
@@ -145,11 +154,12 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	  .state(listings)
 	  .state(listingsLayout)
 	  .state(listingsShow)
+	  .state(account)
+	  .state(accountView)
 	  .state(profile)
 	  .state(profileView)
 	  .state(profileViewIntroduction)
 	  .state(profileViewExperience)
-	  .state(profileEdit)
 	;
 	$urlRouterProvider.otherwise('/');
 

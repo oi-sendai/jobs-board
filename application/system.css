@@ -1,5 +1,6 @@
 body {
-	background:#120C0C;
+  background:#120C0C; /* red */
+	background:#0D0C12; /* blue */
 }
 /*.syslink {
 	cursor: pointer;
@@ -10,7 +11,7 @@ body {
 
 
 .system .navbar-default {
-background-color: #120C0C;
+background-color: #0D0C12;
 border-color: #e7e7e7;
 border-top: 1px solid #000;
 }
