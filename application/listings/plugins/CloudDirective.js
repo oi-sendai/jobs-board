@@ -82,7 +82,11 @@ SystemApp.controller('GoKu', function($scope, _){
 			});
 		});
 	};
-	$scope.sumSkills($scope.users);
+	$scope.sumSkills($scope.users); // mocks service call
+	
+	$scope.filterSkills = function(skill){
+		console.log(skill.name);
+	}
 		// 	var golf = arrayItem.skills;
 		// 	// _.uniq(personArray, function(person) { return person.age; });
 		// 	_.each(cloudArray, boom)

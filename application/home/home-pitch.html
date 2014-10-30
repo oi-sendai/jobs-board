@@ -8,8 +8,12 @@
 	<div class="col-sm-12 well">
 		
 
-		<button ng-click="sumSkills(users)">do math</button>
-		<h3 class="label label-default" ng-repeat="skill in apiMockArray">{{skill.name}}<span class="label label-info">{{skill.value}}</span></h3>
+		<button class="btn btn-default" 
+			ng-click="filterSkills(skill)" 
+			ng-repeat="skill in apiMockArray">
+			{{skill.name}}
+			<span class="label label-info"> {{skill.value}}</span>
+		</button>
 
 
 
