@@ -72,7 +72,7 @@ SystemApp.controller('GoKu', function($scope, _){
 				// console.log(existingSkill);
 				// I still don't quite understand above syntax
 				if(alreadyFilteredSkill ){
-					console.log(skill);
+					console.log('nothing else');
 				} 
 				else if(existingSkill){
 					// _.find($scope.apiMockArray)
