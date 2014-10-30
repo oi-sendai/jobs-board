@@ -10,20 +10,25 @@ SystemApp.controller('GoKu', function($scope, _){
 
 	$scope.users = [
 
-		{"skills": [
+		{	"username": "franz-kafka",
+			"skills": [
 			{"name":"polite", "tooltip": "I was brought up this way"},
 			{"name":"javascript", "tooltip": "Is my favourite"},
-			{"name":"accounting","tooltip":"mongoose does this out the box"}
+			{"name":"insurance broker","tooltip":"mongoose does this out the box"}
 			]
 		},
-		{"skills": [
+		{	"username":"me",
+			"skills": [
 			{"name":"hardworking", "tooltip": "I was brought up this way"},
 			{"name":"design", "tooltip": "Is my favourite"},
 			{"name":"sewing","tooltip":"mongoose does this out the box"},
-			{"name":"javascript", "tooltip": "Is actually quite fun"}
+			{"name":"javascript", "tooltip": "Is actually quite fun"},
+			{"name":"information architecture", "tooltip": "Something else I am interested in"}
 			]
 		},
-		{"skills": [
+		{
+			"username": "someone-else",
+			"skills": [
 			{"name":"italian", "tooltip": "I was brought up this way"},
 			{"name":"javascript", "tooltip": "Is my favourite"},
 			{"name":"design","tooltip":"mongoose does this out the box"}
@@ -58,7 +63,7 @@ SystemApp.controller('GoKu', function($scope, _){
 		console.log(users);
 		users.forEach( function (userObject) {
 			var skillsArray = userObject.skills;
-			skillsArray.forEach( function (skill){
+			skillsArray.forEach( function (skill){ // jquery, move to underscore sometime
 				var skillName = skill.name;
 				var existingSkill = _.contains(_.pluck($scope.apiMockArray, 'name'), skillName);
 				// I still don't quite understand above syntax
@@ -86,6 +91,11 @@ SystemApp.controller('GoKu', function($scope, _){
 	
 	$scope.filterSkills = function(skill){
 		console.log(skill.name);
+		var skillName = skill.name;
+		var users = $scope.users;
+		users.forEach( function (userObject){
+			console.log('not broken');
+		});
 	}
 		// 	var golf = arrayItem.skills;
 		// 	// _.uniq(personArray, function(person) { return person.age; });
