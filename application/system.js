@@ -83,7 +83,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	var account= { 
 	    name: 'account',  //mandatory
 	    templateUrl: 'application/profile/profile-layout.html',
-	    controller: 'EditProfileCtrl'
+	    controller: 'AuthCtrl'
 	};
 	var accountView = { 
 	    name: 'account.edit',  //mandatory
@@ -91,14 +91,17 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    views:{
             'dreams':{
                 templateUrl:'application/profile/edit-profile-dreams.html',
+	    controller: 'EditProfileCtrl'
                 // controller: 'DreamsCtrl'
             },
             'stats':{
             	templateUrl: 'application/profile/edit-profile-stats.html',
+	    controller: 'EditProfileCtrl'
                 // controller: 'StatsCtrl'
             },
             'skills': {
             	templateUrl: 'application/profile/edit-profile-skills.html',
+	    controller: 'EditProfileCtrl'
                 // controller: 'SkillsCtrl'
             }
         }
