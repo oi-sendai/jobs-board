@@ -58,6 +58,7 @@ SystemApp.controller('GoKu', function($scope, _){
 	$scope.apiMockArray = [{name:'javascript',value:0}]
 	// for each skillsArray 
 	$scope.sumSkills = function(users){
+		// $scope.apiMockArray = [];
 		var cloudArray = [];
 		var users = users; //expect array
 		console.log(users);
@@ -90,13 +91,21 @@ SystemApp.controller('GoKu', function($scope, _){
 	$scope.sumSkills($scope.users); // mocks service call
 	
 	$scope.filterSkills = function(skill){
+		var hasSkillArray = [];
 		console.log(skill.name);
 		var skillName = skill.name;
 		var users = $scope.users;
 		users.forEach( function (userObject){
 			var hasSkill  = _.contains(_.pluck(userObject.skills, 'name'), skillName);
 			console.log(hasSkill);
+			console.log(userObject);
+			if(hasSkill){
+				hasSkillArray.push(userObject);
+			}
 		});
+		console.log('hasSkillArray');
+		console.log(hasSkillArray);
+		// $scope.sumSkills(hasSkillArray);
 	}
 		// 	var golf = arrayItem.skills;
 		// 	// _.uniq(personArray, function(person) { return person.age; });
