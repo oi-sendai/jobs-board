@@ -97,8 +97,8 @@ SystemApp.controller('GoKu', function($scope, _){
 	};
 	$scope.sumSkills($scope.users); // mocks service call
 	
-	$scope.filterSkills = function(skill){
-		var hasSkillArray = [];
+	$scope.filterSkills = function(skill) {
+		$scope.hasSkillArray = [];
 		console.log(skill);
 		var skillName = skill.name;
 		var users = $scope.users;
@@ -107,7 +107,7 @@ SystemApp.controller('GoKu', function($scope, _){
 			// console.log(hasSkill);
 			// console.log(userObject);
 			if(hasSkill){
-				hasSkillArray.push(userObject);
+				$scope.hasSkillArray.push(userObject);
 			} else {
 
 			}
@@ -116,10 +116,23 @@ SystemApp.controller('GoKu', function($scope, _){
 		// Add skill to active skills array
 		$scope.activeSkillsArray.push(skill);
 		// run new array through main cloud logic
-		$scope.sumSkills(hasSkillArray);
-		// update scope with filtered candidates
-		$scope.filteredCandidatesArray = hasSkillArray;
 
+		$scope.sumSkills($scope.hasSkillArray);
+		// update scope with filtered candidates
+		$scope.filteredCandidatesArray = $scope.hasSkillArray;
+	};
+
+
+	$scope.removeFilter = function(skill) {
+		alert('this feature is under development, please refresh the page to start again');
+		// // $scope.activeSkillsArray.remove(skill);
+		// console.log($scope.activeSkillsArray);
+		// 		_.select($scope.activeSkillsArray, function(obj){
+		// 	console.log(obj);
+		// 			    // return obj.name === skillName; // this returns array - why?
+		// });
+
+		// $scope.sumSkills($scope.hasSkillArray);
 	}
 
 
