@@ -1,10 +1,19 @@
 <div class="block">
-	<h2>Account Details</h2>
+	<div class="row top-section">
+		<form role="form">
+		<div class="col-sm-9">
+			<input type="text" class="form-control" ng-model="skillData.newItem" id="inputUsername" ng-model="inputUsername" placeholder="Form Building">
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-success"  ng-submit="addItem()" ng-click="addItem()">Add</button>
+		</div>
+		</form>
+	</div>
 	<article class="repeater" ng-repeat="thing in user.skills">
 		<div class="row top-section">
 			<div class="col-sm-10 ">
 				<div class="edit-hidden thing-appearing animated" ng-hide="!editswitch">
-					<input type="text" class="form-control" id="inputUsername" ng-model="inputUsername" placeholder="Franz Kafka">
+					<input type="text" class="form-control" id="inputUsername" ng-model="inputUsername" placeholder="{{thing.name}}">
 				</div>
 				<div class="thing-leaving animated" ng-hide="editswitch">{{thing.name}}</div>
 			</div>
@@ -12,8 +21,11 @@
 				<a ng-click="editswitch = !editswitch" class="edit">edit</a>
 			</div>
 		</div>
-		<!-- <div class="edit-field" ng-show="editswitch">
-			<textarea class="form-control" id="inputIntroduction" ng-model="inputIntroduction" placeholder="I know it might affect my art if I leave my Brotberuf but I really think I could be doing something better with my time" rows="4"></textarea>
-		</div> -->
+
+
+		<div class="edit-field" ng-hide="!editswitch">
+			<textarea class="form-control" id="inputIntroduction" ng-model="inputIntroduction" placeholder="{{thing.tooltip}}" rows="4">{{thing.tooltip}}</textarea>
+		</div>
+
 	</article>
 </div>

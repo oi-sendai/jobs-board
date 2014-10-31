@@ -29,12 +29,16 @@
 	text-align: right;
 	font-size:12px;
 }
+.repeater .edit-field {
+	margin-top:10px;
+}
 .repeater .top-section {
-	min-height:34px;
+	height:34px;
 	overflow: hidden
 }
 
 .thing-leaving {
+	/*background: red;*/
 	font-size: 17px;
 	padding: 4px 0;
 }
@@ -58,10 +62,17 @@
     -webkit-animation-name: dothereverse;
   	-webkit-animation-duration: .75s;
 }
-/*	  -webkit-animation-name: dostuff;
-          animation-name: dostuff;
-  -webkit-animation-duration: .75s;
-          animation-duration: .75s;*/
+.edit-field.ng-hide-remove         { 
+	-webkit-backface-visibility: hidden;
+	-webkit-animation-name: dostuff;
+  	-webkit-animation-duration: .75s;
+}
+.edit-field.ng-hide-add       { 
+    backface-visibility: hidden;
+    -webkit-animation-name: dothereverse;
+  	-webkit-animation-duration: .75s;
+}
+
 .thing-leaving.ng-hide-remove        { 
 	    backface-visibility: hidden;
     -webkit-animation-name: dostuff;

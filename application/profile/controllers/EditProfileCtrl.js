@@ -13,6 +13,8 @@ EditProfileCtrl.controller('EditProfileCtrl', function(
     $scope.class = 'account';
     $scope.formData = {};
 
+    $scope.skillData = {};
+
     $scope.editswitch =  false;
     $scope.user = 	{ 
 		"username":"me",
@@ -43,4 +45,9 @@ EditProfileCtrl.controller('EditProfileCtrl', function(
         // $scope.formData = {}; // clear the form so our user is ready to enter another
         // $scope.ingredients = response.data;
     }; 
+    $scope.addItem = function(){
+    	newSkill = {"name":$scope.skillData.newItem, "tooltip":""};
+    	$scope.user.skills.push(newSkill);
+    	$scope.skillData = {}
+    }
 });
