@@ -1,12 +1,12 @@
 <div class="block">
 	<h2>Account Details</h2>
 	<article class="repeater" ng-repeat="thing in user.skills">
-		<div class="row">
-			<div class="col-sm-10">
-				<div class="thing-leaving animated" ng-hide="editswitch">{{thing.name}}</div>
+		<div class="row top-section">
+			<div class="col-sm-10 ">
 				<div class="edit-hidden thing-appearing animated" ng-hide="!editswitch">
 					<input type="text" class="form-control" id="inputUsername" ng-model="inputUsername" placeholder="Franz Kafka">
 				</div>
+				<div class="thing-leaving animated" ng-hide="editswitch">{{thing.name}}</div>
 			</div>
 			<div class="col-sm-2">
 				<a ng-click="editswitch = !editswitch" class="edit">edit</a>
