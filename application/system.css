@@ -73,7 +73,7 @@ min-height: 256px;
 /*/*
 /* Animate -> Profile __ Tabs*/
 
-.profile_animate.ng-enter, .profile_animate.ng-leave {
+/*.profile_animate.ng-enter, .profile_animate.ng-leave {
       left: 0;
   right: 0;
   -webkit-transition:all .5s ease-in-out;
@@ -114,7 +114,7 @@ min-height: 256px;
 
 
 /* Animate layout ui-view tranisitions*/
-.fade.ng-enter, .fade.ng-leave {
+/*.fade.ng-enter, .fade.ng-leave {
     position: absolute;
     -webkit-animation-duration: 0.4s;
     animation-duration: 0.4s;
@@ -129,3 +129,4 @@ min-height: 256px;
    -webkit-animation-name: fadeOutDown;
    animation-name: fadeOutDown;
 }
+*/*/

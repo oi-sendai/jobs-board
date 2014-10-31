@@ -1,3 +1,11 @@
+.ui-view-container {
+	min-height: 500px
+}
+.footer {
+	background:gold;
+	height: 300px;
+}
+
 .account h2 {
 	color:gold !important;
 	padding: 0; margin: 0;
@@ -7,3 +15,36 @@
 	background:white;
 	padding:15px;
 }
+.repeater {
+	background:#ccc;
+	padding:10px;
+	margin-top:15px;
+}
+.repeater .edithidden {
+	height:100px;
+}
+.repeater .edit {
+	display: block;
+	width: 100%;
+	text-align: right;
+	font-size:12px;
+}
+
+/* when hiding the thing */
+.ng-hide-add         { 
+          animation-name: slideOutUp;
+          -webkit-animation-name: slideOutUp;
+}
+    /*-webkit-animation-name: flipOutX;*/
+
+/* when showing the thing */
+.ng-hide-remove      { 
+	/*animation-name:slideInRight;*/
+	/*-webkit-animation-name:slideInRight;*/
+
+    /*-webkit-animation-name: flipInX;*/
+  /*-webkit-animation:0.5s flipInX ease; */
+  /*animation:0.5s flipInX ease; */
+}
+
+/**/
