@@ -1,5 +1,8 @@
 <div class="row">
-	<div class="col-snm-12 well">
-		<h2 class="label label-default" ng-repeat="skill in skills">{{skill.name}}</h2>
+	<div class="col-sm-12">
+		<section class="block new-line bottom">
+			<ul>
+				<li class="skill-list" ng-repeat="skill in user.skills">{{skill.name}}</li>
+			</ul>
 	</div>
 </div>

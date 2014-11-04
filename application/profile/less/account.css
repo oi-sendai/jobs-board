@@ -1,4 +1,48 @@
 .ui-view-container {
+  padding-bottom:30px;
+}
+
+          a.navbar-brand.logo-intro {
+            box-shadow: 0 0 16px px inset #d8ccd8 ;
+          
+          } 
+
+
+
+
+.mything .another h1 {
+  backgroud: #543543;
+}
+.mything .another p {
+  backgroud: #543543;
+}
+
+.block ul {
+  list-style: none;
+  padding:0;
+  margin:0;
+  float: left;
+}
+.block ul li {
+  margin:0 15px 15px 0;
+  display: inline;
+  padding:10px;
+  background: #16201E;
+  float: left;
+  color:white;
+}
+
+/*.skill-list {
+padding: 10px;
+margin-top: 15px;
+color: white;
+margin-right:15px;
+}*/
+.new-line {
+	margin-top:30px;
+}
+
+.ui-view-container {
 	min-height: 500px
 }
 .footer {
@@ -14,11 +58,13 @@
 .account .block {
 	background:white;
 	padding:15px;
+  float: left;
 }
 .repeater {
-	background:#ccc;
-	padding:10px;
-	margin-top:15px;
+background: #16201E;
+padding: 10px;
+margin-top: 15px;
+color: white;
 }
 .repeater .edithidden {
 	height:100px;

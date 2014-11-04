@@ -18,7 +18,7 @@ var SystemApp = angular.module('SystemApp',
 
 SystemApp.factory('_', function() {
 	return window._; // assumes underscore has already been loaded on the page
-});  
+}); 
 
 SystemApp.config(['$stateProvider', '$urlRouterProvider', 
     function ($stateProvider, $urlRouterProvider ) {
@@ -111,12 +111,16 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    templateUrl: 'application/profile/profile-layout.html',
 	    controller: 'ProfileCtrl'
 	};
+
+
+
+
 	var profileView = { 
-	    name: 'profile.view',  //mandatory
-	    url: '/:username', // !! This must be loaded after other routes !!
+	    name: 'profile.i-want-to-cut-patterns',  //mandatory
+	    url: '/profile/i-want-to-cut-patterns', 
 	    views:{
             'dreams':{
-                templateUrl:'application/profile/profile-dreams.html',
+                templateUrl:'application/profile/urbanquack.html',
                 controller: 'DreamsCtrl'
             },
             'stats':{
@@ -130,6 +134,61 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
 	};
+	// var profileView = { 
+	//     name: 'profile.me',  //mandatory
+	//     url: '/me', // !! This must be loaded after other routes !!
+	//     views:{
+ //            'dreams':{
+ //                templateUrl:'application/profile/me.html',
+ //                controller: 'MeCtrl'
+ //            },
+ //            'stats':{
+ //            	templateUrl: 'application/profile/profile-stats.html',
+ //                controller: 'StatsCtrl'
+ //            },
+ //            'skills': {
+ //            	templateUrl: 'application/profile/profile-skills.html',
+ //                controller: 'SkillsCtrl'
+
+ //            }
+ //        };
+      //   var profileView = { 
+		    // name: 'profile.franzkafka',  //mandatory
+		    // url: '/franzkafka', // !! This must be loaded after other routes !!
+		    // views:{
+	     //        'dreams':{
+	     //            templateUrl:'application/games/taste-test.html',
+	     //            controller: 'TasteTest'
+	     //        },
+	     //        'stats':{
+	     //        	templateUrl: 'application/profile/profile-stats.html',
+	     //            controller: 'StatsCtrl'
+	     //        },
+	     //        'skills': {
+	     //        	templateUrl: 'application/profile/profile-skills.html',
+	     //            controller: 'SkillsCtrl'
+
+	     //        }
+      //   };
+
+     //    	var profileView = { 
+	    // name: 'profile.view',  //mandatory
+	    // url: '/:username', // !! This must be loaded after other routes !!
+	    // views:{
+     //        'dreams':{
+     //            templateUrl:'application/profile/profile-dreams.html',
+     //            controller: 'DreamsCtrl'
+     //        },
+     //        'stats':{
+     //        	templateUrl: 'application/profile/profile-stats.html',
+     //            controller: 'StatsCtrl'
+     //        },
+     //        'skills': {
+     //        	templateUrl: 'application/profile/profile-skills.html',
+     //            controller: 'SkillsCtrl'
+
+     //        }
+     //    }
 	var profileViewExperience = { 
 	    name: 'profile.view.experience',  //mandatory
 	    url: '/experience',

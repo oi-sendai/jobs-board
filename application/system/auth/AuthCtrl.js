@@ -54,11 +54,13 @@ AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angular
 
   console.log('got this far');
   var ref = new Firebase('https://brilliant-fire-7870.firebaseio.com/');
+  // var authData = ref.getAuth();
   angularFireAuth.initialize(ref, {scope: $scope, name: 'user'});
   console.log('scope');
   /*//////////////LOGIN - LOGOUT - REGISTER////////////////////*/
   
   $scope.login = function() {
+    console.log('logoin');
     $scope.loginMessage = "";
     if ((angular.isDefined($scope.inputEmail) && $scope.inputEmail != "") && (angular.isDefined($scope.inputPassword) && $scope.inputPassword != "")) {
       $scope.loginBusy = true;
@@ -93,7 +95,20 @@ AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angular
         $scope.loginBusy = false;
         $scope.nowRegistered = true;
         // $rootScope.$emit('someEvent');
+      //         var authData = {
+      //   "name": $scope.inputEmail, 
+      //   "email":$scope.inputEmail
+      // }
+      // ref.onAuth(function(authData) {
+      //   if (authData && $scope.nowRegistered) {
+      //     // save the user's profile into Firebase so we can
+      //     // list users, use them in security rules, and show profiles
+      //     ref.child('users').child(authData.uid).set(authData);
+      //   }
+      // });
+
       });
+
     } else  {
       $scope.loginMessage = "Please enter a username and password!";
     }
@@ -104,6 +119,7 @@ AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angular
     $scope.user = user;
     console.log("User is Logged In");
     angularFire(ref.child('users/' + $scope.user.id), $scope, 'userData').then(function(disassociate) {
+      console.log($scope);
       $scope.userData.name = $scope.userData.name || {};
       if (!$scope.userData.name.first) {
         $scope.greeting = "Hello!";
@@ -113,6 +129,15 @@ AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angular
       $scope.disassociateUserData = function() {
         disassociate();
       };
+    });
+
+
+    ref.onAuth(function(authData) {
+      if (authData && isNewUser) {
+        // save the user's profile into Firebase so we can
+        // list users, use them in security rules, and show profiles
+        ref.child('users').child(authData.uid).set(authData);
+      }
     });
   });
   
@@ -149,3 +174,4 @@ AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angular
 //     return $firebase(ref).$asObject();
 //   }
 // }]);
+
