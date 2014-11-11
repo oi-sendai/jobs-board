@@ -27,11 +27,29 @@ SystemApp.controller('GoKu', function($scope, _){
 			]
 		},
 		{
-			"username": "someone-else",
+			"username": "another-user",
 			"skills": [
+						{"name":"hardworking", "tooltip": "I was brought up this way"},
+			{"name":"design", "tooltip": "Is my favourite"},
 			{"name":"italian", "tooltip": "I was brought up this way"},
 			{"name":"javascript", "tooltip": "Is my favourite"},
 			{"name":"design","tooltip":"mongoose does this out the box"}
+			]
+		},
+		{
+			"username": "more-data",
+			"skills": [
+			{"name":"hardworking", "tooltip": "I was brought up this way"},
+			{"name":"design", "tooltip": "Is my favourite"},
+			{"name":"design","tooltip":"mongoose does this out the box"}
+			]
+		},
+		{
+			"username": "even-more",
+			"skills": [
+			{"name":"javascript", "tooltip": "Is my favourite"},
+			{"name":"design","tooltip":"mongoose does this out the box"},
+			{"name":"polite", "tooltip": "I was brought up this way"}
 			]
 		}
 	];
