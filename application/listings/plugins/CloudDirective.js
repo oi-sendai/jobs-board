@@ -1,11 +1,31 @@
 CloudDirective = angular.module('CloudDirective', []);
 
+CloudDirective.directive( 'cloud', function() {
+    return {
+      	restrict: 'AE',
+     	replace: true,
+      	template: '<button class="tc tc-{{value}}" ng-click="filterSkills(skill)">{{skill}}</button>',
+      	scope: {
+       		skill: '@skill',
+       		value: '@value',
+      	},
+      	controller:'CloudCtrl',
+      	link: function(scope, elem, attrs) {
+      		
+      		var skill = scope.skill;
+      		console.log(skill)
+      		var value = scope.value;
+      		console.log(value);
+      	},
+    }
+});
+
 SystemApp.filter('makeLowercase', function(){
 	return function (item) {
 		return item.toLowerCase();
 	};
 });
-SystemApp.controller('GoKu', function($scope, _){
+SystemApp.controller('CloudCtrl', function($scope, _){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 
 	$scope.users = [
@@ -53,21 +73,6 @@ SystemApp.controller('GoKu', function($scope, _){
 			]
 		}
 	];
-
-		// {"skills": ['javascript' 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		// {"skills": ['javascript', 'gardening', 'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		// {"skills": ['javascript', 'php',  'polite', 'hardworking', 'design', 'sewing', 'italian',]},
-		// {"skills": ['javascript', 'accounting', 'gardening', 'hardworking', 'design', 'sewing', 'italian',]},
-		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'design', 'sewing', 'italian',]},
-		// {"skills": ['javascript', 'php', 'accounting', 'polite', 'hardworking', 'sewing',]},
-		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'italian',]},
-		// {"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		// {"skills": [ 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		// {"skills": ['javascript', 'php', 'accounting', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
-		// {"skills": ['javascript', 'php', 'accounting', 'gardening',  'hardworking', 'design', 'sewing', ]}
-
-
 
 	// if word inArray is truthy push array to array
 
