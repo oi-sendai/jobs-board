@@ -1,0 +1,32 @@
+.tc {background:red;padding:3px;}
+.tc.tc-10 {
+	font-size: 8px
+}
+.tc.tc-9 {
+	font-size: 10px
+}
+.tc.tc-8 {
+	font-size: 12px
+}
+.tc.tc-7 {
+	font-size: 14px
+}
+.tc.tc-6 {
+	font-size: 16px
+}
+.tc.tc-5 {
+	font-size: 18px
+}
+.tc.tc-4 {
+	font-size: 20px
+}
+.tc.tc-3 {
+	font-size: 22px
+}
+.tc.tc-2 {
+	font-size: 24px
+}
+.tc.tc-1 {
+	font-size: 26px
+}
+

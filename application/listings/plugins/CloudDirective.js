@@ -1,11 +1,36 @@
-CloudDirective = angular.module('CloudDirective', []);
 
 SystemApp.filter('makeLowercase', function(){
 	return function (item) {
 		return item.toLowerCase();
 	};
 });
-SystemApp.controller('GoKu', function($scope, _){
+
+
+
+CloudDirective = angular.module('CloudDirective', []);
+
+CloudDirective.directive( 'goku', function() {
+    return {
+      	restrict: 'AE',
+     	replace: true,
+      	template: '<span class="tc tc-{{value}}">{{skill}}</span>',
+      	scope: {
+       		skill: '@skill',
+       		value: '@value',
+      	},
+      	link: function(scope, elem, attrs) {
+      		var skill = scope.skill;
+      		console.log(skill)
+      		var value = scope.value;
+      		console.log(value);
+
+ 
+      	}
+    }
+});
+
+CloudCtrl = angular.module('CloudCtrl', []);
+CloudCtrl.controller('CloudCtrl', function($scope, _){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 
 	$scope.users = [
@@ -115,9 +140,11 @@ SystemApp.controller('GoKu', function($scope, _){
 	};
 	$scope.sumSkills($scope.users); // mocks service call
 	
+
+
 	$scope.filterSkills = function(skill) {
 		$scope.hasSkillArray = [];
-		console.log(skill);
+		// console.log(skill);
 		var skillName = skill.name;
 		var users = $scope.users;
 		users.forEach( function (userObject){
@@ -152,6 +179,12 @@ SystemApp.controller('GoKu', function($scope, _){
 
 		// $scope.sumSkills($scope.hasSkillArray);
 	}
+
+
+
+
+
+
 
 
 

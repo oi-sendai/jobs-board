@@ -1,15 +1,18 @@
-<div class="row moral-justification">
+<!-- <div class="row moral-justification">
 	<div class="col-sm-12">
 		<h2>"During previous ages, samurai were able to move between masters and even between occupations. However, during the Edo period, samurai were restricted, and were above all forbidden to become employed by another master without their previous master's permission." <span>Ni dieu ni maître</span></h2>
 	</div>
-</div>
-<div class="row moral-justification" ng-controller="GoKu">
+</div> -->
+<div class="row moral-justification" ng-controller="CloudCtrl">
 	<div class="col-sm-8 well">
-		<button class="btn btn-default" 
+		<button class="" 
 			ng-click="filterSkills(skill)" 
 			ng-repeat="skill in apiMockArray">
-			{{skill.name}}
-			<span class="label label-info"> {{skill.value}}</span>
+	<goku skill="{{skill.name}}" value="{{skill.value}}" />
+			<!-- jfdsjflkdsjfl -->
+			<!-- <goku skill="{{skill.name}}" value="{{skill.value"/> -->
+			
+			<!-- <span class="label label-info"> {{skill.value}}</span> -->
 		</button>
 	</div>
 	<div class="col-sm-4">
