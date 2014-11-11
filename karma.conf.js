@@ -10,19 +10,35 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine'],//, 'requirejs'],
 
 
     // list of files / patterns to load in the browser
     files: [
       // {pattern: 'application/**/*js', included: false},
-      // {pattern: 'tests/**/*js', included: false},
-      'vendor/angular/angular.js',
-      'vendor/angular-mocks/angular-mocks.js',
-      'vendor/underscore/underscore.js',
-      'application/system.js',
-      'application/listings/plugins/CloudDirective.js',
-      'application/listings/plugins/CloudCtrl.js',
+      {pattern: 'tests/**/*js', included: true},
+        'vendor/angular/angular.js',
+        'vendor/angular-mocks/angular-mocks.js',
+        'vendor/jquery/dist/jquery.js',
+        'vendor/underscore/underscore.js',
+        'vendor/angular-route/angular-route.js',
+        'vendor/angular-ui-router/release/angular-ui-router.js',
+        'vendor/angular-animate/angular-animate.js',
+        'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
+        'vendor/ng-resource/dist/ng-resource.js',
+        'application/system.js',
+        'application/listings/plugins/CloudDirective.js',
+        'application/listings/plugins/CloudCtrl.js',
+        'application/system/header/HeaderCtrl.js',
+        'application/system/header/HeaderDirective.js',
+        'application/system/footer/FooterCtrl.js',
+        'application/system/footer/FooterDirective.js',
+        // 'application/system/auth/AuthCtrl.js',
+        // 'application/system/SystemApi.js',
+        // 'application/profile/controllers/ProfileCtrl.js',
+        // 'application/profile/controllers/DreamsCtrl.js',
+        // 'application/profile/controllers/SkillsCtrl.js',
+        // 'application/profile/controllers/StatsCtrl.js'
     ],
 
 

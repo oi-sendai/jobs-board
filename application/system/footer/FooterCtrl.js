@@ -1,6 +1,6 @@
 var FooterCtrl = angular.module('FooterCtrl', []);
 
-FooterCtrl.controller('FooterCtrl', function($rootScope, $scope, angularFire, angularFireAuth) { 
+FooterCtrl.controller('FooterCtrl', function($rootScope, $scope){ //, angularFire, angularFireAuth) { 
 
     $scope.copyleft = 'careersuici.de';
 
