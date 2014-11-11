@@ -9,25 +9,25 @@ SystemApp.filter('makeLowercase', function(){
 
 CloudDirective = angular.module('CloudDirective', []);
 
-CloudDirective.directive( 'goku', function() {
-    return {
-      	restrict: 'AE',
-     	replace: true,
-      	template: '<span class="tc tc-{{value}}">{{skill}}</span>',
-      	scope: {
-       		skill: '@skill',
-       		value: '@value',
-      	},
-      	link: function(scope, elem, attrs) {
-      		var skill = scope.skill;
-      		console.log(skill)
-      		var value = scope.value;
-      		console.log(value);
-
- 
-      	}
-    }
-});
+// CloudDirective.directive( 'goku', function() {
+//     return {
+//       	restrict: 'AE',
+//      	replace: true,
+//       	template: '<button class="tc tc-{{value}}" ng-click="filterSkills(skill)">{{skill}}</button>',
+//       	scope: {
+//        		skill: '@skill',
+//        		value: '@value',
+//       	},
+//       	controller:'CloudCtrl',
+//       	link: function(scope, elem, attrs) {
+      		
+//       		var skill = scope.skill;
+//       		console.log(skill)
+//       		var value = scope.value;
+//       		console.log(value);
+//       	},
+//     }
+// });
 
 CloudCtrl = angular.module('CloudCtrl', []);
 CloudCtrl.controller('CloudCtrl', function($scope, _){
@@ -92,10 +92,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 		// {"skills": ['javascript', 'php', 'gardening', 'polite', 'hardworking', 'design', 'sewing', ]},
 		// {"skills": ['javascript', 'php', 'accounting', 'gardening',  'hardworking', 'design', 'sewing', ]}
 
-
-
 	// if word inArray is truthy push array to array
-
 
 	$scope.activeSkillsArray = [];
 	$scope.apiMockArray = [];
@@ -115,9 +112,11 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 				// console.log(existingSkill);
 				// I still don't quite understand above syntax
 				if(alreadyFilteredSkill ){
+
 					console.log('nothing else');
 				} 
 				else if(existingSkill){
+
 					// _.find($scope.apiMockArray)
 					// console.log('number++');
 					var existingObject = _.select($scope.apiMockArray, function(obj){
@@ -132,6 +131,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 					// console.log(existingObject);
 				} 
 				else {
+
 					$scope.apiMockArray.push({name:skillName,value:1});
 				}
 				console.log($scope.apiMockArray);
@@ -140,26 +140,31 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 	};
 	$scope.sumSkills($scope.users); // mocks service call
 	
-
-
+	
 	$scope.filterSkills = function(skill) {
+		console.log('filter');
 		$scope.hasSkillArray = [];
-		// console.log(skill);
+		console.log('skill:',skill);
 		var skillName = skill.name;
+		var skillName = skill;
 		var users = $scope.users;
+		console.log('users:',users)
 		users.forEach( function (userObject){
 			var hasSkill  = _.contains(_.pluck(userObject.skills, 'name'), skillName);
-			// console.log(hasSkill);
-			// console.log(userObject);
+			console.log('hasSkill:', hasSkill);
+			console.log('userObject:',userObject);
 			if(hasSkill){
+				console.log('pushing to array')
 				$scope.hasSkillArray.push(userObject);
+				console.log('hasSkillArray', $scope.hasSkillArray);
 			} else {
-
+				console.log('does nothing')
 			}
 		});
 
 		// Add skill to active skills array
 		$scope.activeSkillsArray.push(skill);
+		console.log($scope.activeSkillsArray);
 		// run new array through main cloud logic
 
 		$scope.sumSkills($scope.hasSkillArray);
