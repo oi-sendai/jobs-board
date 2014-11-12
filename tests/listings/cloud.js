@@ -21,10 +21,43 @@ describe("Unit: CloudCtrl", function() {
         expect(testScope.debug).toEqual('CloudCtrl');
     });
 
-    // it('should return all skills held by users')
-    // it('should count all duplicate skills')
-    // it('should remove all users that dont have currently filtered skill')
-    // it('should recount skills when filter is removed')
+      // $scope.users = [
+      //   { "username": "user3", "skills": [ {"name":"design"}, {"name":"javascript"}, {"name":"testing"} ] },
+      //   { "username": "user2", "skills": [ {"name":"design"}, {"name":"javascript"}] },
+      //   { "username": "user1", "skills": [ {"name":"design"}] }
+      // ]
+
+
+      // if filter == testing
+      //   return user3
+      //   design(1), javascript(1)
+      // if filter == design 
+      //   return user3, user2, user1
+      //   design(3), javascript(2), testing(1)
+      // if filter == design && javascript
+      //   return user3, user2
+      //     testing(1)
+
+
+    it('usersService(): should look for users with given skill set', function(){
+
+    });
+
+    it('gatherSkills(everyone): should return all skills held by users', function(){
+
+    });
+    it('gatherSkills(filtered): should return all skills held by users with given skill set', function(){
+
+    })
+    it('sumSkills(): should count skill density in user array', function(){
+
+    })
+    it('addFilter(filter); should run build again with one extra filter', function(){
+
+    })
+    it('removeFilter(filter); should run build again with one less filter', function(){
+
+    })
 
     // 
 
