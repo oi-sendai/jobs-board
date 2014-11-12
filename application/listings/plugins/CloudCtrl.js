@@ -52,7 +52,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 	// if word inArray is truthy push array to array
 
 
-	$scope.activeSkillsArray = [];
+	$scope.activeFilters = [];
 	$scope.apiMockArray = [];
 
 
@@ -60,7 +60,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 	// for each skillsArray 
 	$scope.sumSkills = function(users){
 		// Reset mock array ready for iteration
-		var apiMockArray = [];
+		var activeSkills = [];
 		// this is the array of skillName / numberOfPeople with skill
 		var cloudArray = []; 
 		// array object of user skill sets passed to function 
@@ -76,23 +76,25 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 				// store the skill in a variable
 				var skillName = skill.name;
 
-				console.log('$scope.activeSkillsArray', $scope.activeSkillsArray);
+				console.log('$scope.activeFilters', $scope.activeFilters);
 
-				// return array of value stored against the name key of the array of objects
+				// pluck array of values stored against the 'name' key of the activeSkills object array
 				// and return true if plucked array contains current skill name
-				var existingSkill = _.contains(_.pluck(apiMockArray, 'name'), skillName);
+				var existingSkill = _.contains(_.pluck(activeSkills, 'name'), skillName);
 				console.log('existingSkill', existingSkill);
 				
-				var alreadyFilteredSkill = _.contains(_.pluck($scope.activeSkillsArray, 'name'), skillName);
+				// return array of value stored against the 'name' key of the activeSkills object array
+				// and return true if plucked array contains current skill name
+				var alreadyFilteredSkill = _.contains(_.pluck($scope.activeFilters, 'name'), skillName);
 				console.log('alreadyFilteredSkill', alreadyFilteredSkill);
 
 				if(alreadyFilteredSkill ){
 					console.log('nothing else');
 				} 
 				else if(existingSkill){
-					// _.find($scope.apiMockArray)
+					// _.find($scope.activeSkills)
 					// console.log('number++');
-					var existingObject = _.select(apiMockArray, function(obj){
+					var existingObject = _.select(activeSkills, function(obj){
 					    return obj.name === skillName; // this returns array - why?
 					});
 					// console.log(existingObject[0]); // hacky stuff
@@ -104,10 +106,10 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 					// console.log(existingObject);
 				} 
 				else {
-					apiMockArray.push({name:skillName,value:1});
+					activeSkills.push({name:skillName,value:1});
 				}
-				console.log(apiMockArray);
-				$scope.activeSkills = apiMockArray;
+				console.log(activeSkills);
+				$scope.activeSkills = activeSkills;
 
 			});
 		});
@@ -131,7 +133,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 		});
 
 		// Add skill to active skills array
-		$scope.activeSkillsArray.push(skill);
+		$scope.activeFilters.push(skill);
 		// run new array through main cloud logic
 
 		$scope.sumSkills($scope.hasSkillArray);
@@ -142,9 +144,9 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 
 	$scope.removeFilter = function(skill) {
 		alert('this feature is under development, please refresh the page to start again');
-		// // $scope.activeSkillsArray.remove(skill);
-		// console.log($scope.activeSkillsArray);
-		// 		_.select($scope.activeSkillsArray, function(obj){
+		// // $scope.activeFilters.remove(skill);
+		// console.log($scope.activeFilters);
+		// 		_.select($scope.activeFilters, function(obj){
 		// 	console.log(obj);
 		// 			    // return obj.name === skillName; // this returns array - why?
 		// });
