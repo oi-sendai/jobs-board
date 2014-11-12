@@ -1,3 +1,7 @@
+// SystemApp.factory('UserService', function($scope, $q){
+
+// });
+
 CloudCtrl = angular.module('CloudCtrl', []);
 
 CloudCtrl.controller('CloudCtrl', function($scope, _){

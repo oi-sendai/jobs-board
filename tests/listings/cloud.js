@@ -2,24 +2,77 @@ describe("Unit: CloudCtrl", function() {
  
     var testScope;
 
-    var testData
+    var CloudCtrl, $location, mockUserService, mockUsers, q, deferred;
  
-    beforeEach(function (){
-       module('SystemApp');
-       inject(function($rootScope, $controller) {
-          testScope = $rootScope.$new;
-          $controller('CloudCtrl', {
-              $scope: testScope
-          });
-       });
-    });
+    beforeEach( module( 'SystemApp' ) );
  
+    // beforeEach(function() {
  
+    //   mockUsers = [
+    //     { "username": "user3", "skills": [ {"name":"design"}, {"name":"javascript"}, {"name":"testing"} ] },
+    //     { "username": "user2", "skills": [ {"name":"design"}, {"name":"javascript"}] },
+    //     { "username": "user1", "skills": [ {"name":"design"}] }
+    //   ];
  
-    it('should load scope', function() {
+    //   mockUserService = {
+    //         fetchUsers: function(){
+    //             deferred = q.deferred;
+    //             return deferred.promise;
+    //         }
+    //     }
+ 
+    // });
+ 
+    // beforeEach( inject( function( $controller, _$q_, $rootScope ) {
+ 
+    //     $scope = $rootScope.$new();
+         
+    //     CloudCtrl = $controller( 'CloudCtrl', { 
+    //         UserService: mockUserService, 
+    //         $scope: $scope 
+    //     });
+         
+    // }));
 
-        expect(testScope.debug).toEqual('CloudCtrl');
+    
+    it('gatherSkills(everyone): should return all skills held by users', function(){
+
+      spyOn(mockWaiterService, 'fetchUsers').andCallThrough();
+
+      gatherSkills(filter);
+
+      expect(UserService.fetchUsers).toHaveBeenCalled();
     });
+
+    it('gatherSkills(everyone): should return all skills held by users', function(){
+
+    });
+    it('gatherSkills(filtered): should return all skills held by users with given skill set', function(){
+
+    });
+    it('sumSkills(): should count skill density in user array', function(){
+
+    });
+    it('addFilter(filter); should run build again with one extra filter', function(){
+
+    });
+    it('removeFilter(filter); should run build again with one less filter', function(){
+
+    });
+ 
+});
+ 
+ 
+ 
+    // it('should load scope', function() {
+
+    //     expect(testScope.debug).toEqual('CloudCtrl');
+    // });
+
+    // it('usersService(): should look for users with given skill set', function(){
+    //     expect(returnObject).toBeDefined
+
+    // });
 
       // $scope.users = [
       //   { "username": "user3", "skills": [ {"name":"design"}, {"name":"javascript"}, {"name":"testing"} ] },
@@ -39,25 +92,9 @@ describe("Unit: CloudCtrl", function() {
       //     testing(1)
 
 
-    it('usersService(): should look for users with given skill set', function(){
 
-    });
 
-    it('gatherSkills(everyone): should return all skills held by users', function(){
 
-    });
-    it('gatherSkills(filtered): should return all skills held by users with given skill set', function(){
-
-    })
-    it('sumSkills(): should count skill density in user array', function(){
-
-    })
-    it('addFilter(filter); should run build again with one extra filter', function(){
-
-    })
-    it('removeFilter(filter); should run build again with one less filter', function(){
-
-    })
 
     // 
 
