@@ -7,44 +7,44 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 
 		{	"username": "franz-kafka",
 			"skills": [
-			{"name":"polite", "tooltip": "I was brought up this way"},
-			{"name":"javascript", "tooltip": "Is my favourite"},
+			{"name":"polite"},
+			{"name":"javascript"},
 			{"name":"insurance broker","tooltip":"mongoose does this out the box"}
 			]
 		},
 		{	"username":"me",
 			"skills": [
-			{"name":"hardworking", "tooltip": "I was brought up this way"},
-			{"name":"design", "tooltip": "Is my favourite"},
-			{"name":"sewing","tooltip":"mongoose does this out the box"},
-			{"name":"javascript", "tooltip": "Is actually quite fun"},
-			{"name":"information architecture", "tooltip": "Something else I am interested in"}
+			{"name":"hardworking"},
+			{"name":"design"},
+			{"name":"sewing"},
+			{"name":"javascript"},
+			{"name":"information architecture"}
 			]
 		},
 		{
 			"username": "another-user",
 			"skills": [
-						{"name":"hardworking", "tooltip": "I was brought up this way"},
-			{"name":"design", "tooltip": "Is my favourite"},
-			{"name":"italian", "tooltip": "I was brought up this way"},
-			{"name":"javascript", "tooltip": "Is my favourite"},
-			{"name":"design","tooltip":"mongoose does this out the box"}
+			{"name":"hardworking"},
+			{"name":"design"},
+			{"name":"italian"},
+			{"name":"javascript"},
+			{"name":"design"}
 			]
 		},
 		{
 			"username": "more-data",
 			"skills": [
-			{"name":"hardworking", "tooltip": "I was brought up this way"},
-			{"name":"design", "tooltip": "Is my favourite"},
-			{"name":"design","tooltip":"mongoose does this out the box"}
+			{"name":"hardworking"},
+			{"name":"design"},
+			{"name":"design"}
 			]
 		},
 		{
 			"username": "even-more",
 			"skills": [
-			{"name":"javascript", "tooltip": "Is my favourite"},
-			{"name":"design","tooltip":"mongoose does this out the box"},
-			{"name":"polite", "tooltip": "I was brought up this way"}
+			{"name":"javascript"},
+			{"name":"design"},
+			{"name":"polite"}
 			]
 		}
 	];
@@ -54,28 +54,45 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 
 	$scope.activeSkillsArray = [];
 	$scope.apiMockArray = [];
+
+
+	$scope.activeSkills = []; // will be used to to pass data to repeat on view
 	// for each skillsArray 
 	$scope.sumSkills = function(users){
-		$scope.apiMockArray = [];
-		var cloudArray = [];
+		// Reset mock array ready for iteration
+		var apiMockArray = [];
+		// this is the array of skillName / numberOfPeople with skill
+		var cloudArray = []; 
+		// array object of user skill sets passed to function 
 		var users = users; //expect array
-		// console.log(users);
+		console.log('user passed to function', users);
+
+		// iterate over users - should probably use underscore for support
 		users.forEach( function (userObject) {
+			// store the array of skills held by current user
 			var skillsArray = userObject.skills;
-			skillsArray.forEach( function (skill){ // jquery, move to underscore sometime
+			// iterate again
+			skillsArray.forEach( function (skill){
+				// store the skill in a variable
 				var skillName = skill.name;
+
+				console.log('$scope.activeSkillsArray', $scope.activeSkillsArray);
+
+				// return array of value stored against the name key of the array of objects
+				// and return true if plucked array contains current skill name
+				var existingSkill = _.contains(_.pluck(apiMockArray, 'name'), skillName);
+				console.log('existingSkill', existingSkill);
+				
 				var alreadyFilteredSkill = _.contains(_.pluck($scope.activeSkillsArray, 'name'), skillName);
-				var existingSkill = _.contains(_.pluck($scope.apiMockArray, 'name'), skillName);
-				// console.log('has existingSkill logic');
-				// console.log(existingSkill);
-				// I still don't quite understand above syntax
+				console.log('alreadyFilteredSkill', alreadyFilteredSkill);
+
 				if(alreadyFilteredSkill ){
 					console.log('nothing else');
 				} 
 				else if(existingSkill){
 					// _.find($scope.apiMockArray)
 					// console.log('number++');
-					var existingObject = _.select($scope.apiMockArray, function(obj){
+					var existingObject = _.select(apiMockArray, function(obj){
 					    return obj.name === skillName; // this returns array - why?
 					});
 					// console.log(existingObject[0]); // hacky stuff
@@ -87,9 +104,11 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 					// console.log(existingObject);
 				} 
 				else {
-					$scope.apiMockArray.push({name:skillName,value:1});
+					apiMockArray.push({name:skillName,value:1});
 				}
-				console.log($scope.apiMockArray);
+				console.log(apiMockArray);
+				$scope.activeSkills = apiMockArray;
+
 			});
 		});
 	};

@@ -10,7 +10,7 @@
 		</section>
 		<button class="btn btn-default" 
 			ng-click="filterSkills(skill)" 
-			ng-repeat="skill in apiMockArray">
+			ng-repeat="skill in activeSkills">
 			{{skill.name}}
 			<span class="label label-info"> {{skill.value}}</span>
 		</button>

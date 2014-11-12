@@ -18,4 +18,8 @@ describe("Unit: CloudCtrl", function() {
 
         expect(testScope.debug).toEqual('CloudCtrl');
     });
-});
+
+    // it('should return all skills held by users')
+    // it('should count all duplicate skills')
+    // it('should remove all users that dont have currently filtered skill')
+    // it('should recount skills when filter is removed')
