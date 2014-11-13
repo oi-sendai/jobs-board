@@ -1,10 +1,18 @@
-// SystemApp.factory('UserService', function($scope, $q){
+SystemApp.factory('UserFactory', function() {
+	var debug = 'profile factory';
+	var factory = {};
 
-// });
+	factory.fetchUsers = function(){
+		return debug;
+	};
+	return factory
+}); 
 
 CloudCtrl = angular.module('CloudCtrl', []);
 
-CloudCtrl.controller('CloudCtrl', function($scope, _){
+CloudCtrl.controller('CloudCtrl', function($scope, _
+	,UserFactory
+	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
 	$scope.users = [
@@ -54,14 +62,15 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 	];
 
 	// if word inArray is truthy push array to array
-
+	console.log(UserFactory);
 
 	$scope.activeFilters = [];
 	$scope.apiMockArray = [];
 
 	// test 1
 	$scope.gatherSkills = function(){
-
+		console.log(UserFactory.fetchUsers());
+		UserFactory.fetchUsers();
 	};
 
 	$scope.activeSkills = []; // will be used to to pass data to repeat on view

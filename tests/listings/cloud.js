@@ -16,7 +16,9 @@ describe("Unit: CloudCtrl", function() {
  
       mockUserService = {
             fetchUsers: function(){
-                deferred = q.deferred;
+              console.log(q);
+                deferred = q.defer();
+                deferred.resolve('data');
                 return deferred.promise;
             }
         }
@@ -24,11 +26,12 @@ describe("Unit: CloudCtrl", function() {
     });
  
     beforeEach( inject( function( $controller, _$q_, $rootScope ) {
+                q = _$q_;
  
         testScope = $rootScope.$new();
          
         CloudCtrl = $controller( 'CloudCtrl', { 
-            UserService: mockUserService, 
+            UserFactory: mockUserService, 
             $scope: testScope 
         });
          
@@ -37,15 +40,15 @@ describe("Unit: CloudCtrl", function() {
     
     it('gatherSkills(everyone): should return all skills held by users', function(){
 
-      // spyOn(mockUserService, 'fetchUsers').andCallThrough();
+      spyOn(mockUserService, 'fetchUsers').andCallThrough();
       // console.log(testScope);
-      // gatherSkills();
+      testScope.gatherSkills();
 
-      // expect(UserService.fetchUsers).toHaveBeenCalled();
-      expect(3 === 3).toBeTruthy();
+      expect(mockUserService.fetchUsers).toHaveBeenCalled();
     });
 
     // it('gatherSkills(everyone): should return all skills held by users', function(){
+      expect(3 === 3).toBeTruthy();
 
     // });
     // it('gatherSkills(filtered): should return all skills held by users with given skill set', function(){
