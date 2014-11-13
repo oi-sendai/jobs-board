@@ -38,22 +38,16 @@ describe("Unit: CloudCtrl", function() {
     }));
 
     
-    it('gatherSkills(everyone): should return all skills held by users', function(){
-
+    it('init(): should return all skills held by users', function(){
       spyOn(mockUserService, 'fetchUsers').andCallThrough();
-      // console.log(testScope);
-      testScope.gatherSkills();
-
+      testScope.init();
       expect(mockUserService.fetchUsers).toHaveBeenCalled();
+      expect()
     });
 
-    // it('gatherSkills(everyone): should return all skills held by users', function(){
-      expect(3 === 3).toBeTruthy();
+    it('gatherSkills(filtered): should return all skills held by users with given skill set', function(){
 
-    // });
-    // it('gatherSkills(filtered): should return all skills held by users with given skill set', function(){
-
-    // });
+    });
     // it('sumSkills(): should count skill density in user array', function(){
 
     // });

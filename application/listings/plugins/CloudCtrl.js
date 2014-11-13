@@ -1,9 +1,55 @@
-SystemApp.factory('UserFactory', function() {
+SystemApp.factory('UserFactory', function($q) {
 	var debug = 'profile factory';
 	var factory = {};
 
 	factory.fetchUsers = function(){
-		return debug;
+		var deferred = $q.defer();
+		var users = [
+
+			{	"username": "franz-kafka",
+				"skills": [
+				{"name":"polite"},
+				{"name":"javascript"},
+				{"name":"insurance broker","tooltip":"mongoose does this out the box"}
+				]
+			},
+			{	"username":"me",
+				"skills": [
+				{"name":"hardworking"},
+				{"name":"design"},
+				{"name":"sewing"},
+				{"name":"javascript"},
+				{"name":"information architecture"}
+				]
+			},
+			{
+				"username": "another-user",
+				"skills": [
+				{"name":"hardworking"},
+				{"name":"design"},
+				{"name":"italian"},
+				{"name":"javascript"},
+				{"name":"design"}
+				]
+			},
+			{
+				"username": "more-data",
+				"skills": [
+				{"name":"hardworking"},
+				{"name":"design"},
+				]
+			},
+			{
+				"username": "even-more",
+				"skills": [
+				{"name":"javascript"},
+				{"name":"design"},
+				{"name":"polite"}
+				]
+			}
+		];
+		deferred.resolve(users);
+		return deferred.promise;
 	};
 	return factory
 }); 
@@ -15,63 +61,118 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
-	$scope.users = [
+	// $scope.users = [
 
-		{	"username": "franz-kafka",
-			"skills": [
-			{"name":"polite"},
-			{"name":"javascript"},
-			{"name":"insurance broker","tooltip":"mongoose does this out the box"}
-			]
-		},
-		{	"username":"me",
-			"skills": [
-			{"name":"hardworking"},
-			{"name":"design"},
-			{"name":"sewing"},
-			{"name":"javascript"},
-			{"name":"information architecture"}
-			]
-		},
-		{
-			"username": "another-user",
-			"skills": [
-			{"name":"hardworking"},
-			{"name":"design"},
-			{"name":"italian"},
-			{"name":"javascript"},
-			{"name":"design"}
-			]
-		},
-		{
-			"username": "more-data",
-			"skills": [
-			{"name":"hardworking"},
-			{"name":"design"},
-			{"name":"design"}
-			]
-		},
-		{
-			"username": "even-more",
-			"skills": [
-			{"name":"javascript"},
-			{"name":"design"},
-			{"name":"polite"}
-			]
-		}
-	];
+	// 	{	"username": "franz-kafka",
+	// 		"skills": [
+	// 		{"name":"polite"},
+	// 		{"name":"javascript"},
+	// 		{"name":"insurance broker","tooltip":"mongoose does this out the box"}
+	// 		]
+	// 	},
+	// 	{	"username":"me",
+	// 		"skills": [
+	// 		{"name":"hardworking"},
+	// 		{"name":"design"},
+	// 		{"name":"sewing"},
+	// 		{"name":"javascript"},
+	// 		{"name":"information architecture"}
+	// 		]
+	// 	},
+	// 	{
+	// 		"username": "another-user",
+	// 		"skills": [
+	// 		{"name":"hardworking"},
+	// 		{"name":"design"},
+	// 		{"name":"italian"},
+	// 		{"name":"javascript"},
+	// 		{"name":"design"}
+	// 		]
+	// 	},
+	// 	{
+	// 		"username": "more-data",
+	// 		"skills": [
+	// 		{"name":"hardworking"},
+	// 		{"name":"design"},
+	// 		{"name":"design"}
+	// 		]
+	// 	},
+	// 	{
+	// 		"username": "even-more",
+	// 		"skills": [
+	// 		{"name":"javascript"},
+	// 		{"name":"design"},
+	// 		{"name":"polite"}
+	// 		]
+	// 	}
+	// ];
+	$scope.users = '';
 
 	// if word inArray is truthy push array to array
-	console.log(UserFactory);
 
 	$scope.activeFilters = [];
 	$scope.apiMockArray = [];
 
+
+
+
+	$scope.rain = [];
+
 	// test 1
-	$scope.gatherSkills = function(){
-		console.log(UserFactory.fetchUsers());
-		UserFactory.fetchUsers();
+	$scope.init = function(){
+		UserFactory.fetchUsers().then(function(data){
+			// cache returned users object
+			$scope.users = data;
+			// $scope.sumSkills($scope.users); // mocks service call
+			$scope.gatherSkills(data);
+			console.log($scope.rain);
+		});
 	};
+	$scope.init();
+
+	// returns array of skill object values
+	$scope.gatherSkills = function(users){
+
+		$scope.rain = []
+		var gather = function(user){
+			// reset scope object
+			// add to rain array
+			_.each(user.skills, function(input){
+				$scope.countSkills(input.name);
+			});
+			// console.log($scope.rain);
+		}
+		_.each(users, gather);
+	};
+
+	$scope.countSkills = function(input){ 
+ 		
+		var existingSkill = _.contains(_.pluck($scope.rain, 'text'), input);
+
+		if(!existingSkill){ // 
+			var thing = {
+				text: input, 
+				weight: 1, 
+				link: { href: "#", title: input}
+			}
+
+			$scope.rain.push(thing);
+		}
+		else { // really inefficient i think 
+			_.select($scope.rain, function(obj){
+
+			    if (obj.text === input){
+			    	// var weight = obj.weight;
+			    	// weight++
+			    	// obj.weight = weight;
+			    	obj.weight = ++obj.weight;
+			    }; // this returns array - why?
+					    
+			});
+
+		}
+	};
+
 
 	$scope.activeSkills = []; // will be used to to pass data to repeat on view
 	// for each skillsArray 
@@ -125,13 +226,13 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 				else {
 					activeSkills.push({name:skillName,value:1});
 				}
-				console.log(activeSkills);
+				// console.log(activeSkills);
 				$scope.activeSkills = activeSkills;
 
 			});
 		});
 	};
-	$scope.sumSkills($scope.users); // mocks service call
+
 	
 	$scope.filterSkills = function(skill) {
 		$scope.hasSkillArray = [];
