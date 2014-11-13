@@ -59,6 +59,10 @@ CloudCtrl.controller('CloudCtrl', function($scope, _){
 	$scope.activeFilters = [];
 	$scope.apiMockArray = [];
 
+	// test 1
+	$scope.gatherSkills = function(){
+
+	};
 
 	$scope.activeSkills = []; // will be used to to pass data to repeat on view
 	// for each skillsArray 

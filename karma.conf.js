@@ -16,7 +16,6 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // {pattern: 'application/**/*js', included: false},
-      {pattern: 'tests/**/*js', included: true},
         'vendor/angular/angular.js',
         'vendor/angular-mocks/angular-mocks.js',
         'vendor/jquery/dist/jquery.js',
@@ -26,13 +25,19 @@ module.exports = function(config) {
         'vendor/angular-animate/angular-animate.js',
         'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
         'vendor/ng-resource/dist/ng-resource.js',
+
+
         'application/system.js',
-        'application/listings/plugins/CloudDirective.js',
+        
+        // 'application/listings/plugins/CloudDirective.js',
         'application/listings/plugins/CloudCtrl.js',
-        'application/system/header/HeaderCtrl.js',
-        'application/system/header/HeaderDirective.js',
-        'application/system/footer/FooterCtrl.js',
-        'application/system/footer/FooterDirective.js',
+        // 'application/system/header/HeaderCtrl.js',
+        // 'application/system/header/HeaderDirective.js',
+        // 'application/system/footer/FooterCtrl.js',
+        // 'application/system/footer/FooterDirective.js',
+
+
+      {pattern: 'tests/**/*js', included: true},
         // 'application/system/auth/AuthCtrl.js',
         // 'application/system/SystemApi.js',
         // 'application/profile/controllers/ProfileCtrl.js',
@@ -70,6 +75,10 @@ module.exports = function(config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
+
+      //A list of log appenders to be used. See the documentation for log4js for more information.
+        loggers: [{type: 'console'}],
+ 
 
 
     // enable / disable watching file and executing tests whenever any file changes
