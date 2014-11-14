@@ -45,7 +45,17 @@ describe("Unit: CloudCtrl", function() {
       expect()
     });
 
-    it('gatherSkills(filtered): should return all skills held by users with given skill set', function(){
+    it('countSkills(): should add new skills to array', function(){
+      testScope.rain = [] ;
+      testScope.countSkills('javascript');
+      expect(testScope.rain[0].text).toEqual('javascript');
+
+    });
+
+    it('countSkills(): should increment existing skill weighting', function(){
+      testScope.rain = [{text:'javascript',weight:1}] ;
+      testScope.countSkills('javascript');
+      expect(testScope.rain[0].weight).toEqual(2);
 
     });
     // it('sumSkills(): should count skill density in user array', function(){
