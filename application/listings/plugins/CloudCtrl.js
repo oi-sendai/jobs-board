@@ -61,55 +61,55 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
-	// $scope.users = [
+	$scope.users = [
 
-	// 	{	"username": "franz-kafka",
-	// 		"skills": [
-	// 		{"name":"polite"},
-	// 		{"name":"javascript"},
-	// 		{"name":"insurance broker","tooltip":"mongoose does this out the box"}
-	// 		]
-	// 	},
-	// 	{	"username":"me",
-	// 		"skills": [
-	// 		{"name":"hardworking"},
-	// 		{"name":"design"},
-	// 		{"name":"sewing"},
-	// 		{"name":"javascript"},
-	// 		{"name":"information architecture"}
-	// 		]
-	// 	},
-	// 	{
-	// 		"username": "another-user",
-	// 		"skills": [
-	// 		{"name":"hardworking"},
-	// 		{"name":"design"},
-	// 		{"name":"italian"},
-	// 		{"name":"javascript"},
-	// 		{"name":"design"}
-	// 		]
-	// 	},
-	// 	{
-	// 		"username": "more-data",
-	// 		"skills": [
-	// 		{"name":"hardworking"},
-	// 		{"name":"design"},
-	// 		{"name":"design"}
-	// 		]
-	// 	},
-	// 	{
-	// 		"username": "even-more",
-	// 		"skills": [
-	// 		{"name":"javascript"},
-	// 		{"name":"design"},
-	// 		{"name":"polite"}
-	// 		]
-	// 	}
-	// ];
+		{	"username": "franz-kafka",
+			"skills": [
+			{"name":"polite"},
+			{"name":"javascript"},
+			{"name":"insurance broker","tooltip":"mongoose does this out the box"}
+			]
+		},
+		{	"username":"me",
+			"skills": [
+			{"name":"hardworking"},
+			{"name":"design"},
+			{"name":"sewing"},
+			{"name":"javascript"},
+			{"name":"information architecture"}
+			]
+		},
+		{
+			"username": "another-user",
+			"skills": [
+			{"name":"hardworking"},
+			{"name":"design"},
+			{"name":"italian"},
+			{"name":"javascript"},
+			{"name":"design"}
+			]
+		},
+		{
+			"username": "more-data",
+			"skills": [
+			{"name":"hardworking"},
+			{"name":"design"},
+			{"name":"design"}
+			]
+		},
+		{
+			"username": "even-more",
+			"skills": [
+			{"name":"javascript"},
+			{"name":"design"},
+			{"name":"polite"}
+			]
+		}
+	];
 
 	// if word inArray is truthy push array to array
 
-	$scope.users = [];
+	// $scope.users = [];
 	$scope.activeUsers = []
 	$scope.activeFilters = [];
 
@@ -126,7 +126,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 			console.log($scope.skills);
 		});
 	};
-	$scope.init();
+	// $scope.init();
 
 	// returns array of skill object values
 	$scope.gatherSkills = function(users){
@@ -180,16 +180,31 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 		$scope.filters = _.without($scope.filters, filter);
 	}
 	$scope.filterUsers = function(filters){
-		console.log(filters);
-		console.log(foo);
-		var gloop = _.pluck(foo, filters);
-		console.log(gloop)
+		var filters = filters;
+		console.log('filters',filters);
+		console.log('users',$scope.users);
+		var users = $scope.users ;
+		var result = [];
+		_.each(users, function(data){
+			var user = data;
+			// console.log(user);
+			var woo = _.each(data.skills, function(data){
+				_.contains(filters,data.name)
+			})
+			if(woo){
+					result.push(user)
+			}
+			console.log(result)
+		})
+		// var gloop = _.pluck(foo, $scope.filters);
+		// console.log(gloop);
+
 	}
 	var foo = [
         { "username": "user2", "skills": [ {"name":"php"}, {"name":"javascript"}] },
         { "username": "user1", "skills": [ {"name":"javascript"}] }
       ]
-	$scope.filterUsers(['php']);
+	$scope.filterUsers(['design']);
 
 
 
