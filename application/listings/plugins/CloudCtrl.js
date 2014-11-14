@@ -60,51 +60,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
-	// // $scope.users = [
 
-	// 	{	"username": "franz-kafka",
-	// 		"skills": [
-	// 		{"name":"polite"},
-	// 		{"name":"javascript"},
-	// 		{"name":"insurance broker","tooltip":"mongoose does this out the box"}
-	// 		]
-	// 	},
-	// 	{	"username":"me",
-	// 		"skills": [
-	// 		{"name":"hardworking"},
-	// 		{"name":"design"},
-	// 		{"name":"sewing"},
-	// 		{"name":"javascript"},
-	// 		{"name":"information architecture"}
-	// 		]
-	// 	},
-	// 	{
-	// 		"username": "another-user",
-	// 		"skills": [
-	// 		{"name":"hardworking"},
-	// 		{"name":"design"},
-	// 		{"name":"italian"},
-	// 		{"name":"javascript"},
-	// 		{"name":"design"}
-	// 		]
-	// 	},
-	// 	{
-	// 		"username": "more-data",
-	// 		"skills": [
-	// 		{"name":"hardworking"},
-	// 		{"name":"design"},
-	// 		{"name":"design"}
-	// 		]
-	// 	},
-	// 	{
-	// 		"username": "even-more",
-	// 		"skills": [
-	// 		{"name":"javascript"},
-	// 		{"name":"design"},
-	// 		{"name":"polite"}
-	// 		]
-	// 	}
-	// ];
 
 	// if word inArray is truthy push array to array
 
@@ -181,6 +137,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	}
 	$scope.removeFilter = function(filter){
 		$scope.filters = _.without($scope.filters, filter);
+		console.log($scope.filters)
 		$scope.filterUsers($scope.filters);
 		
 	}
@@ -214,36 +171,3 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	}
 
 });
-
-
-
-
-		// 	var golf = arrayItem.skills;
-		// 	// _.uniq(personArray, function(person) { return person.age; });
-		// 	_.each(cloudArray, boom)
-		// 	// golf.forEach( function (skill){
-		// 	// 	if(!$scope.keepArray) {
-
-		// 	// 	}
-		// 	// 	// var skill = _.map(skill);
-		// 	// 	console.log(skill.name);
-		// 	// 	// if(jQuery.inArray(skill, cloudArray)!==-1){
-		// 	// // 		console.log('true');
-		// 	// // 	} else {
-		// 	// // 		cloudArray.push({quality:skill, value:0});
-		// 	// // 	}
-		// 	// // 	console.log(cloudArray);
-		// 	// // 	// _.pick(object, *keys) 
-
-		// 	// });
-
-		// });
-	// $scope.hasThis = function(quality){
-	// 	var arrayObject = [];
-	// 	var quality = quality;
-
-	// 	if(jQuery.inArray(quality, $scope.keepArray)!==-1){
-	// 		$scope.keepArray.push(quality);
-	// 	} 
-		
-	// }

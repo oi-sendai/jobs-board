@@ -51,12 +51,32 @@ describe("Unit: CloudCtrl", function() {
 
     });
 
+
+
     it('countSkills(skill): should increment existing skill weighting', function(){
+      testScope.users = [
+        { "username": "user2", "skills": [ {"name":"php"}, {"name":"javascript"}] },
+        { "username": "user1", "skills": [ {"name":"javascript"}] }
+      ];
       testScope.skills = [{text:'javascript',weight:1}] ;
       testScope.countSkills('javascript');
       expect(testScope.skills[0].weight).toEqual(2);
 
     });
+
+    it('countSkills(skill): should not include excluded skills in weighting', function(){
+      testScope.users = [
+        { "username": "user2", "skills": [ {"name":"php"}, {"name":"javascript"}] },
+        { "username": "user1", "skills": [ {"name":"javascript"}] },
+        { "username": "user1", "skills": [ {"name":"php"}] }
+      ];
+      testScope.filters = ['php'];
+      testScope.skills = [{text:'javascript',weight:1}] ;
+      testScope.countSkills('javascript');
+      expect(testScope.skills[0].weight).toEqual(2);
+
+    });
+
 
     it('addFilter(filter); should add filter to filters array', function(){
       testScope.filters = []
@@ -79,6 +99,7 @@ describe("Unit: CloudCtrl", function() {
       testScope.filterUsers(testScope.filters);
       expect(testScope.activeUsers.length).toEqual(1);
     });
+
     it('filterUsers(skills); should only return users with all skills', function(){
       testScope.filters = ['php','javascript'];
       testScope.users = [
@@ -87,7 +108,7 @@ describe("Unit: CloudCtrl", function() {
         { "username": "user3", "skills": [ {"name":'php'},{"name":"javascript"}] }
       ]
       testScope.filterUsers(testScope.filters);
-      expect(testScope.activeUsers.length).toEqual(2);
+      expect(testScope.activeUsers.length).toEqual(1);
     });
  
 });
