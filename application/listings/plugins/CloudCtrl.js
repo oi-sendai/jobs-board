@@ -10,13 +10,13 @@ SystemApp.factory('UserFactory', function($q) {
 				"skills": [
 				{"name":"polite"},
 				{"name":"javascript"},
-				{"name":"insurance broker","tooltip":"mongoose does this out the box"}
+				{"name":"insurance broker"},
+				{"name":"design"}
 				]
 			},
 			{	"username":"me",
 				"skills": [
 				{"name":"hardworking"},
-				{"name":"design"},
 				{"name":"sewing"},
 				{"name":"javascript"},
 				{"name":"information architecture"}
@@ -29,7 +29,6 @@ SystemApp.factory('UserFactory', function($q) {
 				{"name":"design"},
 				{"name":"italian"},
 				{"name":"javascript"},
-				{"name":"design"}
 				]
 			},
 			{
@@ -61,58 +60,58 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
-	$scope.users = [
+	// // $scope.users = [
 
-		{	"username": "franz-kafka",
-			"skills": [
-			{"name":"polite"},
-			{"name":"javascript"},
-			{"name":"insurance broker","tooltip":"mongoose does this out the box"}
-			]
-		},
-		{	"username":"me",
-			"skills": [
-			{"name":"hardworking"},
-			{"name":"design"},
-			{"name":"sewing"},
-			{"name":"javascript"},
-			{"name":"information architecture"}
-			]
-		},
-		{
-			"username": "another-user",
-			"skills": [
-			{"name":"hardworking"},
-			{"name":"design"},
-			{"name":"italian"},
-			{"name":"javascript"},
-			{"name":"design"}
-			]
-		},
-		{
-			"username": "more-data",
-			"skills": [
-			{"name":"hardworking"},
-			{"name":"design"},
-			{"name":"design"}
-			]
-		},
-		{
-			"username": "even-more",
-			"skills": [
-			{"name":"javascript"},
-			{"name":"design"},
-			{"name":"polite"}
-			]
-		}
-	];
+	// 	{	"username": "franz-kafka",
+	// 		"skills": [
+	// 		{"name":"polite"},
+	// 		{"name":"javascript"},
+	// 		{"name":"insurance broker","tooltip":"mongoose does this out the box"}
+	// 		]
+	// 	},
+	// 	{	"username":"me",
+	// 		"skills": [
+	// 		{"name":"hardworking"},
+	// 		{"name":"design"},
+	// 		{"name":"sewing"},
+	// 		{"name":"javascript"},
+	// 		{"name":"information architecture"}
+	// 		]
+	// 	},
+	// 	{
+	// 		"username": "another-user",
+	// 		"skills": [
+	// 		{"name":"hardworking"},
+	// 		{"name":"design"},
+	// 		{"name":"italian"},
+	// 		{"name":"javascript"},
+	// 		{"name":"design"}
+	// 		]
+	// 	},
+	// 	{
+	// 		"username": "more-data",
+	// 		"skills": [
+	// 		{"name":"hardworking"},
+	// 		{"name":"design"},
+	// 		{"name":"design"}
+	// 		]
+	// 	},
+	// 	{
+	// 		"username": "even-more",
+	// 		"skills": [
+	// 		{"name":"javascript"},
+	// 		{"name":"design"},
+	// 		{"name":"polite"}
+	// 		]
+	// 	}
+	// ];
 
 	// if word inArray is truthy push array to array
 
-	// $scope.users = [];
-	$scope.activeUsers = []
-	$scope.activeFilters = [];
+	// $scope.activeFilters = [];
 
+	$scope.users = [];
+	$scope.activeUsers = []
 	$scope.skills = [];
 	$scope.filters = [];
 	// test 1
@@ -120,21 +119,23 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 		UserFactory.fetchUsers().then(function(data){
 			// cache returned users object
 			$scope.users = data; // cache users object
-			$scope.activeUsers = $scope.users;
-			// $scope.sumSkills($scope.users); // mocks service call
-			$scope.gatherSkills($scope.activeUsers);
-			console.log($scope.skills);
+			// $scope.activeUsers = $scope.users;
+
+			$scope.gatherSkills($scope.users);
+			// console.log($scope.skills);
 		});
 	};
-	// $scope.init();
+	$scope.init();
 
 	// returns array of skill object values
 	$scope.gatherSkills = function(users){
-		if($scope.filters.length < 0){
-			console.log('filterUsers()');
-		} 
+		// if($scope.filters.length < 0){
+		// 	console.log('filterUsers()');
+		// } 
+		console.log('calle');
 		$scope.skills = []
 		var gather = function(user){
+			console.log('gathering', user);
 			// reset scope object
 			// add to rain array
 			_.each(user.skills, function(input){
@@ -149,10 +150,10 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	// if false adds the skill to the array
 	// if true increments the counter for the skill
 	$scope.countSkills = function(input){ 
- 		
 		var existingSkill = _.contains(_.pluck($scope.skills, 'text'), input);
+		var filteredSkill = _.contains($scope.filters, input);
 
-		if(!existingSkill){ // 
+		if(!existingSkill && !filteredSkill){ // 
 			var thing = {
 				text: input, 
 				weight: 1, 
@@ -161,7 +162,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 
 			$scope.skills.push(thing);
 		}
-		else { // really inefficient i think 
+		else if(!filteredSkill){ // really inefficient i think 
 			_.select($scope.skills, function(obj){
 
 			    if (obj.text === input){
@@ -174,116 +175,43 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	};
 
 	$scope.addFilter = function(filter){
-		$scope.filters.push(filter);
+		$scope.filters.push(filter); 
+		console.log('1',$scope.filters);
+		$scope.filterUsers($scope.filters);
 	}
 	$scope.removeFilter = function(filter){
 		$scope.filters = _.without($scope.filters, filter);
+		$scope.filterUsers($scope.filters);
+		
 	}
 	$scope.filterUsers = function(filters){
 		var users = $scope.users ;
 		var result = [];
+		
+		var numberOfFilters = filters.length;
+		console.log('numberOfFilters',numberOfFilters)
+		
+		// iterate over user
 		_.each(users, function(user){
-			var hasSkill = false;
+			console.log('---------------', user, '------------------')
+			var hasSkill = 0; // set skills to zero
+			// iterate over skills array	
 			_.each(user.skills, function(skill){
+				console.log('4',skill.name)
+				// if(_.contains(filters, skill.name)){
 				if(_.contains(filters, skill.name)){
-					hasSkill = true
+					hasSkill = ++hasSkill
+					console.log('true', hasSkill);
 				}
-			})
-			if(hasSkill){
+			});
+			if(hasSkill === numberOfFilters){
 					result.push(user)
 			}
 		})
 		$scope.activeUsers = result;
+		console.log('6', $scope.activeUsers)
+		$scope.gatherSkills(result);
 	}
-
-
-
-
-
-	$scope.activeSkills = []; // will be used to to pass data to repeat on view
-	// for each skillsArray 
-	$scope.sumSkills = function(users){
-		// Reset mock array ready for iteration
-		var activeSkills = [];
-		// this is the array of skillName / numberOfPeople with skill
-		var cloudArray = []; 
-		// array object of user skill sets passed to function 
-		var users = users; //expect array
-		console.log('user passed to function', users);
-
-		// iterate over users - should probably use underscore for support
-		users.forEach( function (userObject) {
-			// store the array of skills held by current user
-			var skillsArray = userObject.skills;
-			// iterate again
-			skillsArray.forEach( function (skill){
-				// store the skill in a variable
-				var skillName = skill.name;
-
-				console.log('$scope.activeFilters', $scope.activeFilters);
-
-				// pluck array of values stored against the 'name' key of the activeSkills object array
-				// and return true if plucked array contains current skill name
-				var existingSkill = _.contains(_.pluck(activeSkills, 'name'), skillName);
-				console.log('existingSkill', existingSkill);
-				
-				// return array of value stored against the 'name' key of the activeSkills object array
-				// and return true if plucked array contains current skill name
-				var alreadyFilteredSkill = _.contains(_.pluck($scope.activeFilters, 'name'), skillName);
-				console.log('alreadyFilteredSkill', alreadyFilteredSkill);
-
-				if(alreadyFilteredSkill ){
-					console.log('nothing else');
-				} 
-				else if(existingSkill){
-					// _.find($scope.activeSkills)
-					// console.log('number++');
-					var existingObject = _.select(activeSkills, function(obj){
-					    return obj.name === skillName; // this returns array - why?
-					});
-					// console.log(existingObject[0]); // hacky stuff
-					// console.log(existingObject['value']);
-					var incrementThis = existingObject[0].value;
-					// console.log(incrementThis);
-					incrementThis++;
-					existingObject[0].value = incrementThis; 
-					// console.log(existingObject);
-				} 
-				else {
-					activeSkills.push({name:skillName,value:1});
-				}
-				// console.log(activeSkills);
-				$scope.activeSkills = activeSkills;
-
-			});
-		});
-	};
-
-	
-	$scope.filterSkills = function(skill) {
-		$scope.hasSkillArray = [];
-		console.log(skill);
-		var skillName = skill.name;
-		var users = $scope.users;
-		users.forEach( function (userObject){
-			var hasSkill  = _.contains(_.pluck(userObject.skills, 'name'), skillName);
-			// console.log(hasSkill);
-			// console.log(userObject);
-			if(hasSkill){
-				$scope.hasSkillArray.push(userObject);
-			} else {
-
-			}
-		});
-
-		// Add skill to active skills array
-		$scope.activeFilters.push(skill);
-		// run new array through main cloud logic
-
-		$scope.sumSkills($scope.hasSkillArray);
-		// update scope with filtered candidates
-		$scope.filteredCandidatesArray = $scope.hasSkillArray;
-	};
 
 });
 

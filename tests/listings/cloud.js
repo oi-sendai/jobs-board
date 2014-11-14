@@ -79,9 +79,16 @@ describe("Unit: CloudCtrl", function() {
       testScope.filterUsers(testScope.filters);
       expect(testScope.activeUsers.length).toEqual(1);
     });
-    // it('removeFilter(filter); should run build again with one less filter', function(){
-
-    // });
+    it('filterUsers(skills); should only return users with all skills', function(){
+      testScope.filters = ['php','javascript'];
+      testScope.users = [
+        { "username": "user1", "skills": [ {"name":"javascript"}] },
+        { "username": "user1", "skills": [ {"name":"php"}] },
+        { "username": "user3", "skills": [ {"name":'php'},{"name":"javascript"}] }
+      ]
+      testScope.filterUsers(testScope.filters);
+      expect(testScope.activeUsers.length).toEqual(2);
+    });
  
 });
  

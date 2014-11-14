@@ -9,17 +9,17 @@
 			<!-- <cloud skill="{{skill}}" value="{{skill.value}}" ng-repeat="skill in apiMockArray"/> -->
 		</section>
 		<button class="btn btn-default" 
-			ng-click="filterSkills(skill)" 
-			ng-repeat="skill in activeSkills">
-			{{skill.name}}
-			<span class="label label-info"> {{skill.value}}</span>
+			ng-click="addFilter(skill.text)" 
+			ng-repeat="skill in skills">
+			{{skill.text}}
+			<span class="label label-info"> {{skill.weight}}</span>
 		</button>
 	</div>
 	<div class="col-sm-4">
 		<div class="well">
 			<h4>Candidates</h4>
 			<ul>
-				<li ng-repeat="candidate in filteredCandidatesArray">
+				<li ng-repeat="candidate in activeUsers">
 					<a href="#/profile/{{candidate.username}}" class="btn btn-success" 
 					>{{candidate.username}}</a>
 				</li>
