@@ -180,31 +180,21 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 		$scope.filters = _.without($scope.filters, filter);
 	}
 	$scope.filterUsers = function(filters){
-		var filters = filters;
-		console.log('filters',filters);
-		console.log('users',$scope.users);
 		var users = $scope.users ;
 		var result = [];
-		_.each(users, function(data){
-			var user = data;
-			// console.log(user);
-			var woo = _.each(data.skills, function(data){
-				_.contains(filters,data.name)
+		_.each(users, function(user){
+			var hasSkill = false;
+			_.each(user.skills, function(skill){
+				if(_.contains(filters, skill.name)){
+					hasSkill = true
+				}
 			})
-			if(woo){
+			if(hasSkill){
 					result.push(user)
 			}
-			console.log(result)
 		})
-		// var gloop = _.pluck(foo, $scope.filters);
-		// console.log(gloop);
-
+		$scope.activeUsers = result;
 	}
-	var foo = [
-        { "username": "user2", "skills": [ {"name":"php"}, {"name":"javascript"}] },
-        { "username": "user1", "skills": [ {"name":"javascript"}] }
-      ]
-	$scope.filterUsers(['design']);
 
 
 
