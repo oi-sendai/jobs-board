@@ -42,28 +42,43 @@ describe("Unit: CloudCtrl", function() {
       spyOn(mockUserService, 'fetchUsers').andCallThrough();
       testScope.init();
       expect(mockUserService.fetchUsers).toHaveBeenCalled();
-      expect()
     });
 
-    it('countSkills(): should add new skills to array', function(){
-      testScope.rain = [] ;
+    it('countSkills(skill): should add new skills to array', function(){
+      testScope.skills = [] ;
       testScope.countSkills('javascript');
-      expect(testScope.rain[0].text).toEqual('javascript');
+      expect(testScope.skills[0].text).toEqual('javascript');
 
     });
 
-    it('countSkills(): should increment existing skill weighting', function(){
-      testScope.rain = [{text:'javascript',weight:1}] ;
+    it('countSkills(skill): should increment existing skill weighting', function(){
+      testScope.skills = [{text:'javascript',weight:1}] ;
       testScope.countSkills('javascript');
-      expect(testScope.rain[0].weight).toEqual(2);
+      expect(testScope.skills[0].weight).toEqual(2);
 
     });
-    // it('sumSkills(): should count skill density in user array', function(){
 
-    // });
-    // it('addFilter(filter); should run build again with one extra filter', function(){
+    it('addFilter(filter); should add filter to filters array', function(){
+      testScope.filters = []
+      testScope.addFilter('php');
+      expect(testScope.filters[0]).toEqual('php');
+    });
 
-    // });
+    it('removeFilter(filter); should remove filter from filters array', function(){
+      testScope.filters = ['php','javascript'];
+      testScope.removeFilter('php');
+      expect(testScope.filters[0]).toEqual('javascript');
+    });
+
+    it('filterUsers(skills); should update active users array', function(){
+      testScope.filters = ['php'];
+      testScope.users = [
+        { "username": "user2", "skills": [ {"name":"php"}, {"name":"javascript"}] },
+        { "username": "user1", "skills": [ {"name":"javascript"}] }
+      ]
+      testScope.filterUsers(testScope.filters);
+      expect(testScope.activeUsers.length).toEqual(1);
+    });
     // it('removeFilter(filter); should run build again with one less filter', function(){
 
     // });

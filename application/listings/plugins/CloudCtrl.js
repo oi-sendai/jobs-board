@@ -106,48 +106,51 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	// 		]
 	// 	}
 	// ];
-	$scope.users = '';
 
 	// if word inArray is truthy push array to array
 
+	$scope.users = [];
+	$scope.activeUsers = []
 	$scope.activeFilters = [];
-	$scope.apiMockArray = [];
 
-
-
-
-	$scope.rain = [];
-
+	$scope.skills = [];
+	$scope.filters = [];
 	// test 1
 	$scope.init = function(){
 		UserFactory.fetchUsers().then(function(data){
 			// cache returned users object
-			$scope.users = data;
+			$scope.users = data; // cache users object
+			$scope.activeUsers = $scope.users;
 			// $scope.sumSkills($scope.users); // mocks service call
-			$scope.gatherSkills(data);
-			console.log($scope.rain);
+			$scope.gatherSkills($scope.activeUsers);
+			console.log($scope.skills);
 		});
 	};
 	$scope.init();
 
 	// returns array of skill object values
 	$scope.gatherSkills = function(users){
-
-		$scope.rain = []
+		if($scope.filters.length < 0){
+			console.log('filterUsers()');
+		} 
+		$scope.skills = []
 		var gather = function(user){
 			// reset scope object
 			// add to rain array
 			_.each(user.skills, function(input){
 				$scope.countSkills(input.name);
 			});
-			// console.log($scope.rain);
+			// console.log($scope.skills);
 		}
 		_.each(users, gather);
 	};
 
+	// Checks to see if the skill exists
+	// if false adds the skill to the array
+	// if true increments the counter for the skill
 	$scope.countSkills = function(input){ 
  		
-		var existingSkill = _.contains(_.pluck($scope.rain, 'text'), input);
+		var existingSkill = _.contains(_.pluck($scope.skills, 'text'), input);
 
 		if(!existingSkill){ // 
 			var thing = {
@@ -156,22 +159,40 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 				link: { href: "#", title: input}
 			}
 
-			$scope.rain.push(thing);
+			$scope.skills.push(thing);
 		}
 		else { // really inefficient i think 
-			_.select($scope.rain, function(obj){
+			_.select($scope.skills, function(obj){
 
 			    if (obj.text === input){
-			    	// var weight = obj.weight;
-			    	// weight++
-			    	// obj.weight = weight;
 			    	obj.weight = ++obj.weight;
-			    }; // this returns array - why?
+			    }; 
 					    
 			});
 
 		}
 	};
+
+	$scope.addFilter = function(filter){
+		$scope.filters.push(filter);
+	}
+	$scope.removeFilter = function(filter){
+		$scope.filters = _.without($scope.filters, filter);
+	}
+	$scope.filterUsers = function(filters){
+		console.log(filters);
+		console.log(foo);
+		var gloop = _.pluck(foo, filters);
+		console.log(gloop)
+	}
+	var foo = [
+        { "username": "user2", "skills": [ {"name":"php"}, {"name":"javascript"}] },
+        { "username": "user1", "skills": [ {"name":"javascript"}] }
+      ]
+	$scope.filterUsers(['php']);
+
+
+
 
 
 	$scope.activeSkills = []; // will be used to to pass data to repeat on view
@@ -259,18 +280,6 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 		$scope.filteredCandidatesArray = $scope.hasSkillArray;
 	};
 
-
-	$scope.removeFilter = function(skill) {
-		alert('this feature is under development, please refresh the page to start again');
-		// // $scope.activeFilters.remove(skill);
-		// console.log($scope.activeFilters);
-		// 		_.select($scope.activeFilters, function(obj){
-		// 	console.log(obj);
-		// 			    // return obj.name === skillName; // this returns array - why?
-		// });
-
-		// $scope.sumSkills($scope.hasSkillArray);
-	}
 });
 
 
