@@ -1,21 +1,46 @@
 CloudDirective = angular.module('CloudDirective', []);
 
+CloudDirective.directive( 'cloud', function() {
+    return {
+      	restrict: 'AE',
+     	replace: true,
+      	template: '<button class="tc tc-{{value}}" ng-click="addFilter(skill)">{{skill}}</button>',
+      	scope: {
+       		skill: '@skill',
+       		value: '@value',
+      	},
+      	controller:'CloudCtrl',
+      	link: function(scope, elem, attrs) {
+      		
+      		var skill = scope.skill;
+      		console.log(skill)
+      		var value = scope.value;
+      		console.log(value);
+      	},
+    }
+});
 // CloudDirective.directive( 'cloud', function() {
 //     return {
 //       	restrict: 'AE',
 //      	replace: true,
-//       	template: '<button class="tc tc-{{value}}" ng-click="filterSkills(skill)">{{skill}}</button>',
-//       	scope: {
-//        		skill: '@skill',
-//        		value: '@value',
-//       	},
+//       	template: '<div id="example" style="width: 550px; height: 350px;">{{skills}}</div>',
+//       	// scope: {
+//        // 		skill: '@skill',
+//        // 		value: '@value',
+//       	// },
 //       	controller:'CloudCtrl',
-//       	link: function(scope, elem, attrs) {
+//       	compile: function(tElem, tAttrs){
+//       		console.log(tElem, tAttrs)
       		
-//       		var skill = scope.skill;
-//       		console.log(skill)
-//       		var value = scope.value;
-//       		console.log(value);
+//       	},
+//       	link: function(scope, elem, attrs) {
+//       		// $(element).jQCloud(scope.skills);
+//       		console.log(scope.skills);
+//       		// $(elem).jQCloud(scope.skills);
+//       	// 	var skills = attrs.skills;
+//       	// 	console.log(skill)
+//       	// 	var value = scope.value;
+//       	// 	console.log(value);
 //       	},
 //     }
 // });

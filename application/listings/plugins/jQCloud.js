@@ -321,8 +321,12 @@
         if (this.options.encodeURI) {
           word.link.href = encodeURI(word.link.href).replace(/'/g, '%27');
         }
-
-        word_span.append($('<a>').attr(word.link).text(word.text));
+        // console.log(word.text)
+        // console.log(word_span);
+        var skill = word.text;
+        var thing = skill+'thing';
+        // console.log(thing);
+        word_span.append('<a href="" ng-click="addFilter(' + word.text + ')" >' + word.text + '</a>');
       }
       else {
         word_span.text(word.text);

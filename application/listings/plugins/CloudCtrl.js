@@ -91,7 +91,7 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 		console.log('calle');
 		$scope.skills = []
 		var gather = function(user){
-			console.log('gathering', user);
+			// console.log('gathering', user);
 			// reset scope object
 			// add to rain array
 			_.each(user.skills, function(input){
@@ -128,16 +128,17 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 			});
 
 		}
+		$("#example").jQCloud($scope.skills);
 	};
 
 	$scope.addFilter = function(filter){
 		$scope.filters.push(filter); 
-		console.log('1',$scope.filters);
+		// console.log('1',$scope.filters);
 		$scope.filterUsers($scope.filters);
 	}
 	$scope.removeFilter = function(filter){
 		$scope.filters = _.without($scope.filters, filter);
-		console.log($scope.filters)
+		// console.log($scope.filters)
 		$scope.filterUsers($scope.filters);
 		
 	}
@@ -146,19 +147,19 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 		var result = [];
 		
 		var numberOfFilters = filters.length;
-		console.log('numberOfFilters',numberOfFilters)
+		// console.log('numberOfFilters',numberOfFilters)
 		
 		// iterate over user
 		_.each(users, function(user){
-			console.log('---------------', user, '------------------')
+			// console.log('---------------', user, '------------------')
 			var hasSkill = 0; // set skills to zero
 			// iterate over skills array	
 			_.each(user.skills, function(skill){
-				console.log('4',skill.name)
+				// console.log('4',skill.name)
 				// if(_.contains(filters, skill.name)){
 				if(_.contains(filters, skill.name)){
 					hasSkill = ++hasSkill
-					console.log('true', hasSkill);
+					// console.log('true', hasSkill);
 				}
 			});
 			if(hasSkill === numberOfFilters){
@@ -166,8 +167,9 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 			}
 		})
 		$scope.activeUsers = result;
-		console.log('6', $scope.activeUsers)
+		// console.log('6', $scope.activeUsers)
 		$scope.gatherSkills(result);
 	}
 
+  
 });

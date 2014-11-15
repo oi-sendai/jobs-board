@@ -15,6 +15,7 @@ var SystemApp = angular.module('SystemApp',
 	// ,'StatsCtrl'
 	// ,'EditProfileCtrl'
 	,'CloudCtrl'
+	,'CloudDirective'
 	]);
 
 SystemApp.factory('_', function() {
