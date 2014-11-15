@@ -100,6 +100,7 @@ SystemApp.factory("AuthFactory", function($rootScope, $q, $http, $firebase) {
 
         return deferred.promise;
   };
+
   factory.getUidByUsername = function(username){
       var username = username;
       var url = firebase_url + 'listings/' + username;
@@ -116,6 +117,39 @@ SystemApp.factory("AuthFactory", function($rootScope, $q, $http, $firebase) {
 
 
   };
+  return factory
+});
+
+SystemApp.factory("AuthFactory", function($rootScope, $q, $http, $firebase) {
+
+  var factory = {};
+  var helper = {};
+  var firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
+
+  factory.getProfile = function (username) {
+      // uid = username.foundByFunction
+    var uid = ''//'simplelogin:69'
+    var deferred = $q.defer();
+    var profile;
+    var username = username;
+      factory.getUidByUsername(username).then(function(data){
+        var uid = data;
+
+      var url =  $rootScope.firebase_url + 'users/' + uid;
+      var profileRef = new Firebase(url);
+      profileRef.on('value', function (snapshot) {
+        profile = snapshot.val();
+        deferred.resolve(profile);
+      }, function (errorObject) {
+        console.log('The read failed: ' + errorObject.code);
+        deferred.resolve('no data');
+        })
+    });
+
+        return deferred.promise;
+  };
+  
+
   return factory
 });
 

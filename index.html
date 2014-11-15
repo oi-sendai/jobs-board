@@ -54,7 +54,9 @@
 	</div>
 </section> 
 		<section class="ui-view-container">
-			<ui-view autoscroll="false" class="fade"></ui-view>
+		<route-loading-indicator />
+<!-- http://fgnass.github.io/spin.js/#?lines=7&length=40&width=30&radius=0&corners=0.1&rotate=80&trail=60&speed=0.6&direction=1 -->
+			<ui-view autoscroll="false" ng-if='!isRouteLoading' class="fade"></ui-view>
 		</section>
 
 
@@ -124,6 +126,7 @@
 		<!-- // <script src="application/profile/controllers/StatsCtrl.js"></script> -->
 		// Edit Profile - ->
 		<script src="application/profile/controllers/EditProfileCtrl.js"></script>
+		<script src="application/profile/directives/AccountDirective.js"></script>
 		<!-- // Weather Plugin - ->
 		<script src="application/profile/weather/jquery.simpleWeather.js"></script>
 		<script src="application/profile/weather/WeatherDirective.js"></script>
