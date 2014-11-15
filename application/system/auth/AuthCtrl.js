@@ -139,19 +139,19 @@ AuthCtrlSystem.controller('MainCtrl', function($rootScope, $scope, $http, $q, $f
       $scope.newUser = false; // reset new user flag
       $rootScope.firebaseUser = user;
       $scope.$apply(function() {
-        $location.path('/list');
+        // $location.path('/list');
     });
     } else if (user !== null) {
       console.log("User is logged in:", user);
       $rootScope.firebaseUser = user;
       $scope.$apply(function() {
-        $location.path('/list');
+        // $location.path('/list');
     });
 
     } else {
       console.log("User is logged out");
        $scope.$apply(function() {
-        $location.path('/register');
+        // $location.path('/register');
     });
     }
   });
@@ -221,42 +221,42 @@ AuthCtrlSystem.controller('MainCtrl', function($rootScope, $scope, $http, $q, $f
 
 });
 
-// AuthCtrlSystem.controller('UsersCtrl', function($rootScope, $scope, $http, $q, $firebase, AuthFactory) {
+AuthCtrlSystem.controller('UsersCtrl', function($rootScope, $scope, $http, $q, $firebase, AuthFactory) {
   
-//   $scope.users = {};
-//   $scope.profileData = {};
+  $scope.users = {};
+  $scope.profileData = {};
 
-//   $scope.getUsers = function(){
-//     AuthFactory.getUsers().then(function(data){
-//       // console.log(data);
-//       $scope.users = data;
-//     });
-//   };
-//   $scope.getUsers();
+  $scope.getUsers = function(){
+    AuthFactory.getUsers().then(function(data){
+      // console.log(data);
+      $scope.users = data;
+    });
+  };
+  $scope.getUsers();
 
-//   $scope.updateProfile = function(){
-//     var data = $scope.profileData.about|| {};
-//     var uid = $rootScope.firebaseUser.uid;
-//     var url =  $rootScope.firebase_url + 'users/' + uid;
-//     var profile = new Firebase(url);
-//         // console.log(url, data);
-//         profile.update({profile: data});
-//   };
-//   $scope.getProfile = function(username){
-//     var username = username;
-//     AuthFactory.getProfile(username).then(function(data){
-//       // console.log(data);
-//       $scope.profile = data;
-//     });
-//     // AuthFactory.getUidByUsername(username).then(function(data){
-//     //  console.log(data);
-//     //  $scope.profile = data;
-//     // });
-//   };
-//   $scope.getProfile('gogo');
+  $scope.updateProfile = function(){
+    var data = $scope.profileData.about|| {};
+    var uid = $rootScope.firebaseUser.uid;
+    var url =  $rootScope.firebase_url + 'users/' + uid;
+    var profile = new Firebase(url);
+        // console.log(url, data);
+        profile.update({profile: data});
+  };
+  $scope.getProfile = function(username){
+    var username = username;
+    AuthFactory.getProfile(username).then(function(data){
+      // console.log(data);
+      $scope.profile = data;
+    });
+    // AuthFactory.getUidByUsername(username).then(function(data){
+    //  console.log(data);
+    //  $scope.profile = data;
+    // });
+  };
+  $scope.getProfile('gogo');
 
 
-// });
+});
 
 
 

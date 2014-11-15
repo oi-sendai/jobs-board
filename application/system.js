@@ -12,7 +12,7 @@ var SystemApp = angular.module('SystemApp',
 	// ,'DreamsCtrl'
 	// ,'SkillsCtrl'
 	// ,'StatsCtrl'
-	// ,'EditProfileCtrl'
+	,'EditProfileCtrl'
 	,'CloudCtrl'
 	,'CloudDirective'
 	]);
@@ -40,74 +40,33 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
 	};
-	// var homeLayout = { 
-	//     name: 'home.register',  //mandatory
-	//     url: '/register',
-	//     views:{
- //            'welcome':{
- //                templateUrl:'application/system/register.html',
- //            },
- //        }
-	// };
 
-	// var listings = { 
-	//     name: 'listings',  //mandatory
-	//     templateUrl: 'application/listings/listings-layout.html',
-	// };
-	// var listingsLayout = { 
-	//     name: 'listings.layout',  //mandatory
-	//     url: '/listings',
-	//     views:{
- //            'main':{
- //                templateUrl:'application/listings/listings-main.html',
- //                controller: 'ListingsCtrl' 
- //            },
- //            'sidebar': {
- //                templateUrl: 'application/listings/listings-sidebar.html',
- //                controller: 'ListingsCtrl' 
- //            }
- //        }
-	// };
-	// var listingsShow = { 
-	//     name: 'listings.show',  //mandatory
-	//     url: '/listings/:listing_id',
-	//     views:{
- //            'main':{
- //                templateUrl:'application/listings/listings-main.html',
- //                controller: 'ListingsCtrl' 
- //            },
- //            'sidebar': {
- //                templateUrl: 'application/listings/listings-sidebar.html',
- //                controller: 'ListingsCtrl' 
- //            }
- //        }
-	// };
-	// var account= { 
-	//     name: 'account',  //mandatory
-	//     templateUrl: 'application/profile/profile-layout.html',
-	//     controller: 'AuthCtrl'
-	// };
-	// var accountView = { 
-	//     name: 'account.edit',  //mandatory
-	//     url: '/account',
-	//     views:{
- //            'dreams':{
- //                templateUrl:'application/profile/edit-profile-dreams.html',
-	//     		controller: 'EditProfileCtrl'
- //                // controller: 'DreamsCtrl'
- //            },
- //            'stats':{
- //            	templateUrl: 'application/profile/edit-profile-stats.html',
-	//     		controller: 'EditProfileCtrl'
- //                // controller: 'StatsCtrl'
- //            },
- //            'skills': {
- //            	templateUrl: 'application/profile/edit-profile-skills.html',
-	//     		controller: 'EditProfileCtrl'
- //                // controller: 'SkillsCtrl'
- //            }
- //        }
-	// };
+	var account= { 
+	    name: 'account',  //mandatory
+	    templateUrl: 'application/profile/profile-layout.html',
+	    controller: 'MainCtrl'
+	};
+	var accountView = { 
+	    name: 'account.edit',  //mandatory
+	    url: '/account',
+	    views:{
+            'dreams':{
+                templateUrl:'application/profile/edit-profile-dreams.html',
+	    		// controller: 'EditProfileCtrl'
+                // controller: 'DreamsCtrl'
+            },
+            'stats':{
+            	templateUrl: 'application/profile/edit-profile-stats.html',
+	    		// controller: 'EditProfileCtrl'
+                // controller: 'StatsCtrl'
+            },
+            'skills': {
+            	templateUrl: 'application/profile/edit-profile-skills.html',
+	    		// controller: 'EditProfileCtrl'
+                // controller: 'SkillsCtrl'
+            }
+        }
+	};
 	// var profile= { 
 	//     name: 'profile',  //mandatory
 	//     templateUrl: 'application/profile/profile-layout.html',
@@ -220,8 +179,8 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	  // .state(listings)
 	  // .state(listingsLayout)
 	  // .state(listingsShow)
-	  // .state(account)
-	  // .state(accountView)
+	  .state(account)
+	  .state(accountView)
 	  // .state(profile)
 	  // .state(profileView)
 	  // .state(profileViewIntroduction)
