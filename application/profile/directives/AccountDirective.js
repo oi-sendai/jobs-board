@@ -44,6 +44,7 @@ AccountsDirective
 	// }
 });
 
+
 SystemApp.factory("AccountFactory", function($rootScope, $q, $http, $firebase) {
 
   var factory = {};
@@ -84,6 +85,20 @@ SystemApp.factory("AccountFactory", function($rootScope, $q, $http, $firebase) {
 		
 		return deferred.promise;
   };
+
+    factory.skills = function () {
+		var currentUser = $rootScope.firebaseUser.uid;
+		var endpoint = new Firebase(firebase_url + 'users/' + currentUser +'/skills/');
+		var deferred = $q.defer();
+		// console.log(beerID);
+				
+		endpoint.once('value', function(snapshot){
+			deferred.resolve(snapshot);
+		});
+		
+		return deferred.promise;
+  };
+
   factory.updateInfo = function (info) {
 		var currentUser = $rootScope.firebaseUser.uid;
 		var endpoint = new Firebase(firebase_url + 'users/' + currentUser + '/profile/');
@@ -96,6 +111,23 @@ SystemApp.factory("AccountFactory", function($rootScope, $q, $http, $firebase) {
 		
 		return deferred.promise;
   };
+
+    factory.addSkill = function (skill) {
+		var currentUser = $rootScope.firebaseUser.uid;
+		var endpoint = new Firebase(firebase_url + 'users/' + currentUser + '/skills/');
+		// var deferred = $q.defer();
+		console.log(skill);
+				
+		var skillRef = new Firebase(firebase_url + 'users/' + currentUser + '/skills/');
+		var newSkillRef = skillRef.push();
+		newSkillRef.set(newSkill);
+		// We've appended a new message to the message_list location.
+		// var path = newMessageRef.toString();
+		// path will be something like
+		// 'https://samplechat.firebaseio-demo.com/message_list/-IKo28nwJLH0Nc5XeFmj'
+				
+		// return deferred.promise;
+  	};
 
   return factory;
 

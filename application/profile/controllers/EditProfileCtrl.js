@@ -19,55 +19,18 @@ EditProfileCtrl.controller('EditProfileCtrl', function($rootScope, $scope, $http
             console.log('dat', data.val());
             user =  data.val();
             $scope.username = user.username;
-            $scope.ProfileInfo = user.profile;
+            console.log(user.profile.info)
+            $scope.profile.info = user.profile.info;
         });
         // $scope.username = user.username;
         // console.log(user)
     }
     $scope.init();
 
-
     $scope.updateInfo = function(){
         console.log('working');
         var info = $scope.profile.info; 
         AccountFactory.updateInfo(info);
     }
-
-    // var profileRef = new Firebase(firebase_url + 'profile/');
-    //     var sync = $firebase(profileRef);
-    //     $scope.beers = sync.$asArray();
-
-
-    //     // var syncObject = sync.$asObject();
-    //     // syncObject.$bindTo($scope, 'beers');
-
-
-
-
-    // $scope.newProfile = function(){
-    //     var beerObject     = {};
-    //     var beersRef       = new Firebase(firebase_url + 'beers/');
-    //     beerObject.name    = $scope.beerData.name;
-    //     beerObject.brewery = $scope.beerData.brewery;
-    //     beerObject.notes   = $scope.beerData.notes;
-    //     beerObject.abv     = $scope.beerData.abv;
-    //     beerObject.price   = $scope.beerData.price;
-    //     // console.log(beerObject);
-    //     // $scope.messages.$add({text: text});
-    //     // beersRef.push(beerObject);
-    //     $scope.beers.$add(beerObject);
-    // }
-    // $scope.showBeer = function(beer){
-    //     if(beer){       
-    //         var beerObject     = {};
-    //         var beersRef       = new Firebase(firebase_url + 'beers/'+ beer);
-    //         beersRef.on("value", function (snapshot) {
-    //             // console.log(snapshot.val());
-    //             $scope.ale = snapshot.val();
-    //             // $scope.$apply();
-    //         });
-    //     }
-    // }
-    // $scope.showBeer($scope.beer );
 
 });
