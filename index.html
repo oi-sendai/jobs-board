@@ -25,7 +25,34 @@
 	<body class="system">
 		
 		<systemheader></systemheader>
-
+<section ng-controller="MainCtrl">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<!-- <button ng-click="change()">change</button> -->
+			<img class="beer-logo" src="img/beer-logo.png"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="register-title">Register Here</h3>
+			<form role="form">
+				<div class="form-group">
+					<input type="email" class="form-control" id="inputEmail" ng-model="registerData.email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="inputUsername" ng-model="registerData.username" placeholder="Username">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" id="inputPassword" ng-model="registerData.password" placeholder="Password">
+				</div>
+				<button type="submit" class="btn btn-primary" ng-submit="login()" ng-click="login()">Log In</button> 
+				<button class="btn btn-default" ng-click="register()">Register</button>
+				<!-- <button type="submit" class="btn btn-primary" ng-submit="logout()" ng-click="logout()">Log Out</button>  -->
+				<img ng-show="loginBusy" src="img/loading.gif" style="margin: 0 10px;" />
+			</form>
+		</div>
+	</div>
+</section> 
 		<section class="ui-view-container">
 			<ui-view autoscroll="false" class="fade"></ui-view>
 		</section>
@@ -55,18 +82,22 @@
 		
 
 <!-- Firebase -->
-<!-- <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script> -->
-<!-- Firebase Simple Login -->
-<!-- <script src="https://cdn.firebase.com/js/simple-login/1.6.3/firebase-simple-login.js"></script> -->
+<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+		<!-- // <script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script> -->
+
 <!-- AngularFire -->
-<!-- <script src="https://cdn.firebase.com/libs/angularfire/0.8.2/angularfire.min.js"></script> -->
-		
-		<script src="application/listings/plugins/jQCloud.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/0.8.2/angularfire.min.js"></script>
+<script src="https://cdn.firebase.com/js/simple-login/1.6.3/firebase-simple-login.js"></script>	
 
-		<script src="//cdn.firebase.com/v0/firebase.js"></script>
-		<script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>
-		<script src="//cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
 
+
+
+		// <script src="application/listings/plugins/jQCloud.js"></script>
+
+		<!-- // <script src="//cdn.firebase.com/v0/firebase.js"></script>
+		// <script src="//cdn.firebase.com/v0/firebase-simple-login.js"></script>
+		// <script src="//cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+ -->
 		<script src="application/system.js"></script>
 
 		<!-- // System -->
@@ -74,12 +105,12 @@
 		<script src="application/system/header/HeaderDirective.js"></script>
 		<script src="application/system/footer/FooterCtrl.js"></script>
 		<script src="application/system/footer/FooterDirective.js"></script>
-		<!-- // System Auth- ->
+		<!-- // System Auth- -> -->
 		<script src="application/system/auth/AuthCtrl.js"></script>
 		<!-- // System Api - ->
 		<script src="application/system/SystemApi.js"></script>
 
-		<!-- // Listings Controllers -->
+		<!-- // Listings Controllers
 		<!-- // <script src="application/listings/controllers/ListingsCtrl.js"></script> -->
 		<!-- // Cloud Plugin -->
 		<script src="application/listings/plugins/CloudDirective.js"></script>

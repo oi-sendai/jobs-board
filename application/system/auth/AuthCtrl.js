@@ -1,177 +1,264 @@
-var AuthCtrlSystem = angular.module('AuthCtrlSystem', []);
+var AuthCtrlSystem = angular.module('AuthCtrlSystem', ['ngRoute','firebase']);
 
+// AuthCtrlSystem.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 
+//   $scope.items = ['item1', 'item2', 'item3'];
 
-AuthCtrlSystem.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+//   $scope.open = function (size) {
 
-  $scope.items = ['item1', 'item2', 'item3'];
+//     var modalInstance = $modal.open({
+//       templateUrl: 'application/system/auth/auth-modal.html',
+//       controller: 'ModalInstanceCtrl',
+//       size: size,
+//       resolve: {
+//         items: function () {
+//           return $scope.items;
+//         }
+//       }
+//     });
 
-  $scope.open = function (size) {
+//     modalInstance.result.then(function (selectedItem) {
+//       $scope.selected = selectedItem;
+//     }, function () {
+//       $log.info('Modal dismissed at: ' + new Date());
+//     });
+//   };
+// });
 
-    var modalInstance = $modal.open({
-      templateUrl: 'application/system/auth/auth-modal.html',
-      controller: 'ModalInstanceCtrl',
-      size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
-    });
+// AuthCtrlSystem.controller('ModalInstanceCtrl', function ($rootScope, $scope, $modalInstance, items) {
 
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
-});
+//   $scope.items = items;
+//   $scope.selected = {
+//     item: $scope.items[0]
+//   };
+//   $rootScope.$on('someEvent', function(event, args) {
 
-AuthCtrlSystem.controller('ModalInstanceCtrl', function ($rootScope, $scope, $modalInstance, items) {
-
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-  $rootScope.$on('someEvent', function(event, args) {
-
-    $modalInstance.close($scope.selected.item);
+//     $modalInstance.close($scope.selected.item);
     
-  });
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
+//   });
+//   $scope.ok = function () {
+//     $modalInstance.close($scope.selected.item);
+//   };
+
+//   $scope.cancel = function () {
+//     $modalInstance.dismiss('cancel');
+//   };
+// });
+
+
+SystemApp.factory("AuthFactory", function($rootScope, $q, $http, $firebase) {
+
+  var factory = {};
+  var helper = {};
+  var firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
+
+  factory.login = function (authClient, email, password) {
+    // console.log(authClient, email, password);
+    authClient.login("password", {
+      email: email, //email: "binarygeometry@gmail.com",
+      password: password, //password: "ZhBDxSXSN4JsL9aU",
+      rememberMe: true
+  })
   };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+  factory.getUsers = function () {
+    var usersRef = new Firebase(firebase_url + 'users/');
+    var deferred = $q.defer();
+    var users;
+
+    // Attach an asynchronous callback to read the data at our posts reference
+    usersRef.on('value', function (snapshot) {
+      users = snapshot.val();
+      deferred.resolve(users);
+    }, function (errorObject) {
+      console.log('The read failed: ' + errorObject.code);
+      deferred.resolve('no data');
+    });
+
+        return deferred.promise;
   };
+
+  factory.getProfile = function (username) {
+      // uid = username.foundByFunction
+      var uid = ''//'simplelogin:69'
+    var deferred = $q.defer();
+    var profile;
+    var username = username;
+      factory.getUidByUsername(username).then(function(data){
+        var uid = data;
+
+      var url =  $rootScope.firebase_url + 'users/' + uid;
+      var profileRef = new Firebase(url);
+      profileRef.on('value', function (snapshot) {
+        profile = snapshot.val();
+        deferred.resolve(profile);
+      }, function (errorObject) {
+        console.log('The read failed: ' + errorObject.code);
+        deferred.resolve('no data');
+        })
+    });
+
+        return deferred.promise;
+  };
+  factory.getUidByUsername = function(username){
+      var username = username;
+      var url = firebase_url + 'listings/' + username;
+      var listings = new Firebase(url);
+      var deferred = $q.defer();
+      listings.on('value', function(snapshot) {
+            var uid = snapshot.val(); // remember the brackets!!
+            // console.log(uid);
+              deferred.resolve('gogo');
+        }, function(err){
+          //
+        });
+        return deferred.promise;
+
+
+  };
+  return factory
 });
 
-AuthCtrlSystem.controller("AuthCtrl", function($rootScope, $scope, $http,angularFire, angularFireAuth) {
-    // now we can use $firebase to synchronize data between clients and the server!
-  $scope.loginBusy = false;
-  $scope.userData = $scope.userData || {};
+AuthCtrlSystem.controller('MainCtrl', function($rootScope, $scope, $http, $q, $firebase, $location, AuthFactory) {
 
-  console.log('got this far');
-  var ref = new Firebase('https://brilliant-fire-7870.firebaseio.com/');
-  // var authData = ref.getAuth();
-  angularFireAuth.initialize(ref, {scope: $scope, name: 'user'});
-  console.log('scope');
-  /*//////////////LOGIN - LOGOUT - REGISTER////////////////////*/
-  
-  $scope.login = function() {
-    console.log('logoin');
-    $scope.loginMessage = "";
-    if ((angular.isDefined($scope.inputEmail) && $scope.inputEmail != "") && (angular.isDefined($scope.inputPassword) && $scope.inputPassword != "")) {
-      $scope.loginBusy = true;
-      angularFireAuth.login('password', {
-        email: $scope.inputEmail,
-        password: $scope.inputPassword
-      });
-      $rootScope.$emit('someEvent');
+  $rootScope.firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
+  $scope.registerData = {}
+  $scope.loginData = {}
+  $scope.newUser = false;
+
+  var firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
+    // Print the current login state whenever it changes
+  var ref = new Firebase(firebase_url);
+
+  var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
+    if (error !== null) {
+      // console.log("Error authenticating:", error);
+    } else if (user !== null && $scope.newUser) {
+      console.log("New User is logged in:", user);
+      $scope.saveNewUser(user); // save user to firebase
+      $scope.newUser = false; // reset new user flag
+      $rootScope.firebaseUser = user;
+      $scope.$apply(function() {
+        $location.path('/list');
+    });
+    } else if (user !== null) {
+      console.log("User is logged in:", user);
+      $rootScope.firebaseUser = user;
+      $scope.$apply(function() {
+        $location.path('/list');
+    });
+
     } else {
-      $scope.loginMessage = "Please enter a username and password!";
+      console.log("User is logged out");
+       $scope.$apply(function() {
+        $location.path('/register');
+    });
     }
+  });
+  $scope.change = function(){
+    
+          $location.path('/list');
   };
-  
-  $scope.logout = function() {
-    $scope.loginBusy = true;
-    $scope.nowRegistered = false;
-    $scope.loginMessage = "";
-    $scope.greeting = "";
-    $scope.disassociateUserData();
-    $scope.userData = {};
-    angularFireAuth.logout();
+  $scope.login = function(){
+    
+    var email = $scope.registerData.email;
+    var password = $scope.registerData.password;
+    AuthFactory.login(authClient, email, password);
+    console.log('login');
+    // $location.path('/#/list');
   };
 
-  $scope.register = function() {
-    $scope.loginMessage = "";
-    if ((angular.isDefined($scope.inputEmail) && $scope.inputEmail != "") && (angular.isDefined($scope.inputPassword) && $scope.inputPassword != "")) {
-      $scope.loginBusy = true;
-      angularFireAuth.createUser($scope.inputEmail, $scope.inputPassword, function(err, user) {
-        if (user) {
-          console.log('New User Registered');
-        }
-        $scope.loginBusy = false;
-        $scope.nowRegistered = true;
-        // $rootScope.$emit('someEvent');
-      //         var authData = {
-      //   "name": $scope.inputEmail, 
-      //   "email":$scope.inputEmail
-      // }
-      // ref.onAuth(function(authData) {
-      //   if (authData && $scope.nowRegistered) {
-      //     // save the user's profile into Firebase so we can
-      //     // list users, use them in security rules, and show profiles
-      //     ref.child('users').child(authData.uid).set(authData);
-      //   }
-      // });
+  $scope.logout = function(){
 
-      });
-
-    } else  {
-      $scope.loginMessage = "Please enter a username and password!";
-    }
+    authClient.logout();  
   };
-  
-  $scope.$on('angularFireAuth:login', function(evt, user) {
-    $scope.loginBusy = false;
-    $scope.user = user;
-    console.log("User is Logged In");
-    angularFire(ref.child('users/' + $scope.user.id), $scope, 'userData').then(function(disassociate) {
-      console.log($scope);
-      $scope.userData.name = $scope.userData.name || {};
-      if (!$scope.userData.name.first) {
-        $scope.greeting = "Hello!";
+
+  $scope.register = function(){
+
+    $scope.newUser = true;
+    var email = $scope.registerData.email;
+    var password = $scope.registerData.password;
+    var username = $scope.registerData.username;
+    $scope.uniqueUsername(username).then(function(exists){
+      if(!exists) {
+        console.log('creating new user')
+        authClient.createUser(email, password, function(err, user) {
+          AuthFactory.login(authClient, email, password);
+        });
       } else {
-        $scope.greeting = "Hello, " + $scope.userData.name.first + "!";
-      }
-      $scope.disassociateUserData = function() {
-        disassociate();
-      };
-    });
-
-
-    ref.onAuth(function(authData) {
-      if (authData && isNewUser) {
-        // save the user's profile into Firebase so we can
-        // list users, use them in security rules, and show profiles
-        ref.child('users').child(authData.uid).set(authData);
+        alert('try to be more original');
       }
     });
-  });
-  
-  $scope.$on('angularFireAuth:logout', function(evt) {
-    $scope.loginBusy = false;
-    $scope.user = {};
-    console.log('User is Logged Out');
-  });
-  
-  $scope.$on('angularFireAuth:error', function(evt, err) {
-    $scope.greeting = "";
-    $scope.loginBusy = false;
-    $scope.loginMessage = "";
-    console.log('Error: ' + err.code);
-    switch(err.code) {
-      case 'EMAIL_TAKEN':
-        $scope.loginMessage = "That email address is already registered!";
-        break;
-      case 'INVALID_PASSWORD':
-        $scope.loginMessage = "Invalid username + password";
-    }
-  });
+  };
+
+  $scope.saveNewUser = function(user){
+    var username = $scope.registerData.username;
+    ref.child('users').child(user.uid).set({
+          username: username,
+          uid: user.uid
+      });
+      ref.child('listings').child(username).set({
+        uid: user.uid,
+          active: true
+      });
+      console.log('does it end here?');
+      return;
+  };
+
+  $scope.uniqueUsername = function(username){
+      
+        var listings = new Firebase(firebase_url + 'listings');
+        var exists = false;
+        var deferred = $q.defer();
+        listings.child(username).once('value', function(snapshot) {
+            // console.log(snapshot.val);
+              exists = (snapshot.val() !== null);
+              // console.log(exists);
+              deferred.resolve(exists);
+        });
+        return deferred.promise;
+  };
+
 });
 
+// AuthCtrlSystem.controller('UsersCtrl', function($rootScope, $scope, $http, $q, $firebase, AuthFactory) {
+  
+//   $scope.users = {};
+//   $scope.profileData = {};
 
-// // a factory to create a re-usable profile object
-// // we pass in a username and get back their synchronized data
-// SystemApp.factory("Profile", ["$firebase", function($firebase) {
-//   return function(username) {
-//     // create a reference to the user's profile
-//     var ref = new Firebase("https://brilliant-fire-7870.firebaseio.com/profiles/").child(username);
+//   $scope.getUsers = function(){
+//     AuthFactory.getUsers().then(function(data){
+//       // console.log(data);
+//       $scope.users = data;
+//     });
+//   };
+//   $scope.getUsers();
 
-//     // return it as a synchronized object
-//     return $firebase(ref).$asObject();
-//   }
-// }]);
+//   $scope.updateProfile = function(){
+//     var data = $scope.profileData.about|| {};
+//     var uid = $rootScope.firebaseUser.uid;
+//     var url =  $rootScope.firebase_url + 'users/' + uid;
+//     var profile = new Firebase(url);
+//         // console.log(url, data);
+//         profile.update({profile: data});
+//   };
+//   $scope.getProfile = function(username){
+//     var username = username;
+//     AuthFactory.getProfile(username).then(function(data){
+//       // console.log(data);
+//       $scope.profile = data;
+//     });
+//     // AuthFactory.getUidByUsername(username).then(function(data){
+//     //  console.log(data);
+//     //  $scope.profile = data;
+//     // });
+//   };
+//   $scope.getProfile('gogo');
+
+
+// });
+
+
+
+
 

@@ -2,13 +2,12 @@
 
 // Declare app level module which depends on filters, and services
 var SystemApp = angular.module('SystemApp', 
-	['ui.router','ngResource','ngAnimate','ui.bootstrap','ngRoute',
-	// 'firebase'
-	// ,'AuthCtrlSystem'
-	// ,'HeaderCtrl'
-	// ,'HeaderDirective'
-	// ,'FooterCtrl'
-	// ,'FooterDirective'
+	['ui.router','ngResource','ngAnimate','ui.bootstrap','ngRoute','firebase'
+	,'AuthCtrlSystem'
+	,'HeaderCtrl'
+	,'HeaderDirective'
+	,'FooterCtrl'
+	,'FooterDirective'
 	// ,'ProfileCtrl'
 	// ,'DreamsCtrl'
 	// ,'SkillsCtrl'
