@@ -114,13 +114,15 @@ SystemApp.factory("AccountFactory", function($rootScope, $q, $http, $firebase) {
 
     factory.addSkill = function (skill) {
 		var currentUser = $rootScope.firebaseUser.uid;
-		var endpoint = new Firebase(firebase_url + 'users/' + currentUser + '/skills/');
+		// var endpoint = new Firebase(firebase_url + 'users/' + currentUser + '/skills/');
 		// var deferred = $q.defer();
-		console.log(skill);
+		console.log('skill',skill);
+		console.log('c',currentUser);
 				
 		var skillRef = new Firebase(firebase_url + 'users/' + currentUser + '/skills/');
+		console.log(skillRef)
 		var newSkillRef = skillRef.push();
-		newSkillRef.set(newSkill);
+		newSkillRef.set(skill);
 		// We've appended a new message to the message_list location.
 		// var path = newMessageRef.toString();
 		// path will be something like

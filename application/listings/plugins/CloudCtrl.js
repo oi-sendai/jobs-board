@@ -57,6 +57,7 @@ CloudCtrl = angular.module('CloudCtrl', []);
 
 CloudCtrl.controller('CloudCtrl', function($scope, _
 	,UserFactory
+	,CloudFactory
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
@@ -72,29 +73,29 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	$scope.filters = [];
 	// test 1
 	$scope.init = function(){
-		UserFactory.fetchUsers().then(function(data){
-			// cache returned users object
-			$scope.users = data; // cache users object
-			// $scope.activeUsers = $scope.users;
-
-			$scope.gatherSkills($scope.users);
-			// console.log($scope.skills);
+		CloudFactory.users().then(function(data){
+			$scope.users = data.val(); // cache users object
+			console.log('--------------users', data.val());
+			$scope.gatherSkills(data.val());
 		});
 	};
 	$scope.init();
 
 	// returns array of skill object values
 	$scope.gatherSkills = function(users){
+		console.log(users)
 		// if($scope.filters.length < 0){
 		// 	console.log('filterUsers()');
 		// } 
-		console.log('calle');
-		$scope.skills = []
+		console.log('called');
+		$scope.skills = [];
 		var gather = function(user){
-			// console.log('gathering', user);
-			// reset scope object
-			// add to rain array
-			_.each(user.skills, function(input){
+			var skills = _.map(user.skills, function(value,key){
+                return value
+            })
+
+            console.log(skills);
+			_.each(skills, function(input){
 				$scope.countSkills(input.name);
 			});
 			// console.log($scope.skills);

@@ -43,8 +43,8 @@ EditSkillsCtrl.controller('EditSkillsCtrl', function($rootScope, $scope, $http, 
         AccountFactory.updateInfo(info);
     }
     $scope.addSkill = function(){
-        newSkill = {"name":$scope.skillData.newItem, "tooltip":""};
-        $scope.user.skills.push(newSkill);
+        var newSkill = {"name":$scope.skillData.newItem, "tooltip":""};
+        $scope.skills.push(newSkill);
         AccountFactory.addSkill(newSkill);
         $scope.skillData = {}
     }
