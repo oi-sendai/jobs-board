@@ -1,62 +1,7 @@
-SystemApp.factory('UserFactory', function($q) {
-	var debug = 'profile factory';
-	var factory = {};
-
-	factory.fetchUsers = function(){
-		var deferred = $q.defer();
-		var users = [
-
-			{	"username": "franz-kafka",
-				"skills": [
-				{"name":"polite"},
-				{"name":"javascript"},
-				{"name":"insurance broker"},
-				{"name":"design"}
-				]
-			},
-			{	"username":"me",
-				"skills": [
-				{"name":"hardworking"},
-				{"name":"sewing"},
-				{"name":"javascript"},
-				{"name":"information architecture"}
-				]
-			},
-			{
-				"username": "another-user",
-				"skills": [
-				{"name":"hardworking"},
-				{"name":"design"},
-				{"name":"italian"},
-				{"name":"javascript"},
-				]
-			},
-			{
-				"username": "more-data",
-				"skills": [
-				{"name":"hardworking"},
-				{"name":"design"},
-				]
-			},
-			{
-				"username": "even-more",
-				"skills": [
-				{"name":"javascript"},
-				{"name":"design"},
-				{"name":"polite"}
-				]
-			}
-		];
-		deferred.resolve(users);
-		return deferred.promise;
-	};
-	return factory
-}); 
-
 CloudCtrl = angular.module('CloudCtrl', []);
 
 CloudCtrl.controller('CloudCtrl', function($scope, _
-	,UserFactory
+	// ,UserFactory
 	,CloudFactory
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
@@ -129,7 +74,6 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 			});
 
 		}
-		$("#example").jQCloud($scope.skills);
 	};
 
 	$scope.addFilter = function(filter){

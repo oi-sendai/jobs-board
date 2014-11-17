@@ -15,7 +15,7 @@ describe("Unit: CloudCtrl", function() {
       ];
  
       mockUserService = {
-            fetchUsers: function(){
+            users: function(){
               console.log(q);
                 deferred = q.defer();
                 deferred.resolve('data');
@@ -31,7 +31,7 @@ describe("Unit: CloudCtrl", function() {
         testScope = $rootScope.$new();
          
         CloudCtrl = $controller( 'CloudCtrl', { 
-            UserFactory: mockUserService, 
+            CloudFactory: mockUserService, 
             $scope: testScope 
         });
          
@@ -39,19 +39,16 @@ describe("Unit: CloudCtrl", function() {
 
     
     it('init(): should return all skills held by users', function(){
-      spyOn(mockUserService, 'fetchUsers').andCallThrough();
+      spyOn(mockUserService, 'users').andCallThrough();
       testScope.init();
-      expect(mockUserService.fetchUsers).toHaveBeenCalled();
+      expect(mockUserService.users).toHaveBeenCalled();
     });
 
     it('countSkills(skill): should add new skills to array', function(){
       testScope.skills = [] ;
       testScope.countSkills('javascript');
       expect(testScope.skills[0].text).toEqual('javascript');
-
     });
-
-
 
     it('countSkills(skill): should increment existing skill weighting', function(){
       testScope.users = [
@@ -61,7 +58,6 @@ describe("Unit: CloudCtrl", function() {
       testScope.skills = [{text:'javascript',weight:1}] ;
       testScope.countSkills('javascript');
       expect(testScope.skills[0].weight).toEqual(2);
-
     });
 
     it('countSkills(skill): should not include excluded skills in weighting', function(){
@@ -74,7 +70,6 @@ describe("Unit: CloudCtrl", function() {
       testScope.skills = [{text:'javascript',weight:1}] ;
       testScope.countSkills('javascript');
       expect(testScope.skills[0].weight).toEqual(2);
-
     });
 
 

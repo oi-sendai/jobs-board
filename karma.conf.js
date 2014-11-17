@@ -25,9 +25,9 @@ module.exports = function(config) {
         'vendor/angular-animate/angular-animate.js',
         'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
         'vendor/ng-resource/dist/ng-resource.js',
-        "vendor/firebase/firebase.js",
-        "vendor/angularfire/dist/angularfire.min.js",
-        "vendor/firebase-simple-login/firebase-simple-login.js",
+        'vendor/firebase/firebase.js',
+        'vendor/angularfire/dist/angularfire.min.js',
+        'vendor/firebase-simple-login/firebase-simple-login.js',
 
 
         'application/system.js',
@@ -40,14 +40,14 @@ module.exports = function(config) {
         "application/system/auth/AuthCtrl.js",
 
         'application/listings/plugins/CloudDirective.js',
-        "application/listings/plugins/CloudFactory.js",
+        'application/listings/plugins/CloudFactory.js',
         'application/listings/plugins/CloudCtrl.js',
 
-        "application/profile/controllers/ProfileCtrl.js",
+        'application/profile/controllers/ProfileCtrl.js',
 
-        "application/profile/controllers/EditProfileCtrl.js",
-        "application/profile/controllers/EditSkillsCtrl.js",
-        "application/profile/directives/AccountDirective.js",
+        'application/profile/controllers/EditProfileCtrl.js',
+        'application/profile/controllers/EditSkillsCtrl.js',
+        'application/profile/directives/AccountDirective.js',
 
 
       {pattern: 'tests/**/*js', included: true},
