@@ -117,14 +117,14 @@ SystemApp.factory("AuthFactory", function($rootScope, $q, $http, $firebase) {
 
 
   };
-  return factory
-});
+// return factory
+// });
 
-SystemApp.factory("AuthFactory", function($rootScope, $q, $http, $firebase) {
+// SystemApp.factory("AuthFactory", function($rootScope, $q, $http, $firebase) {
 
-  var factory = {};
-  var helper = {};
-  var firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
+//   var factory = {};
+//   var helper = {};
+//   var firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
 
   factory.getProfile = function (username) {
       // uid = username.foundByFunction

@@ -8,7 +8,7 @@ var SystemApp = angular.module('SystemApp',
 	,'HeaderDirective'
 	,'FooterCtrl'
 	,'FooterDirective'
-	// ,'ProfileCtrl'
+	,'ProfileCtrl'
 	// ,'DreamsCtrl'
 	// ,'SkillsCtrl'
 	// ,'StatsCtrl'
@@ -68,34 +68,32 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
 	};
-	// var profile= { 
-	//     name: 'profile',  //mandatory
-	//     templateUrl: 'application/profile/profile-layout.html',
-	//     controller: 'ProfileCtrl'
-	// };
 
+	var profile= { 
+	    name: 'profile',  //mandatory
+	    templateUrl: 'application/profile/profile-layout.html',
+	    controller: 'ProfileCtrl'
+	};
 
+	var profileView = { 
+	    name: 'profile.view',  //mandatory
+	    url: '/profile/:username', 
+	    views:{
+            'dreams':{
+                templateUrl:'application/profile/urbanquack.html',
+                // controller: 'DreamsCtrl'
+            },
+            'stats':{
+            	templateUrl: 'application/profile/profile-stats.html',
+                // controller: 'StatsCtrl'
+            },
+            'skills': {
+            	templateUrl: 'application/profile/profile-skills.html',
+                // controller: 'SkillsCtrl'
 
-
-	// var profileView = { 
-	//     name: 'profile.i-want-to-cut-patterns',  //mandatory
-	//     url: '/profile/i-want-to-cut-patterns', 
-	//     views:{
- //            'dreams':{
- //                templateUrl:'application/profile/urbanquack.html',
- //                controller: 'DreamsCtrl'
- //            },
- //            'stats':{
- //            	templateUrl: 'application/profile/profile-stats.html',
- //                controller: 'StatsCtrl'
- //            },
- //            'skills': {
- //            	templateUrl: 'application/profile/profile-skills.html',
- //                controller: 'SkillsCtrl'
-
- //            }
- //        }
-	// };
+            }
+        }
+	};
 	// #################################################
 	// var profileView = { 
 	//     name: 'profile.me',  //mandatory
@@ -182,8 +180,8 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	  // .state(listingsShow)
 	  .state(account)
 	  .state(accountView)
-	  // .state(profile)
-	  // .state(profileView)
+	  .state(profile)
+	  .state(profileView)
 	  // .state(profileViewIntroduction)
 	  // .state(profileViewExperience)
 	;
