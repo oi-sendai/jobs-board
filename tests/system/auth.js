@@ -1,14 +1,15 @@
-// describe("Unit: CloudCtrl", function() {
+describe("Unit: AuthCtrl", function() {
  
-    // var testScope;
+    var testScope;
 
-    // var CloudCtrl, $location, mockUserService, mockUsers, q, deferred;
+    var AuthCtrl, $location, mockUserService, mockUsers, q, deferred;
  
-    // beforeEach( module( 'SystemApp' ) );
+    beforeEach( module( 'SystemApp' ) );
+    beforeEach( module( 'AuthCtrlSystem' ) );
  
-    // beforeEach(function() {
+    beforeEach(function() {
  
-    //   mockUsers = [
+      // mockUsers = [
     //     { "username": "user3", "skills": [ {"name":"design"}, {"name":"javascript"}, {"name":"testing"} ] },
     //     { "username": "user2", "skills": [ {"name":"design"}, {"name":"javascript"}] },
     //     { "username": "user1", "skills": [ {"name":"design"}] }
@@ -23,19 +24,19 @@
     //         }
     //     }
  
-    // });
+    });
  
-    // beforeEach( inject( function( $controller, _$q_, $rootScope ) {
-    //             q = _$q_;
+    beforeEach( inject( function( $controller, _$q_, $rootScope ) {
+                q = _$q_;
  
-    //     testScope = $rootScope.$new();
+        testScope = $rootScope.$new();
          
-    //     CloudCtrl = $controller( 'CloudCtrl', { 
-    //         UserFactory: mockUserService, 
-    //         $scope: testScope 
-    //     });
+        AuthCtrl = $controller( 'AuthCtrl', { 
+            // UserFactory: mockUserService, 
+            $scope: testScope 
+        });
          
-    // }));
+    }));
 
     
     // it('init(): should return all skills held by users', function(){
@@ -44,12 +45,13 @@
     //   expect(mockUserService.fetchUsers).toHaveBeenCalled();
     // });
 
-    // it('countSkills(skill): should add new skills to array', function(){
-    //   testScope.skills = [] ;
-    //   testScope.countSkills('javascript');
-    //   expect(testScope.skills[0].text).toEqual('javascript');
+    it('should work', function(){
+      testScope.skills = 'yup';
+      // testScope.countSkills('javascript');
+      expect(testScope.skills).toEqual('yup');
 
-    // });
+    });
+});
 
 
 
@@ -111,5 +113,4 @@
     //   expect(testScope.activeUsers.length).toEqual(1);
     // });
  
-// });
  

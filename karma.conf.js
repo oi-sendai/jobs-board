@@ -37,6 +37,7 @@ module.exports = function(config) {
         'application/system/footer/FooterCtrl.js',
         'application/system/footer/FooterDirective.js',
 
+        "application/system/auth/AuthFactory.js",
         "application/system/auth/AuthCtrl.js",
 
         'application/listings/plugins/CloudDirective.js',

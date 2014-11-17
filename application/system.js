@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 var SystemApp = angular.module('SystemApp', 
 	['ui.router','ngResource','ngAnimate','ui.bootstrap','ngRoute','firebase'
-	,'AuthCtrlSystem'
+	,'AuthCtrl'
 	,'HeaderCtrl'
 	,'HeaderDirective'
 	,'FooterCtrl'
@@ -21,6 +21,8 @@ var SystemApp = angular.module('SystemApp',
 SystemApp.factory('_', function() {
 	return window._; // assumes underscore has already been loaded on the page
 }); 
+
+SystemApp.value('firebase_url', 'https://brilliant-fire-7870.firebaseio.com/'); 
 
 SystemApp.config(['$stateProvider', '$urlRouterProvider', 
     function ($stateProvider, $urlRouterProvider ) {
@@ -45,7 +47,10 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	var account= { 
 	    name: 'account',  //mandatory
 	    templateUrl: 'application/profile/profile-layout.html',
-	    controller: 'MainCtrl'
+	    // controller: 'AuthCtrl',
+	    // resolve: {
+
+	    // }
 	};
 	var accountView = { 
 	    name: 'account.edit',  //mandatory
