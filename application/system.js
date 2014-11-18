@@ -77,16 +77,22 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	var profile= { 
 	    name: 'profile',  //mandatory
 	    templateUrl: 'application/profile/profile-layout.html',
-	    controller: 'ProfileCtrl'
 	};
 
 	var profileView = { 
 	    name: 'profile.view',  //mandatory
 	    url: '/profile/:username', 
+	   	resolve: {
+	    	username: ['$http','$stateParams', function($http, $stateParams) {
+	    		return $stateParams.username;
+             // return $http.get('/recipes/' + $stateParams.cat)
+             //        .then(function(data) { return data.data; });
+         	}]
+        },
 	    views:{
             'dreams':{
-                templateUrl:'application/profile/urbanquack.html',
-                // controller: 'DreamsCtrl'
+                templateUrl:'application/profile/profile-dreams.html',
+                controller: 'ProfileCtrl'
             },
             'stats':{
             	templateUrl: 'application/profile/profile-stats.html',
