@@ -10,3 +10,14 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$stateParams', 'user', functio
 
 }]);
 
+ProfileCtrl.UserInit = ['$stateParams','ProfileFactory', function($stateParams, ProfileFactory) {
+	var username = $stateParams.username;
+	return ProfileFactory.getUid(username).then(function(data){
+		if(data !== 'error'){
+			return data;
+		} else {
+			return 'error'
+		}
+	});
+}];
+

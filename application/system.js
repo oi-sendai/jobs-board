@@ -83,22 +83,13 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    name: 'profile.view',  //mandatory
 	    url: '/profile/:username', 
 	   	resolve: {
-	    	userData: ['$stateParams','ProfileFactory', function($stateParams, ProfileFactory) {
-	    		var username = $stateParams.username;
-	    		return ProfileFactory.getUid(username).then(function(data){
-	    			if(data !== 'error'){
-	    				return data;
-	    			} else {
-	    				return 'error'
-	    			}
-	    		});
-         	}],
-         	user: ['ProfileFactory', 'userData', function(ProfileFactory, userData) {
-	    		if( userData === 'error' ){
+	    	userInit: ProfileCtrl.UserInit,
+         	user: ['ProfileFactory', 'userInit', function(ProfileFactory, userInit) {
+	    		if( userInit === 'error' ){
 	    			return 'There is an error processing this page'
 	    		} 
-	    		else if( userData.active ) {
-	    			return ProfileFactory.getUser(userData.uid).then(function(data){
+	    		else if( userInit.active ) {
+	    			return ProfileFactory.getUser(userInit.uid).then(function(data){
 		    			if(data !== 'error'){
 		    				return data;
 		    			} else {
