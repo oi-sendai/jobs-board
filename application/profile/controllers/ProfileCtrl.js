@@ -1,16 +1,20 @@
-var ProfileCtrl = angular.module('ProfileCtrl', []);
+// var ProfileCtrl = angular.module('ProfileCtrl', []);
 
-ProfileCtrl.controller('ProfileCtrl', ['$scope', '$stateParams', 'user', function($scope, $stateParams, user) {	
+
+function ProfileCtrl ($scope, $stateParams, user) {	
 	$scope.user = user;
+	console.log(user)
 	$scope.uid 	= user.uid;
 	$scope.username = user.username;
 	$scope.profile = user.profile;
 	$scope.skills = _.map(user.skills);
+}
 
 
-}]);
+angular.module('SystemApp').controller('ProfileCtrl', ProfileCtrl);
 
-ProfileCtrl.UserInit = ['$stateParams','ProfileFactory', function($stateParams, ProfileFactory) {
+
+ProfileCtrl.UserInit = function($stateParams, ProfileFactory) {
 	var username = $stateParams.username;
 	return ProfileFactory.getUid(username).then(function(data){
 		if(data !== 'error'){
@@ -19,7 +23,7 @@ ProfileCtrl.UserInit = ['$stateParams','ProfileFactory', function($stateParams, 
 			return 'error'
 		}
 	});
-}];
+};
 
 ProfileCtrl.UserData = ['ProfileFactory', 'userInit', function(ProfileFactory, userInit) {
 	if( userInit === 'error' ){

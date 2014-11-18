@@ -8,7 +8,7 @@ var SystemApp = angular.module('SystemApp',
 	,'HeaderDirective'
 	,'FooterCtrl'
 	,'FooterDirective'
-	,'ProfileCtrl'
+	// ,'ProfileCtrl'
 	// ,'DreamsCtrl'
 	// ,'SkillsCtrl'
 	// ,'StatsCtrl'
