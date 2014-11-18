@@ -84,23 +84,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    url: '/profile/:username', 
 	   	resolve: {
 	    	userInit: ProfileCtrl.UserInit,
-         	user: ['ProfileFactory', 'userInit', function(ProfileFactory, userInit) {
-	    		if( userInit === 'error' ){
-	    			return 'There is an error processing this page'
-	    		} 
-	    		else if( userInit.active ) {
-	    			return ProfileFactory.getUser(userInit.uid).then(function(data){
-		    			if(data !== 'error'){
-		    				return data;
-		    			} else {
-		    				return 'error'
-		    			}
-		    		});
-	    		}
-	    		else {
-	    			return 'This account is currently inactive'
-	    		}
-         	}],
+         	user: ProfileCtrl.UserData,
         },
 	    views:{
             'dreams':{
