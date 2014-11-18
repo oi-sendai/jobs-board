@@ -83,9 +83,10 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    name: 'profile.view',  //mandatory
 	    url: '/profile/:username', 
 	   	resolve: {
-	    	userInit: ProfileCtrl.UserInit,
-         	user: ProfileCtrl.UserData,
-        },
+	   		user: ['$stateParams','StateService', function($stateParams, StateService){
+	   			return StateService($stateParams);
+	   		}]
+	   	} ,
 	    views:{
             'dreams':{
                 templateUrl:'application/profile/profile-dreams.html',
