@@ -118,12 +118,11 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             },
             'stats':{
             	templateUrl: 'application/profile/profile-stats.html',
-                // controller: 'StatsCtrl'
+                controller: 'ProfileCtrl'
             },
             'skills': {
             	templateUrl: 'application/profile/profile-skills.html',
-                // controller: 'SkillsCtrl'
-
+                controller: 'ProfileCtrl'
             }
         }
 	};
