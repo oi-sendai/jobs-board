@@ -1,50 +1,44 @@
-describe("Unit: ProfileCtrl", function() {
+ddescribe("Unit: UserByUidService", function() {
  
-    var testScope;
+  var redditService, httpBackend;
 
-    var ProfileCtrl, mockUserService, mockUsers, q, deferred;
- 
-    beforeEach( module( 'SystemApp' ) );
- 
-    beforeEach(function() {
+  beforeEach(module("UserByUid"));
 
-      // mockUserObject = [
-      //   { "username": "user3", "skills": [ {"name":"design"}, {"name":"javascript"}, {"name":"testing"} ] },
-      //   { "username": "user2", "skills": [ {"name":"design"}, {"name":"javascript"}] },
-      //   { "username": "user1", "skills": [ {"name":"design"}] }
-      // ];
- 
-      // mockUserService = {
-      //       users: function(){
-      //         console.log(q);
-      //           deferred = q.defer();
-      //           deferred.resolve('data');
-      //           return deferred.promise;
-      //       }
-      //   }
- 
+  beforeEach(inject(function (_UserByUidService_, $httpBackend) {
+    UserByUidService = _UserByUidService_;
+  }));
+
+  it("should do something", function () {
+    httpBackend.whenGET("http://api.reddit.com/user/yoitsnate/submitted.json").respond({
+        data: {
+          children: [
+            {
+              data: {
+                subreddit: "golang"
+              }
+            },
+            {
+              data: {
+                subreddit: "javascript"
+              }
+            },
+            {
+              data: {
+                subreddit: "golang"
+              }
+            },
+            {
+              data: {
+                subreddit: "javascript"
+              }
+            }
+          ]
+        }
     });
- 
-    beforeEach( inject( function( $controller, _$q_, $rootScope, $stateParams ) {
-        
-        q = _$q_;
- 
-        testScope = $rootScope.$new();
-         
-        ProfileCtrl.UserInit = $controller( 'ProfileCtrl.UserInit', { 
-            // CloudFactory: mockUserService, 
-            user: 'this',
-            $scope: testScope 
-        });
-         
-    }));
-
-    
-    it('test(): should test stuff', function(){
-      // spyOn(mockUserService, 'users').andCallThrough();
-      expect(testScope).toBeDefined();
-      // expect(mockUserService.users).toHaveBeenCalled();
+    redditService.getSubredditsSubmittedToBy("yoitsnate").then(function(subreddits) {
+      expect(subreddits).toEqual(["golang", "javascript"]);
     });
+    httpBackend.flush();
+  });
 
- 
 });
