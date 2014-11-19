@@ -17,57 +17,84 @@ SystemApp.factory("CloudFactory", function($rootScope, $q, $http, $firebase) {
 
 });
 
-// SystemApp.factory('UserFactory', function($q) {
-// 	var debug = 'users factory';
-// 	var factory = {};
+angular.module('SystemApp').controller("cpc", function(CloudPersistance) {
+	var LS = CloudPersistance;
+  this.greeting = "This is a localstorage demo app";
+  this.value = LS.getData();
+  this.users   = LS.getData('cloud-users');
+  this.skills  = LS.getData('cloud-skills');
+  this.filters = LS.getData('cloud-filters');
+  
+  this.latestData = function() {
+    return LS.getData();
+  };
 
-// 	factory.fetchUsers = function(){
-// 		var deferred = $q.defer();
-// 		var users = [
+  this.update = function(val) {
+    return LS.setData(val);
+  };
 
-// 			{	"username": "franz-kafka",
-// 				"skills": [
-// 				{"name":"polite"},
-// 				{"name":"javascript"},
-// 				{"name":"insurance broker"},
-// 				{"name":"design"}
-// 				]
-// 			},
-// 			{	"username":"me",
-// 				"skills": [
-// 				{"name":"hardworking"},
-// 				{"name":"sewing"},
-// 				{"name":"javascript"},
-// 				{"name":"information architecture"}
-// 				]
-// 			},
-// 			{
-// 				"username": "another-user",
-// 				"skills": [
-// 				{"name":"hardworking"},
-// 				{"name":"design"},
-// 				{"name":"italian"},
-// 				{"name":"javascript"},
-// 				]
-// 			},
-// 			{
-// 				"username": "more-data",
-// 				"skills": [
-// 				{"name":"hardworking"},
-// 				{"name":"design"},
-// 				]
-// 			},
-// 			{
-// 				"username": "even-more",
-// 				"skills": [
-// 				{"name":"javascript"},
-// 				{"name":"design"},
-// 				{"name":"polite"}
-// 				]
-// 			}
-// 		];
-// 		deferred.resolve(users);
-// 		return deferred.promise;
-// 	};
-// 	return factory
-// }); 
+  this.persistSkills = function(val) {
+    return LS.setData(val, 'cloud-skills');
+  };
+  this.persistUsers = function(val) {
+    return LS.setData(val, 'cloud-users');
+  };
+  this.persistFilters = function(val) {
+    return LS.setFilters(val, 'cloud-filters');
+  };
+
+});
+
+angular.module('SystemApp').factory("CloudPersistance", function($window, $rootScope) {
+  angular.element($window).on('storage', function(event) {
+    if (event.key === 'cloud-data') {
+      $rootScope.$apply();
+    }
+    if (event.key === 'cloud-skills') {
+      $rootScope.$apply();
+    }
+    if (event.key === 'cloud-users') {
+      $rootScope.$apply();
+    }
+    if (event.key === 'cloud-filters') {
+      $rootScope.$apply();
+    }
+  });
+  return {
+    setData: function(val, storageKey) {
+      $window.localStorage && $window.localStorage.setItem(storageKey, val);
+      return this;
+    },
+    getData: function(storageKey) {
+
+      return $window.localStorage && $window.localStorage.getItem(storageKey);
+    },
+
+    // setSkills: function(val) {
+    //   $window.localStorage && $window.localStorage.setItem('cloud-skills', val);
+    //   return this;
+    // },
+    // getSkills: function() {
+
+    //   return $window.localStorage && $window.localStorage.getItem('cloud-skills');
+    // },
+
+    // setFilters: function(val) {
+    //   $window.localStorage && $window.localStorage.setItem('cloud-filters', val);
+    //   return this;
+    // },
+    // getFilters: function() {
+    //   return $window.localStorage && $window.localStorage.getItem('cloud-filters');
+    // },
+    
+    // setUsers: function(val) {
+    //   $window.localStorage && $window.localStorage.setItem('cloud-users', val);
+    //   return this;
+    // },
+    // getUsers: function() {
+    //   return $window.localStorage && $window.localStorage.getItem('cloud-users');
+    // }
+
+
+  };
+});

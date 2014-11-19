@@ -3,6 +3,7 @@ CloudCtrl = angular.module('CloudCtrl', []);
 CloudCtrl.controller('CloudCtrl', function($scope, _
 	// ,UserFactory
 	,CloudFactory
+	,CloudPersistance
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
