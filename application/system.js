@@ -83,8 +83,8 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    name: 'profile.view',  //mandatory
 	    url: '/profile/:username', 
 	   	resolve: {
-	   		user: ['$stateParams','StateService', function($stateParams, StateService){
-	   			return StateService($stateParams);
+	   		user: ['$stateParams','ProfileByUid', function($stateParams, ProfileByUid){
+	   			return ProfileByUid($stateParams.username);
 	   		}]
 	   	} ,
 	    views:{
