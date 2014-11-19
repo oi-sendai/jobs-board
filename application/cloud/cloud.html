@@ -1,0 +1,35 @@
+<div class="row moral-justification" ng-controller="CloudCtrl">
+	<div class="col-sm-8">
+		<div class="skills-list">
+		<!-- {{skills}} -->
+		<button class="tc tc-{{skill.weight}}" 
+			ng-click="addFilter(skill.text)" 
+			ng-repeat="skill in skills">
+			{{skill.text}}
+			<span class="label label-info"> {{skill.weight}}</span>
+		</button>
+		<!-- <cloud skills="{{skills}}"></cloud> -->
+		<!-- <cloud ng-repeat="skill in skills" value="{{skill.weight}}" skill="{{skill.text}}"> -->
+
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="well">
+			<h4>Candidates</h4>
+			<ul>
+				<li ng-repeat="candidate in activeUsers">
+					<a href="#/profile/{{candidate.username}}" class="btn btn-success" 
+					>{{candidate.username}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="well">
+			<h4>Active Filters</h4>
+			<button class="btn btn-primary" 
+				ng-click="removeFilter(skill)" 
+				ng-repeat="skill in filters">
+				{{skill}}
+		</button>
+		</div>
+	</div>
+</div>
