@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 var SystemApp = angular.module('SystemApp', 
 	['ui.router','ngResource','ngAnimate','ui.bootstrap','ngRoute','firebase'
-	,'AuthCtrl'
+	// ,'AuthCtrl'
 	,'HeaderCtrl'
 	,'HeaderDirective'
 	,'FooterCtrl'
@@ -22,7 +22,7 @@ SystemApp.factory('_', function() {
 	return window._; // assumes underscore has already been loaded on the page
 }); 
 
-SystemApp.value('firebase_url', 'https://brilliant-fire-7870.firebaseio.com/'); 
+SystemApp.value('firebase_url', 'https://brilliant-fire-7870.firebaseio.com	'); 
 
 SystemApp.config(['$stateProvider', '$urlRouterProvider', 
     function ($stateProvider, $urlRouterProvider ) {
@@ -34,19 +34,14 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
     	// loaded directly
     	abstract: true,
     	// url:'/auth',
-    	template: '<ui-view></ui-view>'
-
-    	// Centralize the config resolution
-    	// resolve: {
-
-     //  		// Get AngularJS resource to query
-     //  		Config: 'Config',
-
-     //  		// Use the resource to fetch data from the server
-     //  		config: function(Config){
-     //    		return Config.get().$promise;
-     //  		}
-     //  	}
+    	template: '<ui-view></ui-view>',
+	   	resolve: {
+	   		auth: ['CheckAuthStatus', function(CheckAuthStatus){
+	   			console.log('called')
+	   			console.log(CheckAuthStatus)
+	   			console.log(CheckAuthStatus())
+	   		}]
+	   	} ,
     };
 
 	var home = { 

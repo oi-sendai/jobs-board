@@ -6,6 +6,7 @@ SystemApp.factory("CloudFactory", function($rootScope, $q, $http, $firebase) {
 
   factory.users = function () {
 		var endpoint = new Firebase(firebase_url + '/users');
+    console.log('usersendnd---------', endpoint)
 		var deferred = $q.defer();
 		endpoint.once('value', function(snapshot){
 			deferred.resolve(snapshot);

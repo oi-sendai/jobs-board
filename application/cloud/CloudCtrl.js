@@ -4,10 +4,10 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	// ,UserFactory
 	,CloudFactory
 	,CloudPersistance
+	,CheckAuthStatus
 	){
 	// $scope.keepArray = false; //{skill:'',value:'0'}
 	$scope.debug = 'CloudCtrl';
-
 
 	// if word inArray is truthy push array to array
 
@@ -17,6 +17,8 @@ CloudCtrl.controller('CloudCtrl', function($scope, _
 	$scope.activeUsers = []
 	$scope.skills = [];
 	$scope.filters = [];
+
+
 	// test 1
 	$scope.init = function(){
 		CloudFactory.users().then(function(data){
