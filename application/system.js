@@ -27,12 +27,32 @@ SystemApp.value('firebase_url', 'https://brilliant-fire-7870.firebaseio.com/');
 SystemApp.config(['$stateProvider', '$urlRouterProvider', 
     function ($stateProvider, $urlRouterProvider ) {
     
+    var auth = {
+    	name: 'auth',
+
+	    // Make this state abstract so it can never be
+    	// loaded directly
+    	abstract: true,
+
+    	// Centralize the config resolution
+    	// resolve: {
+
+     //  		// Get AngularJS resource to query
+     //  		Config: 'Config',
+
+     //  		// Use the resource to fetch data from the server
+     //  		config: function(Config){
+     //    		return Config.get().$promise;
+     //  		}
+     //  	}
+    };
+
 	var home = { 
-	    name: 'home',  //mandatory
+	    name: 'auth.home',  //mandatory
 	    templateUrl: 'application/home/home-layout.html',
 	};
 	var homeLayout = { 
-	    name: 'home.layout',  //mandatory
+	    name: 'auth.home.layout',  //mandatory
 	    url: '/',
 	    views:{
             'welcome':{
@@ -45,7 +65,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	};
 
 	var account= { 
-	    name: 'account',  //mandatory
+	    name: 'auth.account',  //mandatory
 	    templateUrl: 'application/profile/profile-layout.html',
 	    // controller: 'AuthCtrl',
 	    // resolve: {
@@ -53,7 +73,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    // }
 	};
 	var accountView = { 
-	    name: 'account.edit',  //mandatory
+	    name: 'auth.account.edit',  //mandatory
 	    url: '/account',
 	    views:{
             'dreams':{
@@ -75,12 +95,12 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	};
 
 	var profile= { 
-	    name: 'profile',  //mandatory
+	    name: 'auth.profile',  //mandatory
 	    templateUrl: 'application/profile/profile-layout.html',
 	};
 
 	var profileView = { 
-	    name: 'profile.view',  //mandatory
+	    name: 'auth.profile.view',  //mandatory
 	    url: '/profile/:username', 
 	   	resolve: {
 	   		user: ['$stateParams','ProfileByUid', function($stateParams, ProfileByUid){
@@ -102,85 +122,9 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
 	};
-	// #################################################
-	// var profileView = { 
-	//     name: 'profile.me',  //mandatory
-	//     url: '/me', // !! This must be loaded after other routes !!
-	//     views:{
- //            'dreams':{
- //                templateUrl:'application/profile/me.html',
- //                controller: 'MeCtrl'
- //            },
- //            'stats':{
- //            	templateUrl: 'application/profile/profile-stats.html',
- //                controller: 'StatsCtrl'
- //            },
- //            'skills': {
- //            	templateUrl: 'application/profile/profile-skills.html',
- //                controller: 'SkillsCtrl'
-
- //            }
- //        };
-      //   var profileView = { 
-		    // name: 'profile.franzkafka',  //mandatory
-		    // url: '/franzkafka', // !! This must be loaded after other routes !!
-		    // views:{
-	     //        'dreams':{
-	     //            templateUrl:'application/games/taste-test.html',
-	     //            controller: 'TasteTest'
-	     //        },
-	     //        'stats':{
-	     //        	templateUrl: 'application/profile/profile-stats.html',
-	     //            controller: 'StatsCtrl'
-	     //        },
-	     //        'skills': {
-	     //        	templateUrl: 'application/profile/profile-skills.html',
-	     //            controller: 'SkillsCtrl'
-
-	     //        }
-      //   };
-
-     //    	var profileView = { 
-	    // name: 'profile.view',  //mandatory
-	    // url: '/:username', // !! This must be loaded after other routes !!
-	    // views:{
-     //        'dreams':{
-     //            templateUrl:'application/profile/profile-dreams.html',
-     //            controller: 'DreamsCtrl'
-     //        },
-     //        'stats':{
-     //        	templateUrl: 'application/profile/profile-stats.html',
-     //            controller: 'StatsCtrl'
-     //        },
-     //        'skills': {
-     //        	templateUrl: 'application/profile/profile-skills.html',
-     //            controller: 'SkillsCtrl'
-
-     //        }
-     //    } ####################################################
-     
-	// var profileViewExperience = { 
-	//     name: 'profile.view.experience',  //mandatory
-	//     url: '/experience',
-	//     views:{
- //            'dreamsInner':{
- //                templateUrl:'application/profile/tabs/profile-experience.html',
- //                controller: 'DreamsCtrl'
- //            },
- //        }
-	// };
-	// var profileViewIntroduction = { 
-	//     name: 'profile.view.introduction',  //mandatory
-	//     url: '/introduction',
-	//     views:{
- //            'dreamsInner':{
- //                templateUrl:'application/profile/tabs/profile-introduction.html',
- //                controller: 'DreamsCtrl'
- //            },
- //        }
-	// };
 
 	$stateProvider
+   	  .state(auth)
 	  .state(home)
 	  .state(homeLayout)
 	  // .state(listings)
