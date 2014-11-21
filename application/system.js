@@ -33,6 +33,8 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    // Make this state abstract so it can never be
     	// loaded directly
     	abstract: true,
+    	// url:'/auth',
+    	template: '<ui-view></ui-view>'
 
     	// Centralize the config resolution
     	// resolve: {
@@ -50,10 +52,14 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	var home = { 
 	    name: 'auth.home',  //mandatory
 	    templateUrl: 'application/home/home-layout.html',
+	    abstract:true
+	    // resolve: {
+	    // 	auth: 'title'
+	    // }
 	};
 	var homeLayout = { 
 	    name: 'auth.home.layout',  //mandatory
-	    url: '/',
+	    url: '^/',
 	    views:{
             'welcome':{
                 templateUrl:'application/home/home-welcome.html',
@@ -74,7 +80,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	};
 	var accountView = { 
 	    name: 'auth.account.edit',  //mandatory
-	    url: '/account',
+	    url: '^/account',
 	    views:{
             'dreams':{
                 templateUrl:'application/profile/edit-profile-dreams.html',
@@ -142,20 +148,20 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 
 }]);
 
-var routeLoadingIndicator = function($rootScope){
-  return {
-    restrict:'E',
-    template:"<h1 ng-if='isRouteLoading'>Loading...</h1>",
-    link:function(scope, elem, attrs){
-      scope.isRouteLoading = false;
+// var routeLoadingIndicator = function($rootScope){
+//   return {
+//     restrict:'E',
+//     template:"<h1 ng-if='isRouteLoading'>Loading...</h1>",
+//     link:function(scope, elem, attrs){
+//       scope.isRouteLoading = false;
 
-      $rootScope.$on('$routeChangeStart', function(){
-        scope.isRouteLoading = true;
-      });
+//       $rootScope.$on('$routeChangeStart', function(){
+//         scope.isRouteLoading = true;
+//       });
 
-      $rootScope.$on('$routeChangeSuccess', function(){
-        scope.isRouteLoading = false;
-      });
-    }
-  };
-};
+//       $rootScope.$on('$routeChangeSuccess', function(){
+//         scope.isRouteLoading = false;
+//       });
+//     }
+//   };
+// };
