@@ -1,0 +1,50 @@
+<div class="row moral-justification" ng-controller="CloudCtrl">
+	<div class="col-sm-8">
+		<div class="skills-list">
+		<!-- {{skills}} -->
+		<button class="tc tc-{{skill.weight}}" 
+			ng-click="addFilter(skill.text)" 
+			ng-repeat="skill in skills">
+			{{skill.text}}
+			<span class="label label-info"> {{skill.weight}}</span>
+		</button>
+		<!-- <cloud skills="{{skills}}"></cloud> -->
+		<!-- <cloud ng-repeat="skill in skills" value="{{skill.weight}}" skill="{{skill.text}}"> -->
+
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<main ng-controller="cpc as m">
+			<h1></h1>
+			<h2>Current LocalStorage value is = <em>{{m.value}}</em></h2>
+			<h2>Current LocalStorage skills   = <em>{{m.skills}}</em></h2>
+			<h2>Current LocalStorage filters  = <em>{{m.filters}}</em></h2>
+			<h2>Current LocalStorage activeUsers = <em>{{m.users}}</em></h2>
+			<input type="text" ng-model="m.value">
+			<input type="button" value="update" ng-click="m.update(m.value)">
+			<input type="text" ng-model="m.skills">
+			<input type="button" value="update" ng-click="m.persistSkills(m.skills)">
+			<input type="text" ng-model="m.filters">
+			<input type="button" value="update" ng-click="m.persistFilters(m.filters)">
+			<input type="text" ng-model="m.users">
+			<input type="button" value="update" ng-click="m.persistUsers(m.users)">
+		</main>
+		<div class="well">
+			<h4>Candidates</h4>
+			<ul>
+				<li ng-repeat="candidate in activeUsers">
+					<a href="#/profile/{{candidate.username}}" class="btn btn-success" 
+					>{{candidate.username}}</a>
+				</li>
+			</ul>
+		</div>
+		<div class="well">
+			<h4>Active Filters</h4>
+			<button class="btn btn-primary" 
+				ng-click="removeFilter(skill)" 
+				ng-repeat="skill in filters">
+				{{skill}}
+		</button>
+		</div>
+	</div>
+</div>

@@ -4,19 +4,7 @@ CloudDirective.directive( 'cloud', function() {
     return {
       	restrict: 'AE',
      	replace: true,
-      	template: '<button class="tc tc-{{value}}" ng-click="addFilter(skill)">{{skill}}</button>',
-      	scope: {
-       		skill: '@skill',
-       		value: '@value',
-      	},
-      	controller:'CloudCtrl',
-      	link: function(scope, elem, attrs) {
-      		
-      		var skill = scope.skill;
-      		console.log(skill)
-      		var value = scope.value;
-      		console.log(value);
-      	},
+      	templateUrl: 'application/cloud/cloud.html'
     }
 });
 // CloudDirective.directive( 'cloud', function() {
