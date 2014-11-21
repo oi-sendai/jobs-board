@@ -46,12 +46,13 @@
 // });
 
 
-AuthCtrl = angular.module('AuthCtrl', ['ngRoute','firebase']);
-AuthCtrl.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebase, $location
+SystemApp.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebase, $location
   ,AuthFactory
+  // ,auth
   // ,authClient
   ) {
-
+  // console.log(auth)
+  // $scope.username = auth.user.username || false;
   $rootScope.firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
   $scope.registerData = {}
   $scope.loginData = {}
@@ -85,7 +86,7 @@ AuthCtrl.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebas
      //    // $location.path('/register');
       // });
     }
-    });
+  });
 
   $scope.change = function(){
     

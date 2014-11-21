@@ -37,11 +37,12 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
     	template: '<ui-view></ui-view>',
 	   	resolve: {
 	   		auth: ['CheckAuthStatus', function(CheckAuthStatus){
-	   			console.log('called')
 	   			console.log(CheckAuthStatus)
-	   			console.log(CheckAuthStatus())
+	   			return CheckAuthStatus()
 	   		}]
 	   	} ,
+	   	controller:'AuthCtrl',
+	   	controllerAs:'auth'
     };
 
 	var home = { 
@@ -105,6 +106,7 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    url: '/profile/:username', 
 	   	resolve: {
 	   		user: ['$stateParams','ProfileByUid', function($stateParams, ProfileByUid){
+	   			console.log('---------///////////', ProfileByUid($stateParams.username))
 	   			return ProfileByUid($stateParams.username);
 	   		}]
 	   	} ,
