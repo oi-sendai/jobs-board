@@ -32,10 +32,11 @@
 		<!-- <section ng-include="'application/system/auth/auth-register.html'"></section> -->
 
 
-		<systemloader></systemloader>
+		<!-- <systemloader></systemloader> -->
 
 
-		<ui-view autoscroll="false" ng-if='!isRouteLoading' class="page-view"></ui-view>
+		<!-- <ui-view autoscroll="false" ng-if='!isRouteLoading' class="page-view"></ui-view> -->
+		<ui-view class="wobble"></ui-view>
 		
 
 		<!-- <systemfooter></systemfooter> -->
@@ -82,6 +83,7 @@
 		<!-- // System Auth -->
 		<script src="application/system/auth/AuthFactory.js"></script>
 		<script src="application/system/auth/AuthCtrl.js"></script>
+		<script src="application/system/auth/AuthLoginDirective.js"></script>
 		<!-- // System Loader -->
 		<script src="application/system/loader/loader.js"></script>
 		<script src="application/system/loader/LoaderDirective.js"></script>

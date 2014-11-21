@@ -85,10 +85,12 @@ SystemApp.factory("CheckAuthStatus", function($q, $firebase) {
       } 
       else if (user !== null) {
         console.log("woop:", user);
-        deferred.resolve(user);
+        var authuser =  {logged:true,info:user}
+        deferred.resolve(authuser);
       } else {
         console.log("boo");
-        deferred.resolve(false);
+        var authuser =  {logged:false}
+        deferred.resolve(authuser);
       }
     });
 

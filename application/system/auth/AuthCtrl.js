@@ -45,14 +45,21 @@
 //   };
 // });
 
+var AuthCtrl = angular.module('AuthCtrl', ['ngRoute','firebase']);
 
-SystemApp.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebase, $location
+// AuthCtrlSystem.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+
+AuthCtrl.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebase, $location
   ,AuthFactory
-  // ,auth
-  // ,authClient
+  ,authuser
+  // ,authuserClient
   ) {
-  // console.log(auth)
-  // $scope.username = auth.user.username || false;
+  console.log('authuser',authuser)
+  $scope.loggedIn = authuser.logged;
+  $scope.username = authuser.uid;
+  $scope.test = 'blachbacl';
+
+
   $rootScope.firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
   $scope.registerData = {}
   $scope.loginData = {}

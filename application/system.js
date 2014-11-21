@@ -3,11 +3,12 @@
 // Declare app level module which depends on filters, and services
 var SystemApp = angular.module('SystemApp', 
 	['ui.router','ngResource','ngAnimate','ui.bootstrap','ngRoute','firebase'
-	// ,'AuthCtrl'
+	,'AuthCtrl'
 	,'HeaderCtrl'
 	,'HeaderDirective'
 	,'FooterCtrl'
 	,'FooterDirective'
+	,'AuthLoginDirective'
 	// ,'ProfileCtrl'
 	// ,'DreamsCtrl'
 	// ,'SkillsCtrl'
@@ -34,15 +35,14 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
     	// loaded directly
     	abstract: true,
     	// url:'/auth',
-    	template: '<ui-view></ui-view>',
+    	template: '<ui-view autoscroll="false" ng-if="!isRouteLoading" class="page-view SHOULD HAVE SCOPE"></ui-view>',
 	   	resolve: {
-	   		auth: ['CheckAuthStatus', function(CheckAuthStatus){
-	   			console.log(CheckAuthStatus)
+	   		authuser: ['CheckAuthStatus', function(CheckAuthStatus){
 	   			return CheckAuthStatus()
 	   		}]
 	   	} ,
 	   	controller:'AuthCtrl',
-	   	controllerAs:'auth'
+	   	// controllerAs:'auth'
     };
 
 	var home = { 
@@ -106,7 +106,6 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 	    url: '/profile/:username', 
 	   	resolve: {
 	   		user: ['$stateParams','ProfileByUid', function($stateParams, ProfileByUid){
-	   			console.log('---------///////////', ProfileByUid($stateParams.username))
 	   			return ProfileByUid($stateParams.username);
 	   		}]
 	   	} ,
