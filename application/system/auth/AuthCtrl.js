@@ -87,69 +87,69 @@ AuthCtrl.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebas
     }
     });
 
-  // $scope.change = function(){
+  $scope.change = function(){
     
-  //         $location.path('/list');
-  // };
-  // $scope.login = function(){
+          $location.path('/list');
+  };
+  $scope.login = function(){
     
-  //   var email = $scope.registerData.email;
-  //   var password = $scope.registerData.password;
-  //   AuthFactory.login(authClient, email, password);
-  //   console.log('login');
-  //   // $location.path('/#/list');
-  // };
+    var email = $scope.registerData.email;
+    var password = $scope.registerData.password;
+    AuthFactory.login(authClient, email, password);
+    console.log('login');
+    // $location.path('/#/list');
+  };
 
-  // $scope.logout = function(){
+  $scope.logout = function(){
 
-  //   authClient.logout();  
-  // };
+    authClient.logout();  
+  };
 
-  // $scope.register = function(){
+  $scope.register = function(){
 
-  //   $scope.newUser = true;
-  //   var email = $scope.registerData.email;
-  //   var password = $scope.registerData.password;
-  //   var username = $scope.registerData.username;
-  //   $scope.uniqueUsername(username).then(function(exists){
-  //     if(!exists) {
-  //       console.log('creating new user')
-  //       authClient.createUser(email, password, function(err, user) {
-  //         AuthFactory.login(authClient, email, password);
-  //       });
-  //     } else {
-  //       alert('try to be more original');
-  //     }
-  //   });
-  // };
+    $scope.newUser = true;
+    var email = $scope.registerData.email;
+    var password = $scope.registerData.password;
+    var username = $scope.registerData.username;
+    $scope.uniqueUsername(username).then(function(exists){
+      if(!exists) {
+        console.log('creating new user')
+        authClient.createUser(email, password, function(err, user) {
+          AuthFactory.login(authClient, email, password);
+        });
+      } else {
+        alert('try to be more original');
+      }
+    });
+  };
 
-  // $scope.saveNewUser = function(user){
-  //   var username = $scope.registerData.username;
-  //   ref.child('users').child(user.uid).set({
-  //         username: username,
-  //         uid: user.uid
-  //     });
-  //     ref.child('listings').child(username).set({
-  //       uid: user.uid,
-  //         active: true
-  //     });
-  //     console.log('does it end here?');
-  //     return;
-  // };
+  $scope.saveNewUser = function(user){
+    var username = $scope.registerData.username;
+    ref.child('users').child(user.uid).set({
+          username: username,
+          uid: user.uid
+      });
+      ref.child('listings').child(username).set({
+        uid: user.uid,
+          active: true
+      });
+      console.log('does it end here?');
+      return;
+  };
 
-  // $scope.uniqueUsername = function(username){
+  $scope.uniqueUsername = function(username){
       
-  //       var listings = new Firebase(firebase_url + 'listings');
-  //       var exists = false;
-  //       var deferred = $q.defer();
-  //       listings.child(username).once('value', function(snapshot) {
-  //           // console.log(snapshot.val);
-  //             exists = (snapshot.val() !== null);
-  //             // console.log(exists);
-  //             deferred.resolve(exists);
-  //       });
-  //       return deferred.promise;
-  // };
+        var listings = new Firebase(firebase_url + 'listings');
+        var exists = false;
+        var deferred = $q.defer();
+        listings.child(username).once('value', function(snapshot) {
+            // console.log(snapshot.val);
+              exists = (snapshot.val() !== null);
+              // console.log(exists);
+              deferred.resolve(exists);
+        });
+        return deferred.promise;
+  };
 
 });
 
