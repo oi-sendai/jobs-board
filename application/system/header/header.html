@@ -1,5 +1,4 @@
 <header >
-<!-- ng-controller="AuthCtrl"> -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,9 +25,9 @@
           </ul>
         </li> -->
       </ul>
-      <systemauthlogin></systemauthlogin>
+      <!-- <systemauthlogin></systemauthlogin> -->
+      <div ng-include="'application/system/auth/auth-login.html'"></div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-<h1>auth {{auth}}</h1>
 </nav>
 </header>

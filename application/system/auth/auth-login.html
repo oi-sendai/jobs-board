@@ -1,11 +1,10 @@
 <form class="navbar-form navbar-right" role="search">
-{{auth.test}}
-	{{auth.loggedIn}}iopi{{loggedIn}}
-      <div class="form-group" ng-show="auth.loggedIn">
-            <h5 >Hello {{auth.username}}</h5 >
-            <button class="btn btn-default" ng-click="auth.logout()">Sign Out</button>
+<h3>{{authData.logged}}</h3>
+    <div class="form-group" ng-show="authData.logged">
+        <h5 >Hello {{authData}}</h5 >
+        <button class="btn btn-default" ng-click="logout()">Sign Out</button>
         </div>
-        <section ng-hide="auth.loggedIn">
+        <section ng-hide="auth.logged">
         <div class="form-group">
             <input class="form-control" type="text" ng-model="auth.inputEmail" placeholder="email">
         </div>

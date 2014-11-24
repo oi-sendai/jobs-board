@@ -1,64 +1,18 @@
-// var AuthCtrlSystem = angular.module('AuthCtrlSystem', ['ngRoute','firebase']);
 
-// AuthCtrlSystem.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+// var AuthCtrl = angular.module('AuthCtrl', ['firebase']);
 
-//   $scope.items = ['item1', 'item2', 'item3'];
-
-//   $scope.open = function (size) {
-
-//     var modalInstance = $modal.open({
-//       templateUrl: 'application/system/auth/auth-modal.html',
-//       controller: 'ModalInstanceCtrl',
-//       size: size,
-//       resolve: {
-//         items: function () {
-//           return $scope.items;
-//         }
-//       }
-//     });
-
-//     modalInstance.result.then(function (selectedItem) {
-//       $scope.selected = selectedItem;
-//     }, function () {
-//       $log.info('Modal dismissed at: ' + new Date());
-//     });
-//   };
-// });
-
-// AuthCtrlSystem.controller('ModalInstanceCtrl', function ($rootScope, $scope, $modalInstance, items) {
-
-//   $scope.items = items;
-//   $scope.selected = {
-//     item: $scope.items[0]
-//   };
-//   $rootScope.$on('someEvent', function(event, args) {
-
-//     $modalInstance.close($scope.selected.item);
-    
-//   });
-//   $scope.ok = function () {
-//     $modalInstance.close($scope.selected.item);
-//   };
-
-//   $scope.cancel = function () {
-//     $modalInstance.dismiss('cancel');
-//   };
-// });
-
-var AuthCtrl = angular.module('AuthCtrl', ['ngRoute','firebase']);
-
-// AuthCtrlSystem.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
-
-AuthCtrl.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebase, $location
+var AuthCtrl = SystemApp.controller("AuthCtrl", function($rootScope, $scope, $http, $q, $firebase, $location
+  , $state
   ,AuthFactory
-  ,authuser
+  // ,authuser
   // ,authuserClient
   ) {
-  console.log('authuser',authuser)
-  $scope.loggedIn = authuser.logged;
-  $scope.username = authuser.uid;
-  $scope.test = 'blachbacl';
-
+  // console.log('authuser',authuser)
+  // $scope.loggedIn = authuser.logged;
+  // $scope.username = authuser.uid;
+  $scope.authData = $state.$current.locals.globals.authuser;
+  $scope.logic = $state.$current.locals.globals.authuser || false;
+console.log($state.$current.locals.globals.authuser)
 
   $rootScope.firebase_url = 'https://brilliant-fire-7870.firebaseio.com/';
   $scope.registerData = {}
@@ -161,6 +115,34 @@ AuthCtrl.controller('AuthCtrl', function($rootScope, $scope, $http, $q, $firebas
 
 });
 
+AuthCtrl.loadData = function($q, $timeout, $firebase) {
+
+    // var defer = $q.defer();
+    // $timeout(function(){
+    //   console.log('load data data');
+    //   defer.resolve('data');
+    // }, 2000);
+    // return defer.promise;
+
+    var deferred = $q.defer();
+    var ref = new Firebase('https://brilliant-fire-7870.firebaseio.com/');
+    var authClient = new FirebaseSimpleLogin(ref, function(error, user) {
+      if (error !== null) {
+        alter('eek!'); // handle error
+      } 
+      else if (user !== null) {
+        console.log("woop:", user);
+        var authuser =  {logged:true,info:user}
+        deferred.resolve(authuser);
+      } else {
+        console.log("boo");
+        var authuser =  {logged:false}
+        deferred.resolve(authuser);
+      }
+    });
+
+    return deferred.promise;
+};
 // AuthCtrlSystem.controller('UsersCtrl', function($rootScope, $scope, $http, $q, $firebase, AuthFactory) {
   
 //   $scope.users = {};

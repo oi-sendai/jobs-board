@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 var SystemApp = angular.module('SystemApp', 
 	['ui.router','ngResource','ngAnimate','ui.bootstrap','ngRoute','firebase'
-	,'AuthCtrl'
+	// ,'AuthCtrl'
 	,'HeaderCtrl'
 	,'HeaderDirective'
 	,'FooterCtrl'
@@ -35,14 +35,13 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
     	// loaded directly
     	abstract: true,
     	// url:'/auth',
-    	template: '<ui-view autoscroll="false" ng-if="!isRouteLoading" class="page-view SHOULD HAVE SCOPE"></ui-view>',
+    	// template: '<ui-view autoscroll="false" ng-if="!isRouteLoading" class="page-view SHOULD HAVE SCOPE"></ui-view>',
+    	templateUrl: 'application/system-layout.html',
 	   	resolve: {
-	   		authuser: ['CheckAuthStatus', function(CheckAuthStatus){
-	   			return CheckAuthStatus()
-	   		}]
+	   		authuser: AuthCtrl.loadData
 	   	} ,
-	   	controller:'AuthCtrl',
-	   	// controllerAs:'auth'
+	   	controller: 'AuthCtrl',
+	   	controllerAs:'auth'
     };
 
 	var home = { 
@@ -143,21 +142,3 @@ SystemApp.config(['$stateProvider', '$urlRouterProvider',
 
 
 }]);
-
-// var routeLoadingIndicator = function($rootScope){
-//   return {
-//     restrict:'E',
-//     template:"<h1 ng-if='isRouteLoading'>Loading...</h1>",
-//     link:function(scope, elem, attrs){
-//       scope.isRouteLoading = false;
-
-//       $rootScope.$on('$routeChangeStart', function(){
-//         scope.isRouteLoading = true;
-//       });
-
-//       $rootScope.$on('$routeChangeSuccess', function(){
-//         scope.isRouteLoading = false;
-//       });
-//     }
-//   };
-// };
